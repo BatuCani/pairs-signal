@@ -236,6 +236,8 @@ class Handler(BaseHTTPRequestHandler):
             self._json(config_payload())
         elif self.path == "/feed":
             self._json(feed_examples())
+        elif self.path == "/insights":
+            self._json(json.loads((UI_DIR / "data/insights-v1.json").read_text()))
         else:
             self._json({"error": "not found"}, 404)
 
