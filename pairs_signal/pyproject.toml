@@ -18,6 +18,7 @@ dependencies = [
 
 [project.scripts]
 prepare = "pairs_signal.pipeline:main"
+news-datasets = "pairs_signal.news_datasets:main"
 fetch-prices = "pairs_signal.fetch_prices:main"
 fetch-news = "pairs_signal.fetch_news:main"
 fetch-sec = "pairs_signal.sec_events:main"

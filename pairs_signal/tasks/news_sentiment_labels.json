@@ -1,0 +1,12 @@
+{
+  "task_description": "Classify the sentiment of a short financial news headline or news tweet for the stock or market it is about: is it good news, bad news or neither for investors?",
+  "labels": {
+    "positive": "Good news for the stock or market: beats, upgrades, rising prices, growth, wins (source label Bullish).",
+    "negative": "Bad news for the stock or market: misses, downgrades, falling prices, losses, lawsuits (source label Bearish).",
+    "neutral": "Factual or mixed news without a clear direction for investors (source label Neutral)."
+  },
+  "source_mapping": {
+    "dataset": "zeroshot/twitter-financial-news-sentiment (MIT)",
+    "map": {"Bearish": "negative", "Bullish": "positive", "Neutral": "neutral"}
+  }
+}

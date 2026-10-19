@@ -1,8 +1,9 @@
-# pairs-signal
+# pairs-signal: Aktien-News-Klassifikator
 
-Hackathon 2026-10-19 (distil labs, Langfuse, Runpod): ein kleines Modell bewertet Pairs-Trading-Ausreisser anhand der Nachrichtenlage.
-Python rechnet Paare, Spreads und Ausreisser vorher aus.
-Das kleine Modell klassifiziert die letzte Schlagzeile vor dem Ausreisser, und eine feste Regel entscheidet daraus, ob gehandelt wird.
+Hackathon 2026-10-19 (distil labs, Langfuse, Runpod).
+Produkt: ein kleines, lokal lauffaehiges Modell, das Aktien-Nachrichten einordnet.
+Eingabe ist eine Schlagzeile oder ein News-Tweet zu einer Aktie, Ausgabe ist der Ereignistyp (10 Klassen) und optional die Stimmung (positiv, negativ, neutral).
+Trainiert wird mit distil labs, serviert auf Runpod (vLLM mit LoRA), jeder Aufruf wird in Langfuse getract und die Fehler fliessen als neue Trainingsbeispiele zurueck.
 
 Dieses Projekt liegt im Unterordner `pairs_signal/` des Repos und ist ein eigenes uv-Projekt; alle Befehle und Pfade unten gelten in diesem Ordner (`cd pairs_signal`).
 Der Root des Repos gehoert zum separaten Projekt "Pair Research Agent".
@@ -10,21 +11,136 @@ Der Root des Repos gehoert zum separaten Projekt "Pair Research Agent".
 Alles laeuft ohne Keys mit `--dry-run`.
 Keys kommen nur aus der Umgebung (`.env.example` zeigt alle Variablen).
 
-## Zwei Wege
+## Datensaetze
 
-**Hauptweg (empfohlen): Schlagzeilen-Klassifikation.**
+Geprueft am 2026-10-19 (Seite bzw. API selbst geoeffnet, Lizenz gelesen, Download gemessen).
+
+| Quelle | Lizenz | Zeilen | Label-Herkunft | Verwendung |
+|---|---|---|---|---|
+| [zeroshot/twitter-financial-news-topic](https://huggingface.co/datasets/zeroshot/twitter-financial-news-topic) | MIT | 21.107 (16.990 train, 4.117 validation), 2,4 MB, < 1 s | vom Datensatz-Autor annotiert, 20 Themen | **news_event**, committet |
+| [zeroshot/twitter-financial-news-sentiment](https://huggingface.co/datasets/zeroshot/twitter-financial-news-sentiment) | MIT | 11.932 (9.543 / 2.388) | vom Datensatz-Autor annotiert, Bearish/Bullish/Neutral | **news_sentiment**, committet |
+| [takala/financial_phrasebank](https://huggingface.co/datasets/takala/financial_phrasebank) | CC BY-NC-SA 3.0 | 2.259 Saetze mit voller Einigkeit von 5 bis 8 Annotatoren | menschlich | zusaetzliches Stimmungs-Testset, **nur Download-Skript** (Share-Alike) |
+| [FNSPID](https://huggingface.co/datasets/Zihan1004/FNSPID) | CC BY-NC 4.0 | 36.537 Schlagzeilen der 20 Paar-Ticker (aus 5,7 GB gestreamt) | keine; Regel-/Teacher-Labels | Pairs-Extra, anonymisiert committet |
+| SEC EDGAR Submissions API | gemeinfrei | 4.544 8-K-Filings | Item-Codes der Firmen selbst | Pairs-Extra (echte Schock-Labels) |
+| EDT / Trade the Event ([GitHub](https://github.com/Zhihan1996/TradeTheEvent)) | keine Lizenz angegeben, Daten auf Google Drive | 9.721 gelabelte Artikel | menschlich | **nicht verwendet** (Lizenz) |
+| FinGPT/fingpt-sentiment-train | keine Lizenz angegeben | 76.772 | Mischung aus anderen Quellen | **nicht verwendet** |
+
+`uv run news-datasets` laedt die beiden MIT-Datensaetze (4 s), mappt sie, bereinigt Texte (t.co-Links, Leerraum) und dedupliziert ueber eine normalisierte Form.
+`uv run news-datasets --phrasebank` baut zusaetzlich das PhraseBank-Testset lokal (`data/out/sets/news_sentiment_phrasebank_test.jsonl`, gitignored).
+
+## Label-Schema und Mapping
+
+Ereignistyp (`tasks/news_event_labels.json`, dort auch die Definitionen):
+
+| Label | Quell-Themen (twitter-financial-news-topic) |
+|---|---|
+| `earnings` | Earnings |
+| `analyst_rating` | Analyst Update |
+| `m_and_a` | M&A \| Investments |
+| `legal_regulatory` | Legal \| Regulation |
+| `management_change` | Personnel Change |
+| `dividend` | Dividend |
+| `company_news` | Company \| Product News, IPO |
+| `stock_movement` | Stock Movement, Stock Commentary |
+| `macro_market` | Fed \| Central Banks, Macro, Treasuries \| Corporate Debt, Currencies, Energy \| Oil, Gold \| Metals \| Materials, Markets, Politics |
+| `other` | General News \| Opinion |
+| (verworfen) | Financials: Sektor-News zu Banken und Versicherern, weder klar Firma noch Makro |
+
+Stimmung (`tasks/news_sentiment_labels.json`): Bullish -> `positive`, Bearish -> `negative`, Neutral -> `neutral`.
+`fundamental_shock` (fuer das Pairs-Extra) wird deterministisch abgeleitet: `earnings`, `m_and_a`, `legal_regulatory`, `management_change`.
+
+## Label-Verteilung und feste Sets
+
+Rohdaten nach Mapping und Dedup: news_event 17.873 Zeilen (train 12.673, val 1.408, test 3.792), news_sentiment 11.683 Zeilen (8.389 / 932 / 2.362).
+Test kommt aus dem Validation-Split der Quelle und ist fest; val ist ein geseedeter 10-%-Anteil des Quell-Trains.
+
+| news_event | Anteil roh | train | val | test |
+|---|---|---|---|---|
+| macro_market | 29,5 % | 150 | 30 | 40 |
+| company_news | 22,9 % | 150 | 30 | 40 |
+| stock_movement | 19,1 % | 150 | 30 | 40 |
+| other | 7,9 % | 150 | 30 | 40 |
+| earnings | 6,8 % | 150 | 30 | 40 |
+| management_change | 3,3 % | 150 | 30 | 40 |
+| m_and_a | 3,2 % | 150 | 30 | 40 |
+| legal_regulatory | 3,1 % | 150 | 30 | 40 |
+| dividend | 2,5 % | 150 | 30 | 40 |
+| analyst_rating | 1,8 % | 150 | 25 | 40 |
+| **Summe** | | **1.500** | **295** | **400** |
+
+| news_sentiment | Anteil roh | train | val | test |
+|---|---|---|---|---|
+| neutral | 64,7 % | 450 | 100 | 120 |
+| positive | 20,3 % | 450 | 100 | 120 |
+| negative | 15,1 % | 450 | 100 | 120 |
+| **Summe** | | **1.350** | **300** | **360** |
+
+Baseline ohne Modell (Keyword-Regeln, `uv run experiment --dry-run`): news_event 30,5 % Accuracy auf dem festen Test, news_sentiment 53,1 %, PhraseBank 65,3 %.
+Das ist die Latte, die Teacher und kleines Modell klar schlagen muessen.
+
+## Ablauf vor Ort: Langfuse -> distil labs -> Runpod -> Langfuse
+
+```bash
+cd pairs_signal
+uv sync
+cp .env.example .env   # Keys eintragen, dann: set -a; source .env; set +a
+
+# 0. Daten (liegen fertig im Repo; neu bauen in Sekunden)
+uv run news-datasets --phrasebank && uv run export-distil
+
+# 1. Langfuse: Datasets hochladen, Teacher als Referenz
+uv run langfuse-datasets --task news_event                       # pairs-news_event-{train,val,test}
+uv run experiment --task news_event --model teacher --split test --run-name teacher-test
+uv run experiment --task news_sentiment --model teacher --split phrasebank_test   # optional, menschliche Labels
+
+# 2. distil labs (Login: distil auth; distil whoami; distil credits-balance)
+distil dataset create --output json --data data/out/distil/news_event | jq -r .id          # -> DS
+distil teacher-evaluation create-from-dataset --output json $DS | jq -r .id               # -> TE
+distil teacher-evaluation metrics --output json $TE | jq .teacher_performance             # binary = Accuracy
+distil dataset generate-synthetic-data-train --smoke --output json $DS | jq -r .id        # Smoke zuerst
+distil dataset generate-synthetic-data-train --output json $DS | jq -r .id                # -> DS2
+distil slm create-from-dataset --output json $DS2 | jq -r .id                             # -> SLM
+distil slm status --output json $SLM | jq -r .status                                      # bis JOB_SUCCESS
+distil slm metrics --output json $SLM
+
+# 3. Runpod: Adapter holen, auf HF hochladen, vLLM-Worker mit LoRA
+distil slm download --destination model $SLM && (cd model && tar -xf model.tar)
+runpodctl hub search vllm                                                                  # -> HUB_ID
+uv run runpod-deploy --model-dir model --hf-repo <hf-user>/stock-news-adapter --hub-id $HUB_ID            # druckt die Befehle
+uv run runpod-deploy --model-dir model --hf-repo <hf-user>/stock-news-adapter --hub-id $HUB_ID --execute
+export RUNPOD_ENDPOINT_ID=<id> RUNPOD_API_KEY=...
+
+# 4. Zurueck in Langfuse: kleines Modell gegen Teacher, Fehler sortieren, v2
+uv run experiment --task news_event --model student --split test --client-dir model --run-name slm-v1-test
+uv run experiment --task news_event --model student --split val  --client-dir model --run-name slm-v1-val
+uv run export-errors slm-v1-val          # Fehler (accuracy == 0) aus Langfuse -> data/out/distil/news_event_v2/
+distil dataset create --output json --data data/out/distil/news_event_v2 | jq -r .id       # -> wie Schritt 2 bis 4 -> slm-v2-test
+```
+
+Fuer die Stimmung dieselben Schritte mit `news_sentiment`.
+Lokal statt Runpod: `vllm serve` wie in `distil slm download` beschrieben und `STUDENT_BASE_URL=http://127.0.0.1:8000/v1`.
+Der distil-gehostete Endpoint ist der Fallback (Befehle im Pairs-Extra unten).
+
+## Anwendungsbeispiel / Extra: Pairs Trading
+
+Der urspruengliche Plan, jetzt nur noch ein Anwendungsbeispiel: Ein Pairs-Trade auf einen Spread-Ausreisser wird ausgelassen, wenn die letzte Schlagzeile ein `fundamental_shock` ist.
+Die Daten (FNSPID-Schlagzeilen der Paar-Firmen, SEC-8-K-Items, Ausreisser-Faelle, Backtest) bleiben vollstaendig im Repo; Befehle: `uv run prepare --dry-run`, `uv run backtest`.
+
+### Zwei Varianten
+
+**Variante 1: Schlagzeilen-Klassifikation der Paar-Firmen.**
 Pro Schlagzeile der Paar-Firmen ein Label aus `earnings_warning`, `guidance_up`, `m_and_a`, `legal_regulatory`, `management_change`, `analyst_rating`, `macro_sector`, `noise`.
 `fundamental_shock` wird nicht trainiert, sondern deterministisch abgeleitet: true bei `earnings_warning`, `m_and_a`, `legal_regulatory`, `management_change`.
 Definitionen: `tasks/headline_labels.json`.
 Labels kommen vom Teacher (Claude Haiku 5.5), viele Beispiele, klare Aufgabe, gut destillierbar.
 Strategie: nur handeln, wenn die letzte Schlagzeile kein `fundamental_shock` ist.
 
-**Nebenweg: Ausreisser-Faelle.**
+**Variante 2: Ausreisser-Faelle.**
 Pro Ausreisser Kennzahlen plus Schlagzeile plus SEC-8-K-Items, Label ist der echte Ausgang (`reverts` / `no_revert`), keine Imitation eines grossen Modells.
 Ehrlich: Mit drei signifikanten Paaren sind das nur 190 Faelle, fuer Training knapp.
 Gut als Benchmark fuer das grosse Modell (`baseline`).
 
-## Ablauf vor Ort: Langfuse -> distil labs -> Runpod -> Langfuse
+### Ablauf fuer das Pairs-Extra
 
 Die Daten sind fertig im Repo (`data/out/`), Schritt 0 ist nur noetig, um neu zu bauen.
 
@@ -41,7 +157,7 @@ uv run backtest                   # Varianten a/b/b_sec/c auf dem Test-Zeitraum
 
 # 1. Langfuse: Datasets hochladen, Teacher-Baseline als Experiment
 uv run langfuse-datasets          # pairs-headlines-{train,val,test,case_test}, pairs-cases-{train,val,test}
-uv run experiment --model teacher --split test        # Scores accuracy / cost_usd / latency_s je Trace
+uv run experiment --task headlines --model teacher --split test        # Scores accuracy / cost_usd / latency_s je Trace
 uv run baseline                   # grosses Modell auf den Ausreisser-Faellen inkl. Trade-Ergebnis
 
 # 2. distil labs (Login: distil auth; distil whoami; distil credits-balance)
@@ -64,14 +180,14 @@ export RUNPOD_ENDPOINT_ID=<id> RUNPOD_API_KEY=...
 runpodctl serverless health $RUNPOD_ENDPOINT_ID
 
 # 4. Zurueck in Langfuse: kleines Modell gegen Teacher, Fehler sortieren, v2
-uv run experiment --model student --split test --client-dir model --run-name slm-v1-test
-uv run experiment --model student --split val  --client-dir model --run-name slm-v1-val
+uv run experiment --task headlines --model student --split test --client-dir model --run-name slm-v1-test
+uv run experiment --task headlines --model student --split val  --client-dir model --run-name slm-v1-val
 uv run export-errors slm-v1-val           # Fehler aus Langfuse (accuracy == 0) -> data/out/distil/headlines_v2/
 distil dataset create --output json --data data/out/distil/headlines_v2 | jq -r .id         # -> DS_V2, dann wie Schritt 2 -> SLM_V2
 distil slm download --destination model_v2 $SLM_V2 && (cd model_v2 && tar -xf model.tar)     # wie Schritt 3, eigenes Adapter-Repo
 uv run runpod-deploy --model-dir model_v2 --hf-repo <hf-user>/pairs-signal-adapter-v2 --hub-id $HUB_ID --name pairs-slm-v2 --execute
-RUNPOD_ENDPOINT_ID=<v2-id> uv run experiment --model student --split test --client-dir model_v2 --run-name slm-v2-test
-uv run experiment --model student --split case_test --client-dir model --run-name slm-v1-cases
+RUNPOD_ENDPOINT_ID=<v2-id> uv run experiment --task headlines --model student --split test --client-dir model_v2 --run-name slm-v2-test
+uv run experiment --task headlines --model student --split case_test --client-dir model --run-name slm-v1-cases
 uv run backtest --student-run data/out/runs/slm-v1-cases.jsonl
 ```
 
@@ -94,7 +210,7 @@ Die Verbesserungsschleife nutzt den Validierungs-Zeitraum.
 - `runpodctl --env` parst Werte als CSV; `runpod-deploy` quotet `LORA_MODULES` deshalb korrekt (unquotiertes JSON bricht ab).
 - `--workers-min 1` haelt einen Worker warm und kostet sofort; nach der Demo `runpodctl serverless delete <id>`.
 
-## Datensatz
+### Datensatz
 
 Stand 2026-10-19, `uv run prepare --dry-run` (Laufzeit ohne Downloads 11 s; FNSPID-Stream 15 min, SEC 1 min, Kurse 10 s).
 
@@ -141,7 +257,7 @@ Die SEC-Variante ist der modellfreie Beleg fuer die These: Ausreisser mit fundam
 Passend dazu der Befund von Deutsche Bank / RavenPack (FactSet Insight, 2016): ein News-Filter senkte nicht konvergierende Paare von 15 % auf 7 %.
 Mit 31 Test-Faellen sind diese Zahlen Anschauung, kein Beweis.
 
-## Methode
+### Methode
 
 - **Kurse:** yfinance, adjustierte Schlusskurse und Volumen 2010 bis 2023, 10 klassische Paare; Faelle nur bis zum Ende der News-Abdeckung.
 - **Paare:** Engle-Granger (statsmodels) auf Log-Kursen.
@@ -163,7 +279,7 @@ Dateien mit echten Tickern und Daten bleiben in `data/interim/` (gitignored).
 - **Splits nach Zeit:** train bis 2017-12-31, val 2018, test 2019-01-01 bis 2020-06-11 (juengster Zeitraum mit Schlagzeilen).
 Faelle, deren 10-Tage-Fenster in den naechsten Split reicht, werden verworfen (Embargo); Schlagzeilen sind ueber den Text dedupliziert, keine liegt in zwei Splits.
 
-## Ehrliche Grenzen des Backtests
+### Ehrliche Grenzen des Backtests
 
 - Wenige Faelle: drei Paare, ein Test-Zeitraum von 1,5 Jahren mit 31 Faellen, Trefferquoten auf so wenigen Trades schwanken stark.
 Der Test-Zeitraum enthaelt den Corona-Crash 2020.
@@ -177,7 +293,11 @@ Die 50 als `review: true` markierten Faelle (`data/out/headline_review.csv`) sin
 
 ## Daten und Lizenzen
 
-- **Schlagzeilen:** abgeleitet aus FNSPID (Dong, Fan, Peng 2024, [arXiv 2402.06698](https://arxiv.org/abs/2402.06698)), Hugging Face [Zihan1004/FNSPID](https://huggingface.co/datasets/Zihan1004/FNSPID), Lizenz [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+Das Repo ist oeffentlich; committet sind nur Daten, deren Lizenz das erlaubt.
+
+- **Ereignistyp und Stimmung:** [zeroshot/twitter-financial-news-topic](https://huggingface.co/datasets/zeroshot/twitter-financial-news-topic) und [zeroshot/twitter-financial-news-sentiment](https://huggingface.co/datasets/zeroshot/twitter-financial-news-sentiment), Lizenz MIT; die gemappten Zeilen in `data/out/news/` und die Sets sind daraus abgeleitet.
+- **Financial PhraseBank:** Malo et al. 2014, [takala/financial_phrasebank](https://huggingface.co/datasets/takala/financial_phrasebank), [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/); nicht committet, nur per `news-datasets --phrasebank` lokal gebaut.
+- **Pairs-Extra, Schlagzeilen:** abgeleitet aus FNSPID (Dong, Fan, Peng 2024, [arXiv 2402.06698](https://arxiv.org/abs/2402.06698)), Hugging Face [Zihan1004/FNSPID](https://huggingface.co/datasets/Zihan1004/FNSPID), Lizenz [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 Die Schlagzeilen in `data/out/` sind anonymisiert und gefiltert, bleiben aber abgeleitete Daten unter CC BY-NC 4.0: nur nicht-kommerzielle Nutzung, mit Namensnennung.
 - **SEC EDGAR:** 8-K-Filings ueber die Submissions API (`data.sec.gov`), Daten einer US-Bundesbehoerde und gemeinfrei.
 - **Kurse und Volumen:** via yfinance von Yahoo Finance, es gelten die Nutzungsbedingungen von Yahoo; nur fuer Forschung und Lehre.
@@ -188,11 +308,14 @@ Rohkurse liegen nur lokal in `data/raw/` (gitignored); im Repo stehen nur daraus
 | Pfad | Inhalt |
 |---|---|
 | `src/pairs_signal/` | Pipeline-Module, je ein CLI-Eintrag in `pyproject.toml` |
+| `tasks/news_event_labels.json`, `tasks/news_sentiment_labels.json` | Produkt: Aufgabenbeschreibung, Label-Definitionen, Quell-Mapping |
+| `data/out/news/{news_event,news_sentiment}.jsonl` | alle gemappten, deduplizierten Zeilen mit Split und Quell-Label |
+| `data/out/distil/{news_event,news_sentiment}/` | Produkt: Upload-Ordner fuer `distil dataset create --data` |
 | `tasks/headline_labels.json` | Aufgabenbeschreibung, Label-Definitionen, `fundamental_shock`-Regel |
 | `data/out/headlines.jsonl` | alle anonymisierten Schlagzeilen mit Split und Label |
 | `data/out/cases.jsonl` | anonymisierte Ausreisser-Faelle mit Kennzahlen, Label und Trade-Ergebnis |
 | `data/out/sets/` | feste train/val/test-Sets (`{id, input, label, meta}`), Quelle fuer Langfuse und Experimente |
-| `data/out/distil/{headlines,cases}/` | Upload-Ordner fuer `distil dataset create --data` |
+| `data/out/distil/{headlines,cases}/` | Pairs-Extra: Upload-Ordner fuer `distil dataset create --data` |
 | `data/out/headline_review.csv` | 50 Stichproben zur manuellen Label-Kontrolle |
 | `data/out/backtest_test.json` | Backtest-Ergebnis des letzten Laufs |
 | `data/out/pairs_summary.csv` | Paar-Tabelle (p-Wert, Hedge-Ratio, Status) |

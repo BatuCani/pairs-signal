@@ -20,12 +20,19 @@ from pathlib import Path
 
 from pairs_signal import config, tasks
 
-# Headline sets are balanced per label: noise dominates the raw stream (~2/3 of rows).
-HEADLINE_CAPS = {"train": 150, "val": 40, "test": 50}
+# Balanced per label, capped per split (headline noise is ~2/3 of the raw stream; the news
+# sources are skewed toward macro and company news). cases keep their natural distribution.
+CAPS = {
+    "news_event": {"train": 150, "val": 30, "test": 40},
+    "news_sentiment": {"train": 450, "val": 100, "test": 120},
+    "headlines": {"train": 150, "val": 40, "test": 50},
+}
 TRACES_MAX = 2000
 SEED = 13
 
 CONFIGS = {
+    "news_event": {"student": "Qwen3.5-0.8B", "teacher": "zai.glm-5.3-low-thinking", "train_target": 3000},
+    "news_sentiment": {"student": "Qwen3.5-0.8B", "teacher": "zai.glm-5.3-low-thinking", "train_target": 2000},
     "headlines": {"student": "Qwen3.5-0.8B", "teacher": "zai.glm-5.3-low-thinking", "train_target": 3000},
     "cases": {"student": "Qwen3.5-2B", "teacher": "zai.glm-5.3-low-thinking", "train_target": 2000},
 }
@@ -56,7 +63,8 @@ def write_jsonl(path: Path, rows: list[dict]) -> None:
 
 def config_yaml(name: str, task: tasks.Task) -> str:
     cfg = CONFIGS[name]
-    values = "\n".join(f'        - "a {"headline" if name == "headlines" else "pair outlier case"} whose correct label is {lab}"' for lab in task.labels)
+    noun = "pair outlier case" if name == "cases" else "headline"
+    values = "\n".join(f'        - "a {noun} whose correct label is {lab}"' for lab in task.labels)
     return f"""# distil labs job config for the {name} task (docs: reference/config).
 # A fixed label set is a question-answering task; the labels live in job_description.json.
 base:
@@ -78,7 +86,16 @@ trace_processing:
 """
 
 
+NEWS_SYNTH = (
+    "Inputs are short English stock market news headlines or news tweets as posted by outlets such as Reuters, "
+    "CNBC, Seeking Alpha, Bloomberg or company press releases, 5 to 40 words, often with $TICKER cashtags and "
+    "hashtags, about US and international listed companies and markets. Vary companies, sectors, outlets and "
+    "phrasing; include ambiguous and borderline headlines, not only clear-cut ones."
+)
+
 SYNTH_INSTRUCTIONS = {
+    "news_event": NEWS_SYNTH,
+    "news_sentiment": NEWS_SYNTH,
     "headlines": (
         "Inputs are single English financial news headlines as published by news wires and finance sites "
         "(Benzinga, Zacks, Reuters, Motley Fool style), 5 to 25 words, about large US companies. "
@@ -110,12 +127,14 @@ def export(name: str) -> dict[str, list[dict]]:
     rng = random.Random(SEED)
     rows = tasks.load_examples(name)
     by_split = {s: [r for r in rows if r["split"] == s] for s in ("train", "val", "test")}
-    if name == "headlines":
-        sets = {s: balanced(by_split[s], HEADLINE_CAPS[s], rng) for s in by_split}
-        used = {r["id"] for r in sets["train"]}
-        rest = [r for r in by_split["train"] if r["id"] not in used]
-        rng.shuffle(rest)
-        traces = rest[:TRACES_MAX]
+    if name in CAPS:
+        sets = {s: balanced(by_split[s], CAPS[name][s], rng) for s in by_split}
+        traces = []
+        if name == "headlines":
+            used = {r["id"] for r in sets["train"]}
+            rest = [r for r in by_split["train"] if r["id"] not in used]
+            rng.shuffle(rest)
+            traces = rest[:TRACES_MAX]
     else:
         sets, traces = by_split, []
 
@@ -141,9 +160,11 @@ def export(name: str) -> dict[str, list[dict]]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--task", choices=["headlines", "cases", "all"], default="all")
+    parser.add_argument("--task", choices=[*tasks.TASK_NAMES, "all"], default="all")
     args = parser.parse_args()
-    for name in ["headlines", "cases"] if args.task == "all" else [args.task]:
+    names = [n for n in tasks.TASK_NAMES if n != "headlines" or (config.OUT / "headlines.jsonl").exists()]
+    names = [n for n in names if n != "cases" or (config.OUT / "cases.jsonl").exists()]
+    for name in names if args.task == "all" else [args.task]:
         sets = export(name)
         print(f"[{name}] -> {config.OUT / 'distil' / name}")
         for split in ("train", "val", "test"):

@@ -74,12 +74,31 @@ def student_predictor(task: tasks.Task, client_dir: str | None):
     return predict
 
 
+# Offline stand-ins for the news tasks: the headline keyword rules mapped onto the news labels,
+# and a tiny sentiment word list. Only a dry-run baseline, not a model.
+NEWS_EVENT_FROM_RULES = {
+    "earnings_warning": "earnings", "guidance_up": "earnings", "m_and_a": "m_and_a", "legal_regulatory": "legal_regulatory",
+    "management_change": "management_change", "analyst_rating": "analyst_rating", "macro_sector": "macro_market", "noise": "other",
+}
+POSITIVE = re.compile(r"\b(beats?|tops|raises?|upgrades?|surges?|jumps?|soars?|rall(y|ies)|gains?|record|bullish|higher|rises?)\b", re.I)
+NEGATIVE = re.compile(r"\b(miss(es)?|cuts?|downgrades?|falls?|drops?|plunges?|slumps?|sinks?|loss|lawsuit|bearish|lower|warns?)\b", re.I)
+
+
+def sentiment_rule(text: str) -> str:
+    pos, neg = len(POSITIVE.findall(text)), len(NEGATIVE.findall(text))
+    return "positive" if pos > neg else "negative" if neg > pos else "neutral"
+
+
 def rules_predictor(task: tasks.Task):
     shock = tasks.shock_labels()
 
     def predict(text: str, meta: dict) -> dict:
         start = time.perf_counter()
-        if task.name == "headlines":
+        if task.name == "news_event":
+            label = NEWS_EVENT_FROM_RULES[rule_label(text)]
+        elif task.name == "news_sentiment":
+            label = sentiment_rule(text)
+        elif task.name == "headlines":
             label = rule_label(text)
         else:
             m = re.search(r'Latest headline \([^)]*\): "(.*)"', text)
@@ -189,11 +208,12 @@ def run_local(task, predict, split: str, workers: int) -> list[dict]:
         return list(pool.map(one, examples))
 
 
-def main(default_task: str = "headlines", default_model: str = "teacher") -> None:
+def main(default_task: str = "news_event", default_model: str = "teacher") -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--task", choices=["headlines", "cases"], default=default_task)
+    parser.add_argument("--task", choices=tasks.TASK_NAMES, default=default_task)
     parser.add_argument("--model", choices=["teacher", "student", "rules"], default=default_model)
-    parser.add_argument("--split", choices=["train", "val", "test", "case_test"], default="test", help="case_test: headlines of test-period cases (backtest c)")
+    parser.add_argument("--split", choices=["train", "val", "test", "case_test", "phrasebank_test"], default="test",
+                        help="case_test: headlines of test-period pair cases; phrasebank_test: human-labeled sentiment (news_sentiment, after news-datasets --phrasebank)")
     parser.add_argument("--teacher-model", default=config.TEACHER_MODEL)
     parser.add_argument("--client-dir", default=None, help="dir with distil labs model_client.py (student)")
     parser.add_argument("--run-name", default=None)

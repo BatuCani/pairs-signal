@@ -1,5 +1,5 @@
-"""Run all offline data steps in order: download, pair analysis, cases, headline labels,
-fixed sets / distil labs bundles, backtest.
+"""Run all offline data steps in order: news datasets (product), then the pairs extra
+(download, pair analysis, cases, headline labels), fixed sets / distil labs bundles, backtest.
 
   prepare            teacher labels via ANTHROPIC_API_KEY
   prepare --dry-run  keyword-rule labels, no API calls
@@ -16,6 +16,7 @@ from pairs_signal import (
     fetch_news,
     fetch_prices,
     label_headlines,
+    news_datasets,
     sec_events,
 )
 
@@ -31,6 +32,7 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="label headlines with keyword rules instead of the teacher")
     parser.add_argument("--pairs", choices=["core", "illustrative", "all"], default="core")
     args = parser.parse_args()
+    run(news_datasets)
     run(fetch_prices)
     run(fetch_news)
     run(sec_events)

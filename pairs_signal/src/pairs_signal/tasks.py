@@ -1,7 +1,9 @@
-"""The two model tasks: their prompts, label sets and answer parsing.
+"""The model tasks: their prompts, label sets and answer parsing.
 
-headlines (main path): headline -> one of 8 event labels; fundamental_shock is derived.
-cases (secondary): pair outlier with metrics and headline -> reverts / no_revert.
+news_event (product): stock news headline -> one of 10 event types (public labeled data).
+news_sentiment (product, optional): stock news headline -> positive / negative / neutral.
+headlines (pairs extra): FNSPID pair-firm headline -> one of 8 event labels.
+cases (pairs extra): pair outlier with metrics and headline -> reverts / no_revert.
 """
 
 import json
@@ -60,7 +62,18 @@ def case_task() -> Task:
     return Task("cases", CASE_DESCRIPTION, CASE_LABELS)
 
 
+@cache
+def news_task(name: str) -> Task:
+    spec = json.loads((config.TASKS / f"{name}_labels.json").read_text())
+    return Task(name, spec["task_description"], spec["labels"])
+
+
+TASK_NAMES = ["news_event", "news_sentiment", "headlines", "cases"]
+
+
 def get(name: str) -> Task:
+    if name.startswith("news_"):
+        return news_task(name)
     return {"headlines": headline_task, "cases": case_task}[name]()
 
 
@@ -72,6 +85,12 @@ def shock_labels() -> frozenset[str]:
 
 def load_examples(task: str) -> list[dict]:
     """All labeled examples of a task as {id, split, input, label, meta} dicts."""
+    if task.startswith("news_"):
+        rows = [json.loads(line) for line in (config.OUT / "news" / f"{task}.jsonl").open()]
+        return [
+            {"id": r["id"], "split": r["split"], "input": r["text"], "label": r["label"], "meta": {"source": r["source"], "source_label": r["source_label"]}}
+            for r in rows
+        ]
     if task == "headlines":
         rows = [json.loads(line) for line in (config.OUT / "headlines.jsonl").open()]
         return [

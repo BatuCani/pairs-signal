@@ -13,12 +13,12 @@ from pairs_signal.llm import langfuse_enabled
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--task", choices=["headlines", "cases", "all"], default="all")
-    parser.add_argument("--splits", default="train,val,test,case_test")
+    parser.add_argument("--task", choices=[*tasks.TASK_NAMES, "all"], default="all")
+    parser.add_argument("--splits", default="train,val,test,case_test,phrasebank_test")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
-    names = ["headlines", "cases"] if args.task == "all" else [args.task]
+    names = tasks.TASK_NAMES if args.task == "all" else [args.task]
     if not args.dry_run and not langfuse_enabled():
         raise SystemExit("LANGFUSE_PUBLIC_KEY / LANGFUSE_SECRET_KEY not set (use --dry-run to only count)")
     lf = None

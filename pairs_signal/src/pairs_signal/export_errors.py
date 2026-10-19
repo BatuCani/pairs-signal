@@ -61,7 +61,7 @@ def main() -> None:
     args = parser.parse_args()
 
     summary = json.loads((RUNS / f"{args.run_name}.summary.json").read_text())
-    if summary["split"] in ("test", "case_test"):
+    if summary["split"] in ("test", "case_test", "phrasebank_test"):
         raise SystemExit("refusing to train on the fixed test set: run the experiment with --split val")
     task = tasks.get(summary["task"])
     use_langfuse = langfuse_enabled() and not args.local

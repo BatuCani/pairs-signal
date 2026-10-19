@@ -53,3 +53,23 @@ def test_runpod_env_flag_survives_csv_parsing():
     flag = env_flag("LORA_MODULES", value)
     assert next(csv.reader(io.StringIO(flag))) == [f"LORA_MODULES={value}"]
     assert env_flag("ENABLE_LORA", "true") == "ENABLE_LORA=true"
+
+
+def test_news_mapping_covers_every_source_label():
+    import json
+
+    from pairs_signal import config
+    from pairs_signal.news_datasets import SOURCE_NAMES
+
+    for task in ("news_event", "news_sentiment"):
+        spec = json.loads((config.TASKS / f"{task}_labels.json").read_text())
+        mapping = spec["source_mapping"]["map"]
+        assert set(SOURCE_NAMES[task]) == set(mapping)
+        assert {v for v in mapping.values() if v} == set(spec["labels"])
+
+
+def test_news_tasks_parse_their_labels():
+    event = tasks.get("news_event")
+    assert event.parse("management_change") == "management_change"
+    assert event.parse('{"label": "m_and_a"}') == "m_and_a"
+    assert tasks.get("news_sentiment").parse("negative") == "negative"

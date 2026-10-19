@@ -8,3 +8,5 @@ data/interim/
 data/out/runs/
 data/out/distil/*_v*/
 model/
+# Financial PhraseBank is CC BY-NC-SA 3.0: built locally by news-datasets --phrasebank, not committed.
+data/out/sets/news_sentiment_phrasebank_test.jsonl
