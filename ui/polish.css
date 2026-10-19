@@ -1,0 +1,126 @@
+/* News Gate visual polish: liquid-glass controls and surfaces, layered over index.html. Visual only. */
+
+:root {
+  --glass-edge: inset 0 1px 0 rgba(255,255,255,.95), inset 0 -1px 0 rgba(255,255,255,.35);
+  --glass-blur: blur(22px) saturate(180%);
+  --ring: 0 0 0 3px rgba(255,255,255,.95), 0 0 0 6px rgba(124,108,246,.55);
+  --spring: cubic-bezier(.34,1.56,.64,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+}
+
+/* Nav: frosted pill with a specular top edge */
+.navpill {
+  background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.48));
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255,255,255,.85);
+  box-shadow: var(--glass-edge), 0 14px 40px -16px rgba(40,60,110,.32), 0 1px 3px rgba(40,60,110,.06);
+}
+
+/* Segmented tabs: recessed glass track, raised glass thumb */
+.tabs {
+  background: rgba(17,17,17,.055);
+  box-shadow: inset 0 1px 2px rgba(17,17,17,.08), inset 0 -1px 0 rgba(255,255,255,.6);
+}
+.tab { transition: color .2s, background-color .25s, box-shadow .25s, transform .2s var(--spring); }
+.tab:hover:not(.active) { color: var(--ink); background: rgba(255,255,255,.45); }
+.tab:active { transform: scale(.95); }
+.tab.active {
+  background: linear-gradient(180deg, #fff, rgba(255,255,255,.86));
+  box-shadow: inset 0 1px 0 #fff, 0 1px 1px rgba(40,60,110,.08), 0 4px 12px -2px rgba(40,60,110,.18);
+}
+
+/* Primary buttons: black liquid glass with a top sheen and a cursor-following glint */
+.btn {
+  position: relative; isolation: isolate; overflow: hidden;
+  background:
+    radial-gradient(120px circle at var(--mx, 50%) var(--my, -40%), rgba(255,255,255,.28), transparent 60%),
+    linear-gradient(180deg, #34363c 0%, #16171a 48%, #0b0b0c 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.07),
+    0 1px 2px rgba(17,17,17,.25), 0 8px 20px -8px rgba(17,17,17,.45);
+  transition: transform .25s var(--spring), box-shadow .25s ease, opacity .15s, filter .2s;
+}
+.btn::before {
+  content: ""; position: absolute; z-index: -1; left: 8%; right: 8%; top: 1px; height: 46%;
+  border-radius: 999px 999px 60% 60% / 999px 999px 40% 40%;
+  background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
+  pointer-events: none;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34), inset 0 -1px 0 rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.1),
+    0 2px 4px rgba(17,17,17,.2), 0 16px 30px -10px rgba(17,17,17,.5);
+}
+.btn:active { transform: translateY(0) scale(.96, .93); transition-duration: .08s; filter: brightness(1.12); }
+.btn:disabled { transform: none; filter: saturate(.6); box-shadow: inset 0 1px 0 rgba(255,255,255,.18); }
+
+/* Input pill: glass shell that lifts on focus */
+.inputpill {
+  background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.82));
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-edge), var(--shadow);
+  transition: box-shadow .3s ease, transform .3s var(--ease-out);
+}
+.inputpill:focus-within {
+  box-shadow: var(--glass-edge), 0 0 0 4px rgba(167,139,250,.22), 0 26px 60px -20px rgba(40,60,110,.38), 0 2px 8px rgba(40,60,110,.06);
+}
+.inputpill input { caret-color: #7c6cf6; }
+
+/* Example chips: small glass lozenges */
+.examples button {
+  background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.5));
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 8px -3px rgba(40,60,110,.18);
+  transition: transform .25s var(--spring), background .2s, box-shadow .25s, color .2s;
+}
+.examples button:hover {
+  background: #fff; color: var(--ink); transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 #fff, 0 8px 18px -8px rgba(40,60,110,.3);
+}
+.examples button:active { transform: scale(.95); transition-duration: .08s; }
+
+/* Cards: frosted surface with a soft light rim */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.86));
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255,255,255,.95);
+  box-shadow: inset 0 1px 0 #fff, var(--shadow);
+}
+.loop .card.step, .item.card { transition: transform .35s var(--ease-out), box-shadow .35s ease; }
+.loop .card.step:hover { transform: translateY(-3px); }
+.empty, .hrow {
+  backdrop-filter: blur(12px) saturate(160%); -webkit-backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* Bars: glossy fill */
+.btrack { box-shadow: inset 0 1px 2px rgba(17,17,17,.06); }
+.bfill { box-shadow: inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(17,17,17,.05); }
+
+/* Focus: clear double ring for keyboard users, nothing for mouse */
+:where(button, a, input, [tabindex]):focus { outline: none; }
+:where(button, a, [tabindex]):focus-visible { outline: none; box-shadow: var(--ring); border-radius: 999px; }
+.btn:focus-visible {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.28), var(--ring), 0 8px 20px -8px rgba(17,17,17,.45);
+}
+a:focus-visible { border-radius: 6px; }
+
+::selection { background: rgba(167,139,250,.3); }
+
+/* Page switch: soft rise-in whenever a page becomes visible */
+[id^="page-"]:not([hidden]) { animation: page-in .5s var(--ease-out); }
+@keyframes page-in { from { opacity: 0; transform: translateY(12px); filter: blur(4px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover, .btn:active, .examples button:hover, .loop .card.step:hover { transform: none; }
+  .btn { background: linear-gradient(180deg, #34363c 0%, #16171a 48%, #0b0b0c 100%); }
+}
+
+/* Browsers without backdrop-filter: keep surfaces opaque enough to stay readable */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .navpill, .examples button { background: rgba(255,255,255,.92); }
+}
+
+/* Gradient numbers: size the gradient to the text so the full blue-violet-pink range shows */
+.kv.grad, .kpi.hi .kv { width: fit-content; }

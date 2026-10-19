@@ -19,10 +19,16 @@ from _core import *  # noqa: E402,F403  (re-exported for ui/terminal_demo.py)
 from _core import DATA_DIR, LANGFUSE_ON, MOCK, UI_DIR, VARIANTS, ApiHandler  # noqa: E402
 
 
+STATIC = {"/polish.css": "text/css; charset=utf-8", "/polish.js": "text/javascript; charset=utf-8"}
+
+
 class Handler(ApiHandler):
     def do_GET(self) -> None:
         if self.path.split("?", 1)[0] in ("/", "/index.html"):
             self._send(200, (UI_DIR / "index.html").read_bytes(), "text/html; charset=utf-8")
+        elif self.path.split("?", 1)[0] in STATIC:
+            name = self.path.split("?", 1)[0].lstrip("/")
+            self._send(200, (UI_DIR / name).read_bytes(), STATIC["/" + name])
         else:
             super().do_GET()
 
