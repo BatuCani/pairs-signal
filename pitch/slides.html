@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News Gate · Pitch</title>
+
+<!--
+  NUMBERS FROM THE DAY: fill in this block, nothing else.
+  null = still open; the slide then shows a pink dashed "TBD" box, so nothing unfinished goes on stage unnoticed.
+  Values are shown exactly as typed, so write the unit too ("94%", "$0.03", "180 ms", "40,000").
+  Sources: `uv run experiment ...` summaries, the Langfuse runs and pairs_signal/README.md (see demo-runbook.md).
+  Dataset values as of fm/pairs-prep fbb24c0 (README, may change while the datasets grow):
+  Accuracy = exact category match on the fixed test set of 400 headlines (distil labs evaluation, 2026-10-19).
+  Judge scores, if asked: untrained 57.75%, v1 89.5%, teacher 83.75%. cost_per_1k and latency stay hidden until filled.
+-->
+<script type="application/json" id="numbers">
+{
+  "team": ["Batu", null],
+  "baseline": { "rules_event": "30.5%", "untrained": "55.75%" },
+  "small": { "name": "Qwen3.5-0.8B", "accuracy": "88.0%", "cost_per_1k": null, "latency": null },
+  "big":   { "name": "GLM 5.3 (teacher)", "accuracy": "79.25%", "cost_per_1k": null, "latency": null },
+  "loop":  { "v1_accuracy": "88.0%", "v2_accuracy": "training", "v2_synthetic": "1,000" }
+}
+</script>
+
+<style>
+  /* Pitch deck. Arrow keys, space or click to move. N shows speaker notes, F full screen.
+     No external files: system fonts, inline SVG, so it runs offline. */
+  :root {
+    --bg: #0a0e13; --bg2: #0f151c; --panel: #131b24; --panel2: #18222d; --line: #223040;
+    --ink: #e9eef3; --soft: #b7c2ce; --muted: #7d8b9a;
+    --amber: #f6a623; --amber-soft: rgba(246, 166, 35, .14);
+    --up: #2bd47d; --up-soft: rgba(43, 212, 125, .14);
+    --down: #ff5d5d; --down-soft: rgba(255, 93, 93, .14);
+    --todo: #ff5fd2;
+    --sans: "Inter", "SF Pro Display", -apple-system, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    --mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: #050709; overflow: hidden; }
+  #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: 0 0; }
+  #stage > section {
+    position: absolute; inset: 0; overflow: hidden; padding: 120px 128px 132px;
+    background: radial-gradient(1200px 700px at 85% -10%, #15202c 0%, rgba(21, 32, 44, 0) 60%), var(--bg);
+    color: var(--ink); font-family: var(--sans);
+    opacity: 0; pointer-events: none; transition: opacity .4s ease;
+  }
+  #stage > section::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 96px 96px; opacity: .22;
+    mask-image: radial-gradient(ellipse at 70% 30%, #000 0%, transparent 70%);
+  }
+  #stage > section > * { position: relative; }
+  #stage > section > .foot, #stage > section > .brand { position: absolute; }
+  #stage > section.on { opacity: 1; pointer-events: auto; }
+  #stage > section > aside { display: none; }
+
+  /* Type, sized for the back of the room */
+  .kicker { font: 600 26px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--amber); }
+  h1 { font-size: 128px; line-height: .98; font-weight: 750; letter-spacing: -.035em; }
+  h2 { font-size: 84px; line-height: 1.02; font-weight: 720; letter-spacing: -.03em; }
+  h1 em, h2 em { font-style: normal; color: var(--amber); }
+  .lead { font-size: 36px; line-height: 1.35; color: var(--soft); }
+  .small { font-size: 26px; line-height: 1.4; color: var(--muted); }
+  .mono { font-family: var(--mono); }
+  .up { color: var(--up); } .down { color: var(--down); }
+  .big { font-weight: 750; letter-spacing: -.04em; line-height: 1; }
+  .foot {
+    left: 128px; right: 128px; bottom: 48px; display: flex; justify-content: space-between; gap: 48px;
+    font-size: 21px; line-height: 1.35; color: var(--muted);
+  }
+  .brand { position: absolute; left: 128px; top: 52px; display: flex; align-items: center; gap: 14px; font: 700 26px/1 var(--mono); letter-spacing: .04em; color: var(--ink); }
+  .brand i { width: 14px; height: 14px; border-radius: 3px; background: var(--amber); box-shadow: 0 0 18px var(--amber); }
+
+  .panel { background: linear-gradient(180deg, var(--panel2), var(--panel)); border: 1px solid var(--line); border-radius: 28px; padding: 40px 44px; }
+  .panel.hot { border-color: rgba(246, 166, 35, .6); }
+  .pill { display: inline-flex; align-items: center; gap: 10px; padding: 10px 20px; border-radius: 99px; font: 600 23px/1 var(--mono); border: 1px solid var(--line); background: var(--panel); color: var(--soft); white-space: nowrap; }
+  .pill.shock { color: var(--down); border-color: rgba(255, 93, 93, .45); background: var(--down-soft); }
+  .pill.ok { color: var(--up); border-color: rgba(43, 212, 125, .45); background: var(--up-soft); }
+  .arrow { font-size: 60px; line-height: 1; color: var(--muted); text-align: center; }
+  .step .kicker { font-size: 19px; color: var(--muted); }
+  .step.hot .kicker { color: var(--amber); }
+  .step p + p { font-size: 32px; font-weight: 650; margin-top: 12px; line-height: 1.2; }
+
+  /* Placeholders from the numbers block */
+  .v { white-space: nowrap; }
+  .v.todo {
+    display: inline-block; color: var(--todo); border: 3px dashed var(--todo); border-radius: 12px;
+    padding: 0 .22em; line-height: 1.15; background: rgba(255, 95, 210, .08);
+  }
+  .v.todo::after { content: attr(data-hint); display: block; font: 600 16px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; padding-bottom: 6px; }
+
+  /* Entrance: .rise children slide up in order when the slide shows */
+  .rise { opacity: 0; transform: translateY(28px); }
+  section.on .rise { animation: rise .7s cubic-bezier(.2, .8, .2, 1) forwards; animation-delay: calc(var(--d, 0) * 100ms + 100ms); }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    #stage > section { transition: none; }
+    .rise, section.on .rise { animation: none; opacity: 1; transform: none; }
+  }
+
+  /* Headline feed */
+  .feed { display: flex; flex-direction: column; gap: 20px; }
+  .feed .row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px; padding: 26px 32px; border-radius: 22px; background: var(--panel); border: 1px solid var(--line); }
+  .feed .row p { font-size: 29px; line-height: 1.3; color: var(--ink); }
+  .feed .row .t { font: 500 20px/1 var(--mono); color: var(--muted); margin-bottom: 10px; }
+  .feed .row.hot { border-color: rgba(255, 93, 93, .55); box-shadow: 0 0 0 1px rgba(255, 93, 93, .25), 0 24px 60px -30px rgba(255, 93, 93, .55); }
+
+  /* Label grid */
+  .labels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+  .labels div { padding: 22px 24px; border-radius: 20px; background: var(--panel); border: 1px solid var(--line); }
+  .labels div.s { border-color: rgba(255, 93, 93, .45); background: linear-gradient(180deg, rgba(255, 93, 93, .1), var(--panel)); }
+  .labels b { display: block; font: 600 22px/1.2 var(--mono); color: var(--ink); }
+  .labels div.s b { color: var(--down); }
+  .labels span { display: block; margin-top: 10px; font-size: 22px; line-height: 1.3; color: var(--muted); }
+
+  /* Terminal */
+  .term { background: #070a0d; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; font: 500 32px/1.65 var(--mono); }
+  .term .bar { display: flex; gap: 10px; padding: 18px 22px; background: #0e141a; border-bottom: 1px solid var(--line); }
+  .term .bar i { width: 14px; height: 14px; border-radius: 50%; background: #2a3644; }
+  .term .bar span { margin-left: 12px; font-size: 20px; color: var(--muted); }
+  .term pre { padding: 30px 40px; font: inherit; white-space: pre-wrap; color: var(--soft); }
+  .term .k { color: var(--muted); display: inline-block; width: 9ch; }
+  .term .p { color: var(--amber); }
+  .term .v.todo { font-size: 24px; vertical-align: middle; }
+  .term .v.todo::after { font-size: 14px; }
+
+  /* Metric tiles */
+  .metric { display: grid; grid-template-rows: auto 1fr; gap: 26px; }
+  .metric h3 { font: 600 24px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .vs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border-radius: 22px; overflow: hidden; border: 1px solid var(--line); }
+  .vs > div { padding: 30px 26px 34px; background: var(--panel); }
+  .vs > div + div { border-left: 1px solid var(--line); background: var(--bg2); }
+  .vs .who { font: 600 21px/1.3 var(--mono); color: var(--muted); }
+  .vs .who b { color: var(--amber); font-weight: 600; }
+  .vs .num { margin-top: 16px; font-size: 58px; white-space: nowrap; font-weight: 720; letter-spacing: -.03em; line-height: 1.05; }
+  .vs .num .v.todo { font-size: 52px; }
+  .vs .who .v.todo { font-size: 19px; margin-top: 4px; }
+  .vs .who .v.todo::after { font-size: 12px; }
+
+  .bars { display: flex; flex-direction: column; gap: 22px; }
+  .bars > div { display: grid; grid-template-columns: 560px 1fr 190px; align-items: center; gap: 32px; }
+  .bars p { font-size: 34px; font-weight: 650; color: var(--soft); white-space: nowrap; }
+  .bars i { display: block; height: 56px; border-radius: 14px; background: var(--panel); border: 1px solid var(--line); overflow: hidden; }
+  .bars b { display: block; height: 100%; width: 0; background: #3a4757; border-radius: 13px; }
+  .bars > div > span { font-size: 54px; font-weight: 750; letter-spacing: -.03em; text-align: right; }
+  .bars .hot p { color: var(--ink); }
+  .bars .hot b { background: var(--amber); }
+  .bars .hot > span { color: var(--amber); }
+  #notes { display: none; position: fixed; left: 0; right: 0; bottom: 0; max-height: 40vh; overflow: auto; padding: 16px 24px; background: rgba(5, 7, 9, .95); color: var(--ink); font: 20px/1.45 var(--sans); white-space: pre-wrap; z-index: 2; border-top: 1px solid var(--line); }
+  body.notes #notes { display: block; }
+  #count { position: fixed; right: 16px; top: 12px; color: var(--muted); font: 15px var(--mono); }
+  #bar { position: fixed; left: 0; bottom: 0; height: 4px; background: var(--amber); transition: width .45s ease; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1 · Title -->
+<section id="title">
+  <div class="brand"><i></i>NEWS GATE</div>
+  <div style="display:grid;grid-template-columns:1fr 760px;gap:96px;align-items:center;height:100%">
+    <div style="display:flex;flex-direction:column;gap:44px">
+      <p class="kicker rise">Problem · product</p>
+      <h1 class="rise" style="--d:1">Is this headline <em>real news?</em></h1>
+      <p class="lead rise" style="--d:2;max-width:900px">Trading agents read thousands of headlines a day. Keyword rules get <span class="v" data-k="baseline.rules_event" data-hint="accuracy"></span> of 10 event types right; a frontier model per headline is slow and costly. News Gate: our own tiny model labels every headline in real time.</p>
+    </div>
+    <div class="feed">
+      <p class="small rise" style="--d:3">Real headlines from our test set, annotated</p>
+      <div class="row rise" style="--d:4"><p>Oil price wipes out gains from Ukraine war in dip below $95</p><span class="pill ok">macro_market</span></div>
+      <div class="row rise" style="--d:5"><p>Morgan Stanley's Huberty sees Apple earnings miss, but says buy on any pullback</p><span class="pill ok">analyst_rating</span></div>
+      <div class="row hot rise" style="--d:6"><p>$KO: Coca-Cola announces that John Murphy will become president and chief financial officer …</p><span class="pill shock">management_change</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>Hackathon Berlin · distil labs × Langfuse × Runpod · 19 October 2026</span><span><span class="v" data-k="team.0" data-hint="name"></span> · <span class="v" data-k="team.1" data-hint="teammate"></span></span></div>
+  <aside>0:00 "Trading agents read thousands of stock headlines a day, and they need to know in real time: real news, or noise? Keyword rules get only 30.5 percent of ten event types right. A frontier model for every headline is slow and expensive. So we built News Gate: our own tiny model that labels every headline, like this one: Coca-Cola gets a new CFO, management change, a real shock."</aside>
+</section>
+
+
+
+
+
+<!-- 6 · Loop -->
+<section id="loop">
+  <div style="display:grid;grid-template-columns:780px 1fr;gap:80px;height:100%;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:38px">
+      <p class="kicker rise">The loop</p>
+      <h2 class="rise" style="--d:1;font-size:76px">Collect traces on <em>Langfuse</em>, train on <em>distil labs</em>, run on <em>Runpod</em>.</h2>
+      <p class="lead rise" style="--d:2;font-size:33px">Langfuse scores every answer. Version 1: 1,500 annotated headlines, 2 epochs, 6.6 minutes of training. Version 2 adds 1,000 synthetic headlines generated by distil labs. The test set stays fixed.</p>
+      <div class="panel rise" style="--d:3;display:flex;align-items:center;gap:24px;padding:32px 36px">
+        <div><p class="small">untrained</p><p style="font-size:60px;font-weight:720;letter-spacing:-.03em;margin-top:6px;color:var(--muted)"><span class="v" data-k="baseline.untrained" data-hint="base"></span></p></div>
+        <p style="font-size:52px;color:var(--muted)">→</p>
+        <div><p class="small">v1 · 6.6 min</p><p style="font-size:60px;font-weight:720;letter-spacing:-.03em;margin-top:6px" class="up"><span class="v" data-k="loop.v1_accuracy" data-hint="v1 test"></span></p></div>
+        <p style="font-size:52px;color:var(--muted)">→</p>
+        <div><p class="small">v2 · +<span class="v" data-k="loop.v2_synthetic" data-hint="count"></span></p><p style="font-size:36px;font-weight:700;margin-top:18px;color:var(--soft)"><span class="v" data-k="loop.v2_accuracy" data-hint="v2 test"></span></p></div>
+      </div>
+    </div>
+    <svg class="rise" style="--d:4" width="840" height="800" viewBox="0 0 840 800" role="img" aria-label="Loop: Langfuse to distil labs to Runpod and back to Langfuse">
+      <defs>
+        <marker id="ah" viewBox="0 0 12 12" refX="7" refY="6" markerWidth="9" markerHeight="9" orient="auto"><path d="M1 1 L11 6 L1 11 Z" fill="#f6a623"/></marker>
+      </defs>
+      <circle cx="420" cy="420" r="270" fill="none" stroke="#223040" stroke-width="2"/>
+      <path d="M 590 210 A 270 270 0 0 1 680 520" fill="none" stroke="#f6a623" stroke-width="5" marker-end="url(#ah)"/>
+      <path d="M 590 640 A 270 270 0 0 1 250 640" fill="none" stroke="#f6a623" stroke-width="5" marker-end="url(#ah)"/>
+      <path d="M 160 520 A 270 270 0 0 1 250 210" fill="none" stroke="#f6a623" stroke-width="5" marker-end="url(#ah)"/>
+      <g font-family="Inter, SF Pro Display, -apple-system, Helvetica Neue, Arial, sans-serif" text-anchor="middle">
+        <rect x="230" y="80" width="380" height="140" rx="26" fill="#18222d" stroke="#f6a623" stroke-width="2"/>
+        <text x="420" y="142" font-size="40" font-weight="700" fill="#e9eef3">Langfuse</text>
+        <text x="420" y="184" font-size="22" fill="#7d8b9a" font-family="JetBrains Mono, SF Mono, Menlo, monospace">traces · scores · evals</text>
+        <rect x="530" y="520" width="310" height="140" rx="26" fill="#18222d" stroke="#223040" stroke-width="2"/>
+        <text x="685" y="582" font-size="40" font-weight="700" fill="#e9eef3">distil labs</text>
+        <text x="685" y="624" font-size="22" fill="#7d8b9a" font-family="JetBrains Mono, SF Mono, Menlo, monospace">teacher → tiny model</text>
+        <rect x="0" y="520" width="310" height="140" rx="26" fill="#18222d" stroke="#223040" stroke-width="2"/>
+        <text x="155" y="582" font-size="40" font-weight="700" fill="#e9eef3">Runpod</text>
+        <text x="155" y="624" font-size="22" fill="#7d8b9a" font-family="JetBrains Mono, SF Mono, Menlo, monospace">own GPU · vLLM</text>
+        <text x="420" y="410" font-size="30" font-weight="700" fill="#f6a623" font-family="JetBrains Mono, SF Mono, Menlo, monospace">v1 → v2</text>
+        <text x="420" y="452" font-size="22" fill="#7d8b9a">same loop, every version</text>
+      </g>
+    </svg>
+  </div>
+  <aside>0:20 "We collect traces on Langfuse, train the model on distil labs, and run it on Runpod. Langfuse scores every answer. Out of the box, Qwen 3.5 with 0.8 billion parameters gets 55.75 percent; after six and a half minutes of training on distil labs, version one gets 88 percent. Version two adds 1,000 synthetic headlines from distil labs and is training right now."</aside>
+</section>
+
+<!-- 7 · Results -->
+<section id="results">
+  <div style="display:flex;flex-direction:column;gap:56px;height:100%;justify-content:center">
+    <div>
+      <p class="kicker rise">Frontier quality at a fraction of the cost</p>
+      <h2 class="rise" style="--d:1;margin-top:20px;font-size:84px">Our 0.8B student <em>beats its teacher.</em></h2>
+    </div>
+    <div class="bars rise" style="--d:2">
+      <div class="hot"><p>Our <span class="v" data-k="small.name"></span>, trained</p><i><b data-w="small.accuracy"></b></i><span class="v" data-k="small.accuracy"></span></div>
+      <div><p><span class="v" data-k="big.name"></span></p><i><b data-w="big.accuracy"></b></i><span class="v" data-k="big.accuracy"></span></div>
+      <div><p>Same model, untrained</p><i><b data-w="baseline.untrained"></b></i><span class="v" data-k="baseline.untrained"></span></div>
+      <div><p>Keyword rules</p><i><b data-w="baseline.rules_event"></b></i><span class="v" data-k="baseline.rules_event"></span></div>
+    </div>
+    <div id="costrow" style="display:grid;grid-template-columns:repeat(2,1fr);gap:40px">
+      <div class="metric rise" style="--d:3"><h3>Cost per 1,000 calls</h3>
+        <div class="vs"><div><p class="who"><b>Tiny</b><br>Runpod GPU</p><p class="num up"><span class="v" data-k="small.cost_per_1k" data-hint="tiny"></span></p></div><div><p class="who">Teacher<br>GLM 5.3</p><p class="num"><span class="v" data-k="big.cost_per_1k" data-hint="big"></span></p></div></div>
+      </div>
+      <div class="metric rise" style="--d:4"><h3>Latency per call</h3>
+        <div class="vs"><div><p class="who"><b>Tiny</b><br>Runpod GPU</p><p class="num up"><span class="v" data-k="small.latency" data-hint="tiny"></span></p></div><div><p class="who">Teacher<br>GLM 5.3</p><p class="num"><span class="v" data-k="big.latency" data-hint="big"></span></p></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Exact category match on 400 annotated test headlines (10 event types, label-balanced, never trained on), distil labs evaluation. Version 1: 1,500 training examples, 2 epochs.</span></div>
+  <aside>0:40 "The result: frontier quality at a fraction of the cost. Our 0.8 billion parameter student beats its own teacher: 88 percent versus 79 percent for GLM 5.3, on 400 test headlines it never saw. A tiny model, on our own GPU. News Gate. Thank you."</aside>
+</section>
+
+
+
+</div>
+<div id="notes"></div>
+<div id="count"></div>
+<div id="bar"></div>
+<script>
+  const N = JSON.parse(document.getElementById("numbers").textContent);
+  const get = k => k.split(".").reduce((o, p) => (o == null ? undefined : o[p]), N);
+
+  // Fill placeholders; open values stay visible as pink TBD boxes.
+  for (const el of document.querySelectorAll(".v[data-k]")) {
+    const v = get(el.dataset.k);
+    const open = v === null || v === undefined || v === "";
+    el.classList.toggle("todo", open);
+    el.textContent = open ? "TBD" : String(v);
+  }
+
+
+  for (const b of document.querySelectorAll("b[data-w]")) b.style.width = (parseFloat(get(b.dataset.w)) || 0) + "%";
+  const costKeys = ["small.cost_per_1k", "big.cost_per_1k", "small.latency", "big.latency"];
+  if (costKeys.every(k => get(k) == null || get(k) === "")) document.getElementById("costrow").style.display = "none";
+
+  // Deck controls
+  const stage = document.getElementById("stage");
+  const slides = [...stage.querySelectorAll(":scope > section")];
+  const notes = document.getElementById("notes");
+  const count = document.getElementById("count");
+  const bar = document.getElementById("bar");
+  let i = Math.max(0, slides.findIndex(s => "#" + s.id === location.hash));
+  function fit() {
+    const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `scale(${k}) translate(-50%, -50%)`;
+  }
+  function show(n) {
+    i = Math.min(slides.length - 1, Math.max(0, n));
+    slides.forEach((s, j) => s.classList.toggle("on", j === i));
+    const a = slides[i].querySelector(":scope > aside");
+    notes.textContent = a ? a.textContent.trim() : "";
+    count.textContent = `${i + 1} / ${slides.length}`;
+    bar.style.width = `${((i + 1) / slides.length) * 100}%`;
+    history.replaceState(null, "", "#" + slides[i].id);
+  }
+  addEventListener("resize", fit);
+  addEventListener("keydown", e => {
+    if (["ArrowRight", "ArrowDown", "PageDown", " ", "Enter"].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    else if (["ArrowLeft", "ArrowUp", "PageUp", "Backspace"].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    else if (e.key === "Home") show(0);
+    else if (e.key === "End") show(slides.length - 1);
+    else if (e.key === "n" || e.key === "N") document.body.classList.toggle("notes");
+    else if (e.key === "f" || e.key === "F") document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  });
+  addEventListener("click", e => { if (!e.target.closest("a")) show(e.clientX < innerWidth / 3 ? i - 1 : i + 1); });
+  fit(); show(i);
+</script>
+</body>
+</html>
