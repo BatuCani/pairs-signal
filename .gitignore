@@ -1,4 +1,12 @@
 .venv/
-data/raw/
 __pycache__/
-*.parquet
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+.env
+data/raw/*
+data/processed/*
+data/traces/*
+data/evaluations/*
+!data/**/.gitkeep
