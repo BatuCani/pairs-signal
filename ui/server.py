@@ -169,7 +169,7 @@ def classify(headline: str) -> list[dict]:
         label = mock_label(headline)
         return [{
             "variant": "mock",
-            "model": "Mock (Stichwort-Regeln)",
+            "model": "Mock (keyword rules)",
             "label": label,
             "raw": label,
             "shock": label in SHOCK_LABELS,
@@ -206,7 +206,7 @@ def config_payload() -> dict:
     return {
         "mock": MOCK,
         "langfuse": LANGFUSE_ON and not MOCK,
-        "variants": [{"key": k, "model": v["model"]} for k, v in VARIANTS.items()] or [{"key": "mock", "model": "Mock (Stichwort-Regeln)"}],
+        "variants": [{"key": k, "model": v["model"]} for k, v in VARIANTS.items()] or [{"key": "mock", "model": "Mock (keyword rules)"}],
         "labels": LABELS,
         "shock_labels": sorted(SHOCK_LABELS),
         "data_dir": str(DATA_DIR.relative_to(REPO_DIR)),
@@ -245,7 +245,7 @@ class Handler(BaseHTTPRequestHandler):
         except (ValueError, json.JSONDecodeError):
             headline = ""
         if not headline:
-            self._json({"error": "headline fehlt"}, 400)
+            self._json({"error": "headline missing"}, 400)
             return
         self._json({"headline": headline, "results": classify(headline)})
 

@@ -10,7 +10,7 @@ uv run ui/server.py
 
 Then open http://localhost:8000.
 
-Without any model endpoint configured the server runs in **Mock** mode (keyword rules, marked "Mock" in the UI), so the page always works.
+Without any model endpoint configured the server runs in **Mock** mode (keyword rules, marked "Mock mode" in the UI), so the page always works.
 
 ## Configuration (environment only)
 
@@ -19,7 +19,7 @@ Without any model endpoint configured the server runs in **Mock** mode (keyword 
 | `MODEL_BASE_URL`, `MODEL_API_KEY`, `MODEL_NAME` | One OpenAI-compatible endpoint (distil-hosted or Runpod vLLM). |
 | `MODEL_V1_BASE_URL`, `MODEL_V1_API_KEY`, `MODEL_V1_NAME` | Version 1 (1,500 real examples). |
 | `MODEL_V2_BASE_URL`, `MODEL_V2_API_KEY`, `MODEL_V2_NAME` | Version 2 (plus 1,000 synthetic). When V1 and/or V2 are set they replace `MODEL_*` and are shown side by side. |
-| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Langfuse tracing via `langfuse.openai`; each call returns an "In Langfuse ansehen" link. |
+| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Langfuse tracing via `langfuse.openai`; each call returns an "View in Langfuse" link. |
 | `PORT` | Server port, default 8000. |
 
 The server also reads `~/.config/pairs-signal.env` (never commit keys); variables already set in the shell win.
@@ -36,7 +36,7 @@ uv run ui/server.py
 
 The system prompt is the `task_description` from `job_description.json`, exactly as used for training, and the headline is the user message.
 The server reads `pairs_signal/data/out/distil/news_event/` when it exists in the checkout and otherwise the snapshot in `ui/data/` (same files).
-The live feed classifies one test headline per label from `test.jsonl` and scores it against the human label.
+The live feed classifies one test headline per label from `test.jsonl` and scores it against the dataset label.
 
 ## API
 

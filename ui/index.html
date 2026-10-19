@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -140,54 +140,54 @@
         News Gate
       </div>
       <div class="pills" id="pills"></div>
-      <button class="btn sm" type="button" id="navfeed">Live-Feed</button>
+      <button class="btn sm" type="button" id="navfeed">Live feed</button>
     </div>
   </nav>
 
   <div class="hero">
-    <h1>Echter Schock<br>oder nur Rauschen?</h1>
-    <div class="subtitle">Ein 0.8B-Modell, trainiert bei distil labs, ordnet jede Aktien-Schlagzeile in Millisekunden einem von 10 Ereignistypen zu.</div>
+    <h1>Real shock<br>or just noise?</h1>
+    <div class="subtitle">A 0.8B model trained with distil labs sorts every stock headline into one of 10 event types in milliseconds.</div>
   </div>
 
   <div class="ask">
     <form class="inputpill" id="form">
-      <input type="text" id="headline" autocomplete="off" placeholder="Schlagzeile eingeben, z. B. Apple CEO to step down" />
-      <button class="btn" type="submit" id="go">Klassifizieren</button>
+      <input type="text" id="headline" autocomplete="off" placeholder="Type a headline, e.g. Apple CEO to step down" />
+      <button class="btn" type="submit" id="go">Classify</button>
     </form>
     <div class="examples" id="examples"></div>
   </div>
 
-  <div class="results" id="results"><div class="card placeholder">Noch keine Schlagzeile klassifiziert.</div></div>
+  <div class="results" id="results"><div class="card placeholder">No headline classified yet.</div></div>
 
   <section class="block" id="feedsec">
     <div class="sechead">
       <div>
-        <h2>Live-Feed</h2>
-        <div class="sub">10 echte Test-Schlagzeilen, Modell gegen menschliches Label</div>
+        <h2>Live feed</h2>
+        <div class="sub">10 real test headlines, model vs. dataset label</div>
       </div>
-      <div class="stats"><span class="stats" id="stats"></span><button class="btn" id="feedbtn" type="button">Live-Feed starten</button></div>
+      <div class="stats"><span class="stats" id="stats"></span><button class="btn" id="feedbtn" type="button">Start live feed</button></div>
     </div>
-    <div class="feed" id="feed"><div class="empty">Starte den Feed, um das Modell live gegen menschliche Labels zu sehen.</div></div>
+    <div class="feed" id="feed"><div class="empty">Start the feed to see the model live against the dataset labels.</div></div>
   </section>
 
   <section class="block">
     <div class="sechead">
       <div>
-        <h2>Loop</h2>
-        <div class="sub">Jeder Aufruf wird zu Trainingsdaten fuer die naechste Version</div>
+        <h2>The loop</h2>
+        <div class="sub">Every call becomes training data for the next version</div>
       </div>
     </div>
     <div class="loop">
-      <div class="card step"><div class="k">1 &middot; Beobachten</div><b>Langfuse</b><span>Jeder Aufruf als Trace: Schlagzeile, Label, Latenz</span></div>
+      <div class="card step"><div class="k">1 &middot; Observe</div><b>Langfuse</b><span>Every call as a trace: headline, label, latency</span></div>
       <div class="arrow">&rarr;</div>
-      <div class="card step"><div class="k">2 &middot; Trainieren</div><b>distil labs</b><span>Traces werden Training, Qwen3.5-0.8B</span></div>
+      <div class="card step"><div class="k">2 &middot; Train</div><b>distil labs</b><span>Traces become training data, Qwen3.5-0.8B</span></div>
       <div class="arrow">&rarr;</div>
-      <div class="card step"><div class="k">3 &middot; Bereitstellen</div><b>Runpod</b><span>OpenAI-kompatibler Endpunkt</span></div>
+      <div class="card step"><div class="k">3 &middot; Deploy</div><b>Runpod</b><span>OpenAI-compatible endpoint</span></div>
     </div>
-    <div class="loopback">&#8634; und zurueck nach Langfuse</div>
-    <div class="legend">Echter Schock:
+    <div class="loopback">&#8634; and back to Langfuse</div>
+    <div class="legend">Real shock:
       <span class="chip bad">earnings</span><span class="chip bad">m_and_a</span><span class="chip bad">legal_regulatory</span><span class="chip bad">management_change</span>
-      &nbsp;Rauschen: alle anderen 6 Typen
+      &nbsp;Noise: all other 6 types
     </div>
   </section>
 </div>
@@ -214,7 +214,7 @@ async function api(path, body) {
 
 function badge(shock) {
   if (shock === null || shock === undefined) return "";
-  return shock ? '<span class="badge shock">Echter Schock</span>' : '<span class="badge noise">Rauschen</span>';
+  return shock ? '<span class="badge shock">Real shock</span>' : '<span class="badge noise">Noise</span>';
 }
 
 function renderResults(results) {
@@ -222,12 +222,12 @@ function renderResults(results) {
   box.className = "results" + (results.length > 1 ? " two" : "");
   box.innerHTML = results.map((r) => `
     <div class="card result">
-      <div class="vh"><span>${r.variant === "mock" ? "Mock" : "Version " + esc(r.variant)}</span><b>${esc(r.model)}</b></div>
-      ${r.error ? `<div class="main"><div class="label" style="color:var(--red)">Fehler</div></div><div class="err">${esc(r.error)}</div>` : `
+      <div class="vh"><span>${r.variant === "mock" ? "Mock" : "Version " + esc(r.variant)}</span><b>${r.mock ? "Mock (keyword rules)" : esc(r.model)}</b></div>
+      ${r.error ? `<div class="main"><div class="label" style="color:var(--red)">Error</div></div><div class="err">${esc(r.error)}</div>` : `
       <div class="main"><div class="label">${esc(r.label).replace(/_/g, "_<wbr>")}</div>${badge(r.shock)}</div>`}
       <div class="meta">
-        <span>Antwortzeit <b>${r.latency_ms} ms</b></span>
-        ${r.trace_url ? `<a href="${esc(r.trace_url)}" target="_blank" rel="noopener">In Langfuse ansehen &rarr;</a>` : `<span>${r.mock ? "Mock-Modus, kein Trace" : "kein Langfuse-Trace"}</span>`}
+        <span>Response time <b>${r.latency_ms} ms</b></span>
+        ${r.trace_url ? `<a href="${esc(r.trace_url)}" target="_blank" rel="noopener">View in Langfuse &rarr;</a>` : `<span>${r.mock ? "Mock mode, no trace" : "No Langfuse trace"}</span>`}
       </div>
     </div>`).join("");
 }
@@ -277,8 +277,8 @@ function renderStats(stats) {
     const acc = s.n ? Math.round((100 * s.hit) / s.n) : 0;
     const lat = s.n ? Math.round(s.ms.reduce((a, b) => a + b, 0) / s.n) : 0;
     const tag = keys.length > 1 ? ` &middot; ${esc(k)}` : "";
-    return `<div class="card stat"><div class="n">${acc}%</div><div class="l">Treffer${tag}<br>${s.hit} von ${s.n}</div></div>
-            <div class="card stat"><div class="n">${lat}<span class="muted" style="font-size:16px"> ms</span></div><div class="l">Latenz${tag}<br>Mittel</div>${sparkline(s.ms)}</div>`;
+    return `<div class="card stat"><div class="n">${acc}%</div><div class="l">Accuracy${tag}<br>${s.hit} of ${s.n}</div></div>
+            <div class="card stat"><div class="n">${lat}<span class="muted" style="font-size:16px"> ms</span></div><div class="l">Latency${tag}<br>Mean</div>${sparkline(s.ms)}</div>`;
   }).join("");
 }
 
@@ -286,7 +286,7 @@ async function runFeed() {
   const btn = $("feedbtn");
   if (btn.disabled) return;
   btn.disabled = true; $("navfeed").disabled = true;
-  btn.textContent = "Laeuft...";
+  btn.textContent = "Running...";
   $("feed").innerHTML = "";
   const stats = {};
   CONFIG.variants.forEach((v) => (stats[v.key] = { n: 0, hit: 0, ms: [] }));
@@ -304,13 +304,13 @@ async function runFeed() {
       const allOk = results.every((r) => r.label === it.expected);
       const preds = results.map((r) => {
         const tag = results.length > 1 ? `${esc(r.variant)}: ` : "";
-        return `<span class="chip ${r.label === it.expected ? "good" : "bad"}">${tag}${esc(r.label ?? "Fehler")}</span>`;
+        return `<span class="chip ${r.label === it.expected ? "good" : "bad"}">${tag}${esc(r.label ?? "Error")}</span>`;
       }).join("");
       const row = document.createElement("div");
       row.className = "card item";
       row.innerHTML = `<div class="ok ${allOk ? "y" : "n"}">${allOk ? "&#10003;" : "&#10005;"}</div>
         <div class="hl" title="${esc(it.headline)}">${esc(it.headline)}</div>
-        <div class="pred">${preds}<span class="muted">Mensch: ${esc(it.expected)}</span></div>`;
+        <div class="pred">${preds}<span class="muted">Dataset: ${esc(it.expected)}</span></div>`;
       $("feed").prepend(row);
       renderResults(results);
       await new Promise((r) => setTimeout(r, 400));
@@ -319,7 +319,7 @@ async function runFeed() {
     $("feed").insertAdjacentHTML("afterbegin", `<div class="empty err">${esc(e.message)}</div>`);
   } finally {
     btn.disabled = false; $("navfeed").disabled = false;
-    btn.textContent = "Live-Feed neu starten";
+    btn.textContent = "Restart live feed";
   }
 }
 $("feedbtn").addEventListener("click", runFeed);
@@ -328,9 +328,9 @@ $("navfeed").addEventListener("click", () => { $("feedsec").scrollIntoView({ beh
 (async () => {
   CONFIG = await api("/config");
   const pills = [];
-  if (CONFIG.mock) pills.push('<span class="pill mock">Mock-Modus</span>');
+  if (CONFIG.mock) pills.push('<span class="pill mock">Mock mode</span>');
   else CONFIG.variants.forEach((v) => pills.push(`<span class="pill on">${esc(v.key)}: ${esc(v.model)}</span>`));
-  pills.push(`<span class="pill ${CONFIG.langfuse ? "on" : ""}">Langfuse ${CONFIG.langfuse ? "an" : "aus"}</span>`);
+  pills.push(`<span class="pill ${CONFIG.langfuse ? "on" : ""}">Langfuse ${CONFIG.langfuse ? "on" : "off"}</span>`);
   $("pills").innerHTML = pills.join("");
 })();
 </script>
