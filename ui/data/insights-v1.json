@@ -1,0 +1,121 @@
+{
+ "n": 400,
+ "accuracy": 0.88,
+ "shock_accuracy": 0.9475,
+ "per_label": {
+  "dividend": {
+   "correct": 39,
+   "total": 40,
+   "acc": 0.975
+  },
+  "earnings": {
+   "correct": 39,
+   "total": 40,
+   "acc": 0.975
+  },
+  "management_change": {
+   "correct": 38,
+   "total": 40,
+   "acc": 0.95
+  },
+  "analyst_rating": {
+   "correct": 35,
+   "total": 40,
+   "acc": 0.875
+  },
+  "macro_market": {
+   "correct": 35,
+   "total": 40,
+   "acc": 0.875
+  },
+  "stock_movement": {
+   "correct": 35,
+   "total": 40,
+   "acc": 0.875
+  },
+  "other": {
+   "correct": 34,
+   "total": 40,
+   "acc": 0.85
+  },
+  "legal_regulatory": {
+   "correct": 34,
+   "total": 40,
+   "acc": 0.85
+  },
+  "m_and_a": {
+   "correct": 32,
+   "total": 40,
+   "acc": 0.8
+  },
+  "company_news": {
+   "correct": 31,
+   "total": 40,
+   "acc": 0.775
+  }
+ },
+ "top_confusions": [
+  {
+   "gold": "other",
+   "pred": "macro_market",
+   "count": 5
+  },
+  {
+   "gold": "legal_regulatory",
+   "pred": "other",
+   "count": 5
+  },
+  {
+   "gold": "m_and_a",
+   "pred": "company_news",
+   "count": 4
+  },
+  {
+   "gold": "company_news",
+   "pred": "m_and_a",
+   "count": 3
+  },
+  {
+   "gold": "macro_market",
+   "pred": "other",
+   "count": 3
+  },
+  {
+   "gold": "stock_movement",
+   "pred": "analyst_rating",
+   "count": 3
+  }
+ ],
+ "example_errors": [
+  {
+   "headline": "JPMorgan sees these derivative plays as best way to bet on electric vehicles now",
+   "gold": "analyst_rating",
+   "pred": "company_news"
+  },
+  {
+   "headline": "Cintas Corporation Added to the FTSE4Good Index",
+   "gold": "analyst_rating",
+   "pred": "company_news"
+  },
+  {
+   "headline": "$FIGS - Figs stock falls after Goldman Sachs downgrades to ‘Sell’",
+   "gold": "analyst_rating",
+   "pred": "stock_movement"
+  },
+  {
+   "headline": "$FSLY - Fastly dips as RBC Capital downgrades, citing recession, management, competition worries",
+   "gold": "analyst_rating",
+   "pred": "stock_movement"
+  },
+  {
+   "headline": "$FRC $BX $SI - Banks to see net interest income growing, fees falling, credit fine in Q2, analysts say",
+   "gold": "analyst_rating",
+   "pred": "macro_market"
+  },
+  {
+   "headline": "First Trust Portfolios UK Regulatory Announcement: Form 8.3 - NortonLifeLock, Inc",
+   "gold": "company_news",
+   "pred": "legal_regulatory"
+  }
+ ]
+}

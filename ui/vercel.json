@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "functions": {
+    "api/*.py": { "includeFiles": "data/**", "maxDuration": 30 }
+  },
+  "rewrites": [
+    { "source": "/results", "destination": "/index.html" }
+  ]
+}
