@@ -208,6 +208,49 @@
   .hrow .ms { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14px; }
   .chip.shk { color: var(--red); background: var(--red-bg); }
   .chip.nse { color: var(--green); background: var(--green-bg); }
+  #page-play .hero { padding: 26px 0 0; }
+  #page-play h1 { font-size: clamp(40px, 5.4vw, 66px); }
+  #page-play .subtitle { margin-top: 12px; font-size: clamp(17px, 1.8vw, 21px); }
+  .gbtn.dim { opacity: .3; }
+  .gbtn.picked { outline: 4px solid rgba(17,17,17,.85); outline-offset: 3px; }
+  .gscore { display: flex; align-items: center; justify-content: center; gap: 28px; max-width: 900px; margin: 20px auto 0; padding: 12px 30px; }
+  .gs { text-align: center; min-width: 90px; }
+  .gn { font: 800 48px/1 var(--display); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+  .gn.grad { background: linear-gradient(90deg, #38bdf8, #a78bfa 55%, #ec4899); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .gvs { color: var(--muted); font-weight: 600; }
+  .ground { margin-left: auto; color: var(--muted); font-weight: 600; font-size: 16px; }
+  .gstage { max-width: 900px; margin: 16px auto 0; padding: 28px 34px; min-height: 300px; display: flex; flex-direction: column; justify-content: center; animation: pop .45s cubic-bezier(.16,1,.3,1); }
+  .gstart { text-align: center; }
+  .btn.big { font-size: 22px; padding: 18px 38px; }
+  .ghint { color: var(--muted); font-size: 15px; margin-top: 16px; }
+  .ghint b { color: var(--ink); }
+  .gtop { display: flex; align-items: center; gap: 24px; }
+  .ghead { flex: 1; min-width: 0; font: 700 clamp(24px, 3vw, 34px)/1.2 var(--display); letter-spacing: -.02em; overflow-wrap: break-word; }
+  .ring { flex: none; width: 84px; height: 84px; position: relative; }
+  .ring svg { transform: rotate(-90deg); }
+  .ring .rbg { stroke: #eef1f5; }
+  .ring .rfg { stroke: url(#rg); stroke-linecap: round; transition: stroke-dashoffset .1s linear; }
+  .ring .rt { position: absolute; inset: 0; display: grid; place-items: center; font: 800 26px var(--display); font-variant-numeric: tabular-nums; }
+  .ring.low .rt { color: var(--red); }
+  .gbtns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
+  .gbtn { font: 700 24px var(--body); padding: 22px; border-radius: 999px; border: 0; cursor: pointer; color: #fff; background: var(--ink); transition: transform .15s, box-shadow .15s; }
+  .gbtn:hover { transform: translateY(-2px); }
+  .gbtn.s { background: var(--red); box-shadow: 0 12px 30px -12px rgba(229,72,77,.7); }
+  .gbtn.n { background: var(--green); box-shadow: 0 12px 30px -12px rgba(18,161,80,.7); }
+  .gbtn kbd { font: 600 14px var(--body); opacity: .75; margin-left: 8px; }
+  .gbtn:disabled { cursor: default; transform: none; }
+  .greveal { display: grid; gap: 10px; margin-top: 26px; }
+  .grow { display: grid; grid-template-columns: 130px minmax(0,1fr) auto; gap: 14px; align-items: center; padding: 12px 18px; border-radius: 16px; background: #f6f8fb; opacity: 0; animation: rise .55s cubic-bezier(.16,1,.3,1) forwards; animation-delay: var(--d); }
+  .grow .who { color: var(--muted); font-weight: 600; font-size: 15px; }
+  .grow .what { font-weight: 700; font-size: 19px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; min-width: 0; }
+  .grow .res { font-size: 22px; font-weight: 800; }
+  .grow .res.y { color: var(--green); } .grow .res.n { color: var(--red); }
+  .gnote { color: var(--muted); text-align: center; margin-top: 18px; font-size: 15px; }
+  .gnext { display: flex; justify-content: flex-end; margin-top: 20px; }
+  .gend { text-align: center; }
+  .gend .gverdict { font: 800 clamp(40px, 6vw, 72px)/1 var(--display); letter-spacing: -.045em; margin: 6px 0 14px; }
+  .gend .line { font-size: 22px; color: #374151; font-weight: 600; }
+  .gend .line b { color: var(--ink); }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; transform: none; }
@@ -215,6 +258,12 @@
   }
   @media (max-width: 860px) {
     .kpis, .ins-grid, .ins-grid.wide { grid-template-columns: 1fr; }
+    .gstage { padding: 24px 20px; }
+    .gtop { flex-direction: column-reverse; align-items: flex-start; }
+    .gbtns { grid-template-columns: 1fr; }
+    .grow { grid-template-columns: 1fr auto; }
+    .grow .who { grid-column: 1 / -1; }
+    .ground { display: none; }
     .kstrip { grid-template-columns: 1fr 1fr; }
     .ks { border-left: 0; }
     .hrow { grid-template-columns: minmax(0, 1fr) auto; }
@@ -251,6 +300,7 @@
       <div class="tabs" role="tablist">
         <button type="button" class="tab active" data-page="demo">Demo</button>
         <button type="button" class="tab" data-page="results">Results</button>
+        <button type="button" class="tab" data-page="play">Play</button>
       </div>
       <div class="pills" id="pills"></div>
       <button class="btn sm" type="button" id="navfeed">Live feed</button>
@@ -369,6 +419,25 @@
     </div>
     <div class="loopback">&#8634; and back to Langfuse</div>
     <div class="footline">Frontier quality at a fraction of the cost.</div>
+  </div>
+
+  <div id="page-play" hidden>
+    <div class="hero" style="padding-bottom:10px">
+      <h1>Beat the model.</h1>
+      <div class="subtitle">10 real headlines. 8 seconds each. Real shock or just noise? Then News Gate answers live.</div>
+    </div>
+    <div class="gscore card" id="gscore" hidden>
+      <div class="gs"><div class="gn" id="gs-you">0</div><div class="kl">You</div></div>
+      <div class="gvs">vs.</div>
+      <div class="gs"><div class="gn grad" id="gs-model">0</div><div class="kl">News Gate</div></div>
+      <div class="ground" id="ground"></div>
+    </div>
+    <div class="card gstage" id="gstage">
+      <div class="gstart">
+        <button class="btn big" type="button" id="gstartbtn">Start game</button>
+        <div class="ghint">Keys: <b>S</b> real shock &middot; <b>N</b> noise &middot; <b>Enter</b> next</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -539,8 +608,9 @@ $("navfeed").addEventListener("click", () => { showPage("demo"); $("feedsec").sc
 function showPage(name) {
   $("page-demo").hidden = name !== "demo";
   $("page-results").hidden = name !== "results";
+  $("page-play").hidden = name !== "play";
   document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("active", t.dataset.page === name));
-  history.replaceState(null, "", name === "results" ? "#results" : "#");
+  history.replaceState(null, "", name === "demo" ? "#" : "#" + name);
   window.scrollTo(0, 0);
   if (name === "results") animateResults();
 }
@@ -573,7 +643,135 @@ document.addEventListener("keydown", (e) => {
   if (e.target.tagName === "INPUT" || e.metaKey || e.ctrlKey || e.altKey) return;
   if (e.key === "1") showPage("demo");
   if (e.key === "2") showPage("results");
+  if (e.key === "3") showPage("play");
+  if (!$("page-play").hidden) gameKey(e);
 });
+
+// ---- Play: Beat the model ----
+const G = { rounds: [], i: 0, you: 0, model: 0, played: 0, ms: [], timer: null, answered: false, pending: null, phase: "idle" };
+const ROUND_S = 8;
+const isShockLabel = (l) => (CONFIG ? CONFIG.shock_labels : ["earnings", "m_and_a", "legal_regulatory", "management_change"]).includes(l);
+const kind = (shock) => shock ? '<span class="chip shk">Real shock</span>' : '<span class="chip nse">Noise</span>';
+
+async function gameStart() {
+  if (G.phase === "loading") return;
+  clearInterval(G.timer);
+  Object.assign(G, { rounds: [], i: 0, you: 0, model: 0, played: 0, ms: [], answered: false, phase: "loading" });
+  $("gstage").innerHTML = '<div class="skel"><i></i><i></i><i></i></div>';
+  try { G.rounds = await api("/api/game"); }
+  catch (e) { $("gstage").innerHTML = `<div class="gstart err">Could not load headlines: ${esc(e.message)}</div>`; G.phase = "idle"; return; }
+  $("gscore").hidden = false;
+  gameScore();
+  gameRound();
+}
+
+function gameScore() {
+  $("gs-you").textContent = G.you;
+  $("gs-model").textContent = G.model;
+  $("ground").textContent = `Round ${Math.min(G.i + 1, G.rounds.length)} / ${G.rounds.length}`;
+}
+
+function gameRound() {
+  if (G.i >= G.rounds.length) return gameEnd();
+  const r = G.rounds[G.i];
+  G.answered = false; G.phase = "ask";
+  gameScore();
+  // Ask the model right away so its answer is ready when the player locks in.
+  G.pending = api("/api/classify", { headline: r.headline }).then((d) => d.results[0]).catch(() => null);
+  const C = 2 * Math.PI * 36;
+  $("gstage").innerHTML = `
+    <div class="gtop">
+      <div class="ghead">&ldquo;${esc(r.headline)}&rdquo;</div>
+      <div class="ring" id="ring"><svg width="84" height="84"><defs><linearGradient id="rg"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#ec4899"/></linearGradient></defs>
+        <circle class="rbg" cx="42" cy="42" r="36" fill="none" stroke-width="7"/>
+        <circle class="rfg" id="rfg" cx="42" cy="42" r="36" fill="none" stroke-width="7" stroke-dasharray="${C}" stroke-dashoffset="0"/></svg>
+        <div class="rt" id="rt">${ROUND_S}</div></div>
+    </div>
+    <div class="gbtns">
+      <button class="gbtn s" type="button" data-pick="shock">Real shock<kbd>S</kbd></button>
+      <button class="gbtn n" type="button" data-pick="noise">Noise<kbd>N</kbd></button>
+    </div>`;
+  $("gstage").querySelectorAll(".gbtn").forEach((b) => b.addEventListener("click", () => gameAnswer(b.dataset.pick === "shock")));
+  const t0 = performance.now();
+  clearInterval(G.timer);
+  G.timer = setInterval(() => {
+    const left = Math.max(0, ROUND_S - (performance.now() - t0) / 1000);
+    const rfg = $("rfg"), rt = $("rt");
+    if (!rfg) return clearInterval(G.timer);
+    rfg.setAttribute("stroke-dashoffset", (C * (1 - left / ROUND_S)).toFixed(1));
+    rt.textContent = Math.ceil(left);
+    $("ring").classList.toggle("low", left <= 3);
+    if (left <= 0) gameAnswer(null);
+  }, 100);
+}
+
+async function gameAnswer(pickShock) {
+  if (G.answered || G.phase !== "ask") return;
+  G.answered = true; G.phase = "reveal";
+  clearInterval(G.timer);
+  const r = G.rounds[G.i];
+  $("gstage").querySelectorAll(".gbtn").forEach((b) => {
+    b.disabled = true;
+    const mine = pickShock !== null && (b.dataset.pick === "shock") === pickShock;
+    b.classList.add(mine ? "picked" : "dim");
+  });
+  const m = await G.pending;
+  const next = G.i + 1 >= G.rounds.length ? "See result" : "Next round";
+  if (!m || !m.label) {
+    $("gstage").insertAdjacentHTML("beforeend", `<div class="gnote">News Gate is not reachable right now, this round is skipped.</div>
+      <div class="gnext"><button class="btn" type="button" id="gnextbtn">${next}</button></div>`);
+  } else {
+    const youOk = pickShock !== null && pickShock === r.shock;
+    const modelShock = isShockLabel(m.label);
+    const modelOk = modelShock === r.shock;
+    G.played += 1; G.you += youOk; G.model += modelOk; G.ms.push(m.latency_ms);
+    const mark = (ok) => `<span class="res ${ok ? "y" : "n"}">${ok ? "&#10003;" : "&#10005;"}</span>`;
+    $("gstage").insertAdjacentHTML("beforeend", `<div class="greveal">
+      <div class="grow" style="--d:0ms"><span class="who">You</span><span class="what">${pickShock === null ? "Time's up" : kind(pickShock)}</span>${mark(youOk)}</div>
+      <div class="grow" style="--d:350ms"><span class="who">News Gate</span><span class="what">${kind(modelShock)}<span class="muted" style="font-weight:600">${esc(m.label)} &middot; ${m.latency_ms} ms</span></span>${mark(modelOk)}</div>
+      <div class="grow" style="--d:700ms"><span class="who">Dataset</span><span class="what">${kind(r.shock)}<span class="muted" style="font-weight:600">${esc(r.expected)}</span></span><span></span></div>
+    </div>
+    <div class="gnext"><button class="btn" type="button" id="gnextbtn">${next}</button></div>`);
+    setTimeout(gameScore, REDUCED ? 0 : 800);
+  }
+  $("gnextbtn").addEventListener("click", gameNext);
+  const btns = $("gstage").querySelector(".gbtns");
+  if (btns && $("gstage").querySelector(".greveal")) btns.remove();
+  $("gnextbtn").scrollIntoView({ block: "nearest", behavior: REDUCED ? "auto" : "smooth" });
+}
+
+function gameNext() {
+  if (G.phase !== "reveal") return;
+  G.i += 1;
+  gameRound();
+}
+
+function gameEnd() {
+  clearInterval(G.timer);
+  G.phase = "end";
+  gameScore();
+  $("ground").textContent = "Final";
+  const avg = G.ms.length ? Math.round(G.ms.reduce((a, b) => a + b, 0) / G.ms.length) : 0;
+  const verdict = G.played === 0 ? "No rounds played." : G.you > G.model ? "You beat the model!" : G.you === G.model ? "It's a tie." : "News Gate wins.";
+  $("gstage").innerHTML = `<div class="gend">
+    <div class="kl">Result</div>
+    <div class="gverdict">${verdict}</div>
+    <div class="line">You <b>${G.you}/${G.played}</b> &middot; News Gate <b>${G.model}/${G.played}</b> &middot; avg <b>${avg} ms</b></div>
+    ${G.played < G.rounds.length ? `<div class="gnote">${G.rounds.length - G.played} round(s) skipped because the model was not reachable.</div>` : ""}
+    <div style="margin-top:28px"><button class="btn big" type="button" id="gagain">Play again</button></div>
+  </div>`;
+  $("gagain").addEventListener("click", gameStart);
+}
+
+function gameKey(e) {
+  const k = e.key.toLowerCase();
+  if (G.phase === "ask" && (k === "s" || k === "n")) { e.preventDefault(); gameAnswer(k === "s"); }
+  else if (k === "enter" || k === " ") {
+    if (G.phase === "reveal" && $("gnextbtn")) { e.preventDefault(); gameNext(); }
+    else if (G.phase === "idle" || G.phase === "end") { e.preventDefault(); gameStart(); }
+  }
+}
+$("gstartbtn").addEventListener("click", gameStart);
 const pct = (x, d = 0) => (Math.round(x * 100 * 10 ** d + 1e-6) / 10 ** d).toFixed(d) + " %";
 fetch("/api/insights").then((r) => (r.ok ? r.json() : null)).then((d) => {
   if (!d) return;
@@ -599,8 +797,9 @@ function renderHeat(c) {
   $("heatcard").hidden = false;
 }
 
-window.addEventListener("hashchange", () => showPage(location.hash === "#results" ? "results" : "demo"));
-if (location.hash === "#results") showPage("results");
+const pageFromHash = () => ({ "#results": "results", "#play": "play" })[location.hash] || "demo";
+window.addEventListener("hashchange", () => showPage(pageFromHash()));
+if (pageFromHash() !== "demo") showPage(pageFromHash());
 
 (async () => {
   CONFIG = await api("/api/config");

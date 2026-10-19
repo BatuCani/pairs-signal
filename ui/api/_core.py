@@ -201,6 +201,18 @@ def feed_examples(n: int = 10) -> list[dict]:
     return [{"headline": by_label[label], "expected": label} for label in order if label in by_label][:n]
 
 
+def game_rounds(n: int = 10) -> list[dict]:
+    """N random test headlines without repetition for the 'Beat the model' game."""
+    import random
+
+    rows = []
+    for line in (DATA_DIR / "test.jsonl").read_text().splitlines():
+        msgs = json.loads(line)["messages"]
+        label = msgs[-1]["content"].strip()
+        rows.append({"headline": msgs[0]["content"], "expected": label, "shock": label in SHOCK_LABELS})
+    return random.sample(rows, min(n, len(rows)))
+
+
 def config_payload() -> dict:
     return {
         "mock": MOCK,
@@ -232,6 +244,8 @@ class ApiHandler(BaseHTTPRequestHandler):
             self._json(config_payload())
         elif path == "/api/feed":
             self._json(feed_examples())
+        elif path == "/api/game":
+            self._json(game_rounds())
         elif path == "/api/insights":
             payload = json.loads((UI_DIR / "data/insights-v1.json").read_text())
             confusion = UI_DIR / "data/confusion-v1.json"
