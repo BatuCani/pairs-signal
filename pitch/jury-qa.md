@@ -17,7 +17,7 @@ Three reasons: cost, speed and privacy.
 A market feed is thousands of headlines a day per watchlist, so cost per call decides whether this runs at all: [tiny cost] versus [big cost] per thousand calls.
 Latency is [tiny latency] versus [big latency].
 And it runs on our own GPU, so which stocks we watch never goes to a third-party API.
-The trade-off is accuracy: [tiny accuracy] versus [big accuracy] on the same test set.
+And no accuracy trade-off here: our trained 0.8B model gets 88.0 percent exact match, the GLM 5.3 teacher 79.25 percent, on the same 400 test headlines (judge scores 89.5 versus 83.75).
 
 ## 3. How do you know the labels are right? Isn't the model just copying the teacher?
 
@@ -29,6 +29,7 @@ For sentiment there is an extra annotated check, the Financial PhraseBank (only 
 ## 4. What is the base rate? Is your accuracy actually good?
 
 Ten classes, balanced test set: random guessing is 10 percent, our keyword baseline 30.5 percent.
+Measured today: the untrained Qwen3.5-0.8B gets 55.75 percent, the GLM 5.3 teacher 79.25, our trained version 1 88.0 (exact match, 400 test headlines).
 For sentiment: three classes, keyword baseline 53.1 percent, PhraseBank 65.3 percent.
 That is the bar both models have to clear, and we name it in the pitch.
 For the pairs example the base rate is 23 percent: trading every outlier in the test period reverted 23 percent of the time.
