@@ -3,7 +3,7 @@
 {"messages": [{"role": "user", "content": "JPMorgan sees these derivative plays as best way to bet on electric vehicles now"}, {"role": "assistant", "content": "analyst_rating"}]}
 {"messages": [{"role": "user", "content": "Morgan Stanley's Huberty sees Apple earnings miss, but says buy on any pullback"}, {"role": "assistant", "content": "analyst_rating"}]}
 {"messages": [{"role": "user", "content": "Analyst call of the day for @CNBCPro subscribers: Bank of America reiterates Amazon as buy. Subscribe to see the analyst calls of the day curated by CNBC Pro."}, {"role": "assistant", "content": "analyst_rating"}]}
-{"messages": [{"role": "user", "content": "Here are Wednesday's biggest analyst calls: Netflix, Chevron, Apple, Alibaba, Amazon &amp; more"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Here are Wednesday's biggest analyst calls: Netflix, Chevron, Apple, Alibaba, Amazon & more"}, {"role": "assistant", "content": "analyst_rating"}]}
 {"messages": [{"role": "user", "content": "Analyst call of the day for @CNBCPro subscribers: Morgan Stanley reiterates Meta and Alphabet as overweight and says it sees \u201cless revision risk\u201d in Meta than other names. Subscribe to see the analyst calls of the day curated by CNBC Pro."}, {"role": "assistant", "content": "analyst_rating"}]}
 {"messages": [{"role": "user", "content": "Mizuho says Wall Street is underestimating Kraft Heinz, a stock that can rally more than 25%"}, {"role": "assistant", "content": "analyst_rating"}]}
 {"messages": [{"role": "user", "content": "Analyst call of the day for @CNBCPro subscribers: JPMorgan adds Qualcomm to the focus list and says it sees limited downside for shares of the company. Subscribe to see the analyst calls of the day curated by CNBC Pro."}, {"role": "assistant", "content": "analyst_rating"}]}
@@ -86,17 +86,17 @@
 {"messages": [{"role": "user", "content": "Harleysville Financial Corporation Announces Regular Cash Dividend and Third Quarter Earnings for Fiscal Year 2022"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "Dream Residential REIT July 2022 Monthly Distribution"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "Entegris Declares Quarterly Cash Dividend"}, {"role": "assistant", "content": "dividend"}]}
-{"messages": [{"role": "user", "content": "Johnson &amp; Johnson Announces Quarterly Dividend for Third Quarter 2022"}, {"role": "assistant", "content": "dividend"}]}
+{"messages": [{"role": "user", "content": "Johnson & Johnson Announces Quarterly Dividend for Third Quarter 2022"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "Ryder Increases Quarterly Cash Dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "Gulf Coast Ultra Deep Royalty Trust Announces Quarterly Cash Distribution"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "Seven Hills Realty Trust Announces Quarterly Dividend on Common Shares"}, {"role": "assistant", "content": "dividend"}]}
-{"messages": [{"role": "user", "content": "Marsh &amp; McLennan UK Regulatory Announcement: Marsh McLennan Increases Quarterly Cash Dividend"}, {"role": "assistant", "content": "dividend"}]}
+{"messages": [{"role": "user", "content": "Marsh & McLennan UK Regulatory Announcement: Marsh McLennan Increases Quarterly Cash Dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "Marsh McLennan Increases Quarterly Cash Dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "First Trust Energy Income and Growth Fund Declares its Quarterly Distribution of $0.30 Per Share"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$EWBC - East West Bancorp declares $0.40 dividend"}, {"role": "assistant", "content": "dividend"}]}
-{"messages": [{"role": "user", "content": "$FEI - First Trust MLP&amp;Energy Income Fund declares $0.05 dividend"}, {"role": "assistant", "content": "dividend"}]}
+{"messages": [{"role": "user", "content": "$FEI - First Trust MLP&Energy Income Fund declares $0.05 dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$KNTK - Kinetik declares $0.75 dividend"}, {"role": "assistant", "content": "dividend"}]}
-{"messages": [{"role": "user", "content": "$SWK - Stanley Black &amp; Decker raises dividend by 1.3% to $0.80/share"}, {"role": "assistant", "content": "dividend"}]}
+{"messages": [{"role": "user", "content": "$SWK - Stanley Black & Decker raises dividend by 1.3% to $0.80/share"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "Banner declares $0.44 dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$SHW - Sherwin Williams declares $0.60 dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$ENTG - Entegris declares $0.10 dividend"}, {"role": "assistant", "content": "dividend"}]}
@@ -106,7 +106,7 @@
 {"messages": [{"role": "user", "content": "$ENLC - EnLink Midstream declares $0.1125 dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$IIGV - Invesco Investment Grade Value ETF declares monthly distribution of $0.0603"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$BSMR - Invesco BulletShares 2027 Municipal Bond ETF declares monthly distribution of $0.0292"}, {"role": "assistant", "content": "dividend"}]}
-{"messages": [{"role": "user", "content": "$SPLV - Invesco S&amp;P 500 Low Volatility ETF declares monthly distribution of $0.1130"}, {"role": "assistant", "content": "dividend"}]}
+{"messages": [{"role": "user", "content": "$SPLV - Invesco S&P 500 Low Volatility ETF declares monthly distribution of $0.1130"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$EXETF - Extendicare declares CAD 0.04 dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$CF - CF Industries declares $0.40 dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$EQC.PD - Equity Commonwealth Cum Conv Pfd Shs Series D declares $0.4063 dividend"}, {"role": "assistant", "content": "dividend"}]}
@@ -115,10 +115,10 @@
 {"messages": [{"role": "user", "content": "$AM - Antero Midstream declares $0.225 dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$WBA - Walgreens Boots declares $0.48 dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$LEO - BNY Mellon Strategic Municipals goes ex-dividend tomorrow"}, {"role": "assistant", "content": "dividend"}]}
-{"messages": [{"role": "user", "content": "$PG - Procter &amp; Gamble declares $0.9133 dividend"}, {"role": "assistant", "content": "dividend"}]}
+{"messages": [{"role": "user", "content": "$PG - Procter & Gamble declares $0.9133 dividend"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "$ALTG - Alta Equipment initiates $0.057 dividend, to buyback $12.5M shares"}, {"role": "assistant", "content": "dividend"}]}
-{"messages": [{"role": "user", "content": "$RNP - Cohen &amp; Steers REIT and Preferred and Income Fund goes ex-dividend tomorrow"}, {"role": "assistant", "content": "dividend"}]}
-{"messages": [{"role": "user", "content": "$RQI - Cohen &amp; Steers Quality Income Realty Fund goes ex-dividend tomorrow"}, {"role": "assistant", "content": "dividend"}]}
+{"messages": [{"role": "user", "content": "$RNP - Cohen & Steers REIT and Preferred and Income Fund goes ex-dividend tomorrow"}, {"role": "assistant", "content": "dividend"}]}
+{"messages": [{"role": "user", "content": "$RQI - Cohen & Steers Quality Income Realty Fund goes ex-dividend tomorrow"}, {"role": "assistant", "content": "dividend"}]}
 {"messages": [{"role": "user", "content": "Santoli: Earnings beats propel some major bank stocks, but they still have a lot to prove"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "LISTEN NOW: Q2 earnings season kicks off this week with Pepsi, Delta and more. Listen and follow the @SquawkStreet podcast here or on your favorite podcast platform: :"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "GATX Corporation Reports 2022 Second-Quarter Results"}, {"role": "assistant", "content": "earnings"}]}
@@ -142,7 +142,7 @@
 {"messages": [{"role": "user", "content": "Paycom Software, Inc. Announces Second Quarter 2022 Earnings Release Date and Conference Call"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "RingCentral Announces Date of Second Quarter 2022 Financial Results Conference Call"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "SmartRent to Report Second Quarter 2022 Financial Results on August 11"}, {"role": "assistant", "content": "earnings"}]}
-{"messages": [{"role": "user", "content": "RLI Second Quarter Earnings Release &amp; Teleconference"}, {"role": "assistant", "content": "earnings"}]}
+{"messages": [{"role": "user", "content": "RLI Second Quarter Earnings Release & Teleconference"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "$SIM $GSABF - Grupo Simec, S.A.B. de C.V. reports Q2 results"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "$RHI - Robert Half Q2 2022 Earnings Preview"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "Dover Q2 2022 Earnings Preview"}, {"role": "assistant", "content": "earnings"}]}
@@ -157,7 +157,7 @@
 {"messages": [{"role": "user", "content": "$TSM - Taiwan Semiconductor Manufacturing Company Limited (TSM) CEO C. C. Wei on Q2 2022 Results - Earnings Call Transcript. #stocks #trading #markets"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "Blue Tower Asset Management Q2 2022 Commentary. #stocks #trading #finance"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "$AAL American Airlines Q2 22 Earnings: - Adj EPS: $0.76 (est $0.764) - Revenue: 13.42Bln (est 13.177Bln) - Passenger Rev: 12.22Bln (est 11.96Bln)"}, {"role": "assistant", "content": "earnings"}]}
-{"messages": [{"role": "user", "content": "$JNJ | Johnson &amp; Johnson Q2 22 Earnings: - Adj EPS: $2.59 (est $2.55) - Sales: $24.02B (est $23.96B) - R&amp;D Expenses: $3.70B, (est. $3.44B) - Sees FY Adj EPS $10 To $10.10, Saw $10.15 To $10.35 - Strengthening US Dollar Impacting Adj EPS Outlook"}, {"role": "assistant", "content": "earnings"}]}
+{"messages": [{"role": "user", "content": "$JNJ | Johnson & Johnson Q2 22 Earnings: - Adj EPS: $2.59 (est $2.55) - Sales: $24.02B (est $23.96B) - R&D Expenses: $3.70B, (est. $3.44B) - Sees FY Adj EPS $10 To $10.10, Saw $10.15 To $10.35 - Strengthening US Dollar Impacting Adj EPS Outlook"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "$SCHW | Charles Schwab Q2 22 Earnings: - Adj EPS: 0.97$ (est $0.90) - EPS: $0.87 (est 0.80) - Revenue: $5.09B (est $5.03B) - Daily Avg Trades: 6.23M (est 6M) - Total Client Assets: - 9.8% (est -7.13%)"}, {"role": "assistant", "content": "earnings"}]}
 {"messages": [{"role": "user", "content": "Insights on the Natural Gas Liquid Global Market to 2027 - Improving Utilization of Associated Gas Presents Opportunities -"}, {"role": "assistant", "content": "macro_market"}]}
 {"messages": [{"role": "user", "content": "Oil price wipes out gains from Ukraine war in dip below $95"}, {"role": "assistant", "content": "macro_market"}]}
@@ -198,7 +198,7 @@
 {"messages": [{"role": "user", "content": "A startup wants to give workers with wanderlust (and disposable income) a taste of the van life with RV camps that resemble a WeWork"}, {"role": "assistant", "content": "other"}]}
 {"messages": [{"role": "user", "content": "Shanghai reported the fewest new Covid-19 cases in a week for Wednesday, with all infected people already in government-run quarantine, a sign the city may avoid tighter restrictions as the outbreak comes under control"}, {"role": "assistant", "content": "other"}]}
 {"messages": [{"role": "user", "content": "Most of the emergency housing vouchers created for people in crisis as part of the federal pandemic relief effort are now spoken for (via @citylab)"}, {"role": "assistant", "content": "other"}]}
-{"messages": [{"role": "user", "content": "A slowdown in M&amp;A is coming this quarter as turmoil in the stock market pressures pending takeovers and raises the risks of more deals collapsing, like Elon Musk\u2019s purchase of Twitter"}, {"role": "assistant", "content": "other"}]}
+{"messages": [{"role": "user", "content": "A slowdown in M&A is coming this quarter as turmoil in the stock market pressures pending takeovers and raises the risks of more deals collapsing, like Elon Musk\u2019s purchase of Twitter"}, {"role": "assistant", "content": "other"}]}
 {"messages": [{"role": "user", "content": "This one app became so powerful that it could have posed a real threat to Beijing\u2019s rule"}, {"role": "assistant", "content": "other"}]}
 {"messages": [{"role": "user", "content": "Business leaders join computer education nonprofit Code .org to push for more computer science in K-12 schools"}, {"role": "assistant", "content": "other"}]}
 {"messages": [{"role": "user", "content": "Europe will face a tough winter with even higher energy costs, Shell\u2019s chief executive says"}, {"role": "assistant", "content": "other"}]}
@@ -220,17 +220,17 @@
 {"messages": [{"role": "user", "content": "Goldman Sachs: Aluminium And Zinc Expected To Outperform Copper If Gas Flows Remain At Zero Post-NS1 Maintenance #NordStream1"}, {"role": "assistant", "content": "macro_market"}]}
 {"messages": [{"role": "user", "content": "JUST IN: Copper tumbles to its lowest level in 20 months as fears of a worldwide recession continue to mount"}, {"role": "assistant", "content": "macro_market"}]}
 {"messages": [{"role": "user", "content": "$UBER: Uber commits to changes and pays millions to resolve DOJ lawsuit for overcharging people with disabilities"}, {"role": "assistant", "content": "legal_regulatory"}]}
-{"messages": [{"role": "user", "content": "Bronstein, Gewirtz &amp; Grossman, LLC Notifies Missfresh Limited (MF) Investors of Class Action and Encourages Investors to Contact the Firm"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Bronstein, Gewirtz & Grossman, LLC Notifies Missfresh Limited (MF) Investors of Class Action and Encourages Investors to Contact the Firm"}, {"role": "assistant", "content": "legal_regulatory"}]}
 {"messages": [{"role": "user", "content": "INVESTIGATION ALERT: The Schall Law Firm Encourages Investors in The J. M. Smucker Company with Losses of $100,000 to Contact the Firm"}, {"role": "assistant", "content": "legal_regulatory"}]}
-{"messages": [{"role": "user", "content": "CAVCO ALERT: Bragar Eagel &amp; Squire, P.C. is Investigating Cavco Industries, Inc. on Behalf of Cavco Stockholders and Encourages Investors to Contact the Firm"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "CAVCO ALERT: Bragar Eagel & Squire, P.C. is Investigating Cavco Industries, Inc. on Behalf of Cavco Stockholders and Encourages Investors to Contact the Firm"}, {"role": "assistant", "content": "legal_regulatory"}]}
 {"messages": [{"role": "user", "content": "INVESTIGATION ALERT: The Schall Law Firm Encourages Investors in American Outdoor Brands, Inc. with Losses of $100,000 to Contact the Firm"}, {"role": "assistant", "content": "legal_regulatory"}]}
-{"messages": [{"role": "user", "content": "OKTA DEADLINE ALERT: Bragar Eagel &amp; Squire, P.C. Reminds Investors that a Class Action Lawsuit Has Been Filed Against Okta, Inc. and Encourages Investors to Contact the Firm"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "OKTA DEADLINE ALERT: Bragar Eagel & Squire, P.C. Reminds Investors that a Class Action Lawsuit Has Been Filed Against Okta, Inc. and Encourages Investors to Contact the Firm"}, {"role": "assistant", "content": "legal_regulatory"}]}
 {"messages": [{"role": "user", "content": "SHAREHOLDER ALERT: Labaton Sucharow Researching Possible Securities Law Violations \u2013 Hannon Armstrong Sustainable Infrastructure Capital"}, {"role": "assistant", "content": "legal_regulatory"}]}
 {"messages": [{"role": "user", "content": "INVESTIGATION ALERT: The Schall Law Firm Encourages Investors in Cavco Industries, Inc. with Losses to Contact the Firm"}, {"role": "assistant", "content": "legal_regulatory"}]}
 {"messages": [{"role": "user", "content": "EQUITY ALERT: Rosen Law Firm Encourages Molecular Partners AG Investors to Secure Counsel Before Important Deadline in Securities Class Action \u2013 MOLN"}, {"role": "assistant", "content": "legal_regulatory"}]}
-{"messages": [{"role": "user", "content": "RADIUS HEALTH INVESTOR ALERT by the Former Attorney General of Louisiana: Kahn Swick &amp; Foti, LLC Investigates Adequacy of Price and Process in Proposed Sale of Radius Health, Inc. - RDUS"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "RADIUS HEALTH INVESTOR ALERT by the Former Attorney General of Louisiana: Kahn Swick & Foti, LLC Investigates Adequacy of Price and Process in Proposed Sale of Radius Health, Inc. - RDUS"}, {"role": "assistant", "content": "legal_regulatory"}]}
 {"messages": [{"role": "user", "content": "INVESTIGATION NOTICE: The Schall Law Firm Encourages Investors in Hannon Armstrong Sustainable Infrastructure Capital, Inc. with Losses of $100,000 to Contact the Firm"}, {"role": "assistant", "content": "legal_regulatory"}]}
-{"messages": [{"role": "user", "content": "INVESTOR ALERT: Law Offices of Howard G. Smith Announces Investigation of 17 Education &amp; Technology Group Inc. (YQ) on Behalf of Investors"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "INVESTOR ALERT: Law Offices of Howard G. Smith Announces Investigation of 17 Education & Technology Group Inc. (YQ) on Behalf of Investors"}, {"role": "assistant", "content": "legal_regulatory"}]}
 {"messages": [{"role": "user", "content": "A recent court ruling against Tesla is highlighting concerns about electric vehicle fires"}, {"role": "assistant", "content": "legal_regulatory"}]}
 {"messages": [{"role": "user", "content": "Company and Elon Musk are digging in for what could be an epic legal battle over Musk\u2019s decision to terminate his agreement to purchase $TWTR."}, {"role": "assistant", "content": "legal_regulatory"}]}
 {"messages": [{"role": "user", "content": "$EXEL - Exelixis again sues MSN Pharmaceuticals over Cabometyx generic"}, {"role": "assistant", "content": "legal_regulatory"}]}
@@ -274,7 +274,7 @@
 {"messages": [{"role": "user", "content": "KKR Acquires Atlantic Yards in Atlanta, Georgia"}, {"role": "assistant", "content": "m_and_a"}]}
 {"messages": [{"role": "user", "content": "Jefferies Announces Strategic Transactions to Simplify Operations to Continue Focus on Building the Leading Independent, Full-Service Global Investment Banking Firm"}, {"role": "assistant", "content": "m_and_a"}]}
 {"messages": [{"role": "user", "content": "Chase Corporation to Acquire NuCera Solutions, a Portfolio Company of SK Capital"}, {"role": "assistant", "content": "m_and_a"}]}
-{"messages": [{"role": "user", "content": "Generational Equity Advises Sauers Tree &amp; Landscape Service in its Sale to Orion Group"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Generational Equity Advises Sauers Tree & Landscape Service in its Sale to Orion Group"}, {"role": "assistant", "content": "m_and_a"}]}
 {"messages": [{"role": "user", "content": "Marinus Pharmaceuticals Sells Rare Pediatric Disease Priority Review Voucher for $110 Million"}, {"role": "assistant", "content": "m_and_a"}]}
 {"messages": [{"role": "user", "content": "Transact Campus Acquires Valued Partner Hangry; Further Enhances Mobile-Centric Campus Interaction Solutions"}, {"role": "assistant", "content": "m_and_a"}]}
 {"messages": [{"role": "user", "content": "Bonsai Capital Acquires Regional, Third-Party Logistics Company DC Logistics"}, {"role": "assistant", "content": "m_and_a"}]}
@@ -322,16 +322,16 @@
 {"messages": [{"role": "user", "content": "Koneksa Appoints Dr. Maria C. Freire to Board of Directors"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "Sunstone Management Welcomes Director of Economic Development Eric Romero"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "Lance Davis joins Napier Park\u2019s Real Assets investment team as Managing Director"}, {"role": "assistant", "content": "management_change"}]}
-{"messages": [{"role": "user", "content": "Arthur D. Little Expands Operations Strategy &amp; Transformation Practice With Leading Procurement Expertise"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Arthur D. Little Expands Operations Strategy & Transformation Practice With Leading Procurement Expertise"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "Nuvation Bio Appoints David Liu, M.D., Ph.D., as Chief Medical Officer and Kerry Wentworth as Chief Regulatory Officer"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "Enveda Appoints Pharma Veteran Vanitha Sekar as Chief Business Officer"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "Expereo Strengthens Global Leadership Team with Two Executive Hires To Drive Global Market Expansion"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "Apella Capital Expands West Coast Presence with Addition of NR Smith and Associates"}, {"role": "assistant", "content": "management_change"}]}
-{"messages": [{"role": "user", "content": "Priyanka Timblo Rejoins Holwell Shuster &amp; Goldberg as Partner"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Priyanka Timblo Rejoins Holwell Shuster & Goldberg as Partner"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "ZoomInfo Hires Bryan Law as Chief Marketing Officer"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "Kiromic BioPharma Appoints Leonardo Mirandola, Ph.D. as Chief Scientific Officer"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "DecisionLink Announces New Senior Vice President of Sales, Tim Fitzpatrick"}, {"role": "assistant", "content": "management_change"}]}
-{"messages": [{"role": "user", "content": "JM Search Welcomes New Partners &amp; Principals Amid Another Year of Rapid Growth"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "JM Search Welcomes New Partners & Principals Amid Another Year of Rapid Growth"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "Vishal Bhatnagar Joins Prodapt as Executive Vice President"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "Mike Wells Appointed Group CEO of Athora"}, {"role": "assistant", "content": "management_change"}]}
 {"messages": [{"role": "user", "content": "$VST - Vistra names Kris Moldovan its next finance chief"}, {"role": "assistant", "content": "management_change"}]}
@@ -356,7 +356,7 @@
 {"messages": [{"role": "user", "content": "As Heathrow cut back on flights, three Tory leadership bids took off - but Priti Patel\u2019s was canceled. Sign up to The Readout with Allegra Stratton"}, {"role": "assistant", "content": "macro_market"}]}
 {"messages": [{"role": "user", "content": "Key Democratic congressional allies are urging Biden\u2019s administration to support a new injection of resources for countries at the IMF to help them deal with the fallout from Russia\u2019s invasion of Ukraine"}, {"role": "assistant", "content": "macro_market"}]}
 {"messages": [{"role": "user", "content": "Former Chancellor Rishi Sunak will set out his bid to be Britain\u2019s next prime minister on Tuesday, pledging to cut taxes once inflation is under control"}, {"role": "assistant", "content": "macro_market"}]}
-{"messages": [{"role": "user", "content": "$AMZN held key wkly support. (H&amp;S type setup did Not break down.) Possible 2 month W base, If it breaks 1 month descending trendline. 7/12: $AMZN AWS summit 7/12-13: $AMZN Prime days 7/28: unconfirmed eps date"}, {"role": "assistant", "content": "stock_movement"}]}
+{"messages": [{"role": "user", "content": "$AMZN held key wkly support. (H&S type setup did Not break down.) Possible 2 month W base, If it breaks 1 month descending trendline. 7/12: $AMZN AWS summit 7/12-13: $AMZN Prime days 7/28: unconfirmed eps date"}, {"role": "assistant", "content": "stock_movement"}]}
 {"messages": [{"role": "user", "content": "$WIRES: On The Wires"}, {"role": "assistant", "content": "stock_movement"}]}
 {"messages": [{"role": "user", "content": "Continue to see that $IWM $SPY put hedging activity that was missing Q1/Q2 and tells me funds putting $ back to work finally, which aligns with the solid price-action and dip buying in indices last two weeks"}, {"role": "assistant", "content": "stock_movement"}]}
 {"messages": [{"role": "user", "content": "$SPY $SPX 345% play on puts! \ud83d\udca5"}, {"role": "assistant", "content": "stock_movement"}]}

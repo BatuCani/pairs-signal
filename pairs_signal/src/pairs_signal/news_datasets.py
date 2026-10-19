@@ -6,7 +6,8 @@
                   mapped to negative/positive/neutral
 
 Splits: the source validation split is the fixed test set; val is a seeded 10% of the source
-train split. Texts are cleaned (t.co links, whitespace) and deduplicated on a normalized form;
+train split. Texts are cleaned (HTML entities, t.co links, whitespace) and deduplicated on a
+normalized form;
 a text that is in test is removed from train and val.
 
 --phrasebank also downloads Financial PhraseBank (takala/financial_phrasebank, CC BY-NC-SA 3.0,
@@ -19,6 +20,7 @@ Run export_distil afterwards for the balanced sets and distil labs bundles.
 """
 
 import argparse
+import html
 import io
 import json
 import random
@@ -62,6 +64,7 @@ def download(repo: str, name: str) -> pd.DataFrame:
 
 
 def clean(text: str) -> str:
+    text = html.unescape(text)  # "&amp;" -> "&", "&#39;" -> "'"
     text = re.sub(r"https?://\S+", "", text)
     return re.sub(r"\s+", " ", text).strip()
 

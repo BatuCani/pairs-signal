@@ -267,7 +267,7 @@
 {"messages": [{"role": "user", "content": "MEC Resources : Takeovers Panel makes no interim order, meeting to proceed #MECResources #Stock #MarketScreener\u2026"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Mediaset Espana Comunicacion S A : announces an Extraordinary Shareholders Meeting to be h... #Stock\u2026"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Metal Bank : Managing Director's Presentation to Shareholders #MetalBank #Stock #MarketScreener\u2026"}, {"role": "assistant", "content": "neutral"}]}
-{"messages": [{"role": "user", "content": "MGE Energy Issues December 2019 &apos;Interim Report&apos;"}, {"role": "assistant", "content": "neutral"}]}
+{"messages": [{"role": "user", "content": "MGE Energy Issues December 2019 'Interim Report'"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Microsoft just launched its new #HoloLens2 augmented reality headset. While it's not quite ready for store shelves\u2026"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Microsoft, Baker Hughes announce artificial intelligence partnership for oil and gas industry\u2026"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Neptune amends and restates processing agreement with Canopy"}, {"role": "assistant", "content": "neutral"}]}
@@ -286,7 +286,7 @@
 {"messages": [{"role": "user", "content": "Ryanair Is a Polluting Airline. There's No Hiding That Fact"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Sears' Eddie Lampert looks to regain full ownership of Sears Hometown and Outlet Stores"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Skanska : Co-creating solutions to reduce the industry's carbon footprint #Skanska #Stock #MarketScreener\u2026"}, {"role": "assistant", "content": "neutral"}]}
-{"messages": [{"role": "user", "content": "Societatea Energetica Electrica : Current report &ndash; BoD member renunciation &ndash; 1...\u2026"}, {"role": "assistant", "content": "neutral"}]}
+{"messages": [{"role": "user", "content": "Societatea Energetica Electrica : Current report \u2013 BoD member renunciation \u2013 1...\u2026"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "SoftBank launches robotic vacuum in U.S."}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Sophos : Form 8.5 (EPT/RI)Sophos Group plc_Replacement #Sophos #Stock #MarketScreener"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Sourcewater Launches DirtWork AlertTM Satellite Intelligence for Permian Basin Sitework"}, {"role": "assistant", "content": "neutral"}]}
@@ -602,7 +602,7 @@
 {"messages": [{"role": "user", "content": "At least six firms, including BlackRock and Vanguard, are flocking to the Chinese market"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Banks must behave 'more like technology companies' to survive, finance execs say"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Before Coke-Snorting Santa And An Ad Accused Of Weight-Shaming, Some Fails From Christmas Past"}, {"role": "assistant", "content": "neutral"}]}
-{"messages": [{"role": "user", "content": "Big fantasy playoff matchup against @Jason_Buck this week, a rematch of my week 10 defeat by &lt; 0.5 points as Dalvin\u2026"}, {"role": "assistant", "content": "neutral"}]}
+{"messages": [{"role": "user", "content": "Big fantasy playoff matchup against @Jason_Buck this week, a rematch of my week 10 defeat by < 0.5 points as Dalvin\u2026"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Billionaire hedge fund founder Ray Dalio doesn't want to use the word \"recession\" when talking about the global eco\u2026"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Bloomberg Westminster: HS2, Full Speed Ahead?"}, {"role": "assistant", "content": "neutral"}]}
 {"messages": [{"role": "user", "content": "Breakingviews - Fashion\u2019s climate Frankenstein has no off-switch - Reuters"}, {"role": "assistant", "content": "neutral"}]}
@@ -1131,7 +1131,7 @@
 {"messages": [{"role": "user", "content": "Looks like $SPX 8/21 MA bull cross today"}, {"role": "assistant", "content": "positive"}]}
 {"messages": [{"role": "user", "content": "Netflix shares have soared nearly 4,100% since the end of 2009"}, {"role": "assistant", "content": "positive"}]}
 {"messages": [{"role": "user", "content": "Regional Management (NYSE:RM) Shareholders Have Enjoyed An Impressive 140% Share Price Gain"}, {"role": "assistant", "content": "positive"}]}
-{"messages": [{"role": "user", "content": "Scalp Trader's recent $DBVT play took off for a +109% gain in just three days. Learn more and #tradesmarter here &gt;&gt;\u2026"}, {"role": "assistant", "content": "positive"}]}
+{"messages": [{"role": "user", "content": "Scalp Trader's recent $DBVT play took off for a +109% gain in just three days. Learn more and #tradesmarter here >>\u2026"}, {"role": "assistant", "content": "positive"}]}
 {"messages": [{"role": "user", "content": "Shareholders Are Loving SmartFinancial, Inc.'s (NASDAQ:SMBK) 0.9% Yield"}, {"role": "assistant", "content": "positive"}]}
 {"messages": [{"role": "user", "content": "Signal Says Ferrari Stock Could Race Into New Year"}, {"role": "assistant", "content": "positive"}]}
 {"messages": [{"role": "user", "content": "Small-Company Stocks Have Been Lagging the Market. Here's Why That Could Change Soon - MONEY"}, {"role": "assistant", "content": "positive"}]}

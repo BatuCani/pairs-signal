@@ -25,7 +25,7 @@ Geprueft am 2026-10-19 (Seite bzw. API selbst geoeffnet, Lizenz gelesen, Downloa
 | EDT / Trade the Event ([GitHub](https://github.com/Zhihan1996/TradeTheEvent)) | keine Lizenz angegeben, Daten auf Google Drive | 9.721 gelabelte Artikel | menschlich | **nicht verwendet** (Lizenz) |
 | FinGPT/fingpt-sentiment-train | keine Lizenz angegeben | 76.772 | Mischung aus anderen Quellen | **nicht verwendet** |
 
-`uv run news-datasets` laedt die beiden MIT-Datensaetze (4 s), mappt sie, bereinigt Texte (t.co-Links, Leerraum) und dedupliziert ueber eine normalisierte Form.
+`uv run news-datasets` laedt die beiden MIT-Datensaetze (4 s), mappt sie, bereinigt Texte (HTML-Entities wie `&amp;`, t.co-Links, Leerraum) und dedupliziert ueber eine normalisierte Form.
 `uv run news-datasets --phrasebank` baut zusaetzlich das PhraseBank-Testset lokal (`data/out/sets/news_sentiment_phrasebank_test.jsonl`, gitignored).
 
 ## Label-Schema und Mapping
@@ -75,6 +75,9 @@ Test kommt aus dem Validation-Split der Quelle und ist fest; val ist ein geseede
 | negative | 15,1 % | 450 | 100 | 120 |
 | **Summe** | | **1.350** | **300** | **360** |
 
+**Seed-Set fuer den Datenmengen-Vergleich:** `data/out/distil/news_event_small/` hat nur 10 Trainingszeilen pro Label (100 insgesamt, Teilmenge der 1.500), aber dieselbe Testmenge, `config.yaml` und `job_description.json` wie `news_event`.
+Damit laesst sich v1 (wenig Daten, distil labs generiert den Rest synthetisch) gegen v2 (alle 1.500 Zeilen) auf demselben Test vergleichen.
+
 Baseline ohne Modell (Keyword-Regeln, `uv run experiment --dry-run`): news_event 30,5 % Accuracy auf dem festen Test, news_sentiment 53,1 %, PhraseBank 65,3 %.
 Das ist die Latte, die Teacher und kleines Modell klar schlagen muessen.
 
@@ -94,7 +97,8 @@ uv run experiment --task news_event --model teacher --split test --run-name teac
 uv run experiment --task news_sentiment --model teacher --split phrasebank_test   # optional, menschliche Labels
 
 # 2. distil labs (Login: distil auth; distil whoami; distil credits-balance)
-distil dataset create --output json --data data/out/distil/news_event | jq -r .id          # -> DS
+distil dataset create --output json --data data/out/distil/news_event | jq -r .id          # -> DS (alle Daten)
+# Vergleich wenig Daten: dieselben Schritte mit --data data/out/distil/news_event_small
 distil teacher-evaluation create-from-dataset --output json $DS | jq -r .id               # -> TE
 distil teacher-evaluation metrics --output json $TE | jq .teacher_performance             # binary = Accuracy
 distil dataset generate-synthetic-data-train --smoke --output json $DS | jq -r .id        # Smoke zuerst
@@ -311,6 +315,7 @@ Rohkurse liegen nur lokal in `data/raw/` (gitignored); im Repo stehen nur daraus
 | `tasks/news_event_labels.json`, `tasks/news_sentiment_labels.json` | Produkt: Aufgabenbeschreibung, Label-Definitionen, Quell-Mapping |
 | `data/out/news/{news_event,news_sentiment}.jsonl` | alle gemappten, deduplizierten Zeilen mit Split und Quell-Label |
 | `data/out/distil/{news_event,news_sentiment}/` | Produkt: Upload-Ordner fuer `distil dataset create --data` |
+| `data/out/distil/news_event_small/` | Seed-Set mit 10 Trainingszeilen pro Label, gleiche Testmenge und Config |
 | `tasks/headline_labels.json` | Aufgabenbeschreibung, Label-Definitionen, `fundamental_shock`-Regel |
 | `data/out/headlines.jsonl` | alle anonymisierten Schlagzeilen mit Split und Label |
 | `data/out/cases.jsonl` | anonymisierte Ausreisser-Faelle mit Kennzahlen, Label und Trade-Ergebnis |

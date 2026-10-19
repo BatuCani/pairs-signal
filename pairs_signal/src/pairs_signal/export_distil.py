@@ -10,6 +10,7 @@ Outputs per task (headlines, cases):
   data/out/sets/headlines_case_test.jsonl       headlines of test-period cases (backtest c)
   data/out/distil/<task>/                       config.yaml, job_description.json,
                                                 train.jsonl, test.jsonl[, traces.jsonl]
+  data/out/distil/news_event_small/             news_event with 10 train rows per label
 """
 
 import argparse
@@ -28,6 +29,9 @@ CAPS = {
     "headlines": {"train": 150, "val": 40, "test": 50},
 }
 TRACES_MAX = 2000
+# news_event_small: the same bundle with only this many train rows per label (v1 "little data"
+# against v2 "all data"); test, config and job description are identical to news_event.
+SMALL_PER_LABEL = 10
 SEED = 13
 
 CONFIGS = {
@@ -155,6 +159,12 @@ def export(name: str) -> dict[str, list[dict]]:
         write_jsonl(out / "traces.jsonl", [messages(r) for r in sorted(traces, key=lambda r: r["id"])])
     elif (out / "traces.jsonl").exists():
         (out / "traces.jsonl").unlink()
+    if name == "news_event":
+        small = out.parent / f"{name}_small"
+        small.mkdir(parents=True, exist_ok=True)
+        for f in ("config.yaml", "job_description.json", "test.jsonl"):
+            (small / f).write_text((out / f).read_text())
+        write_jsonl(small / "train.jsonl", [messages(r) for r in balanced(sets["train"], SMALL_PER_LABEL, random.Random(SEED))])
     return {**sets, "traces": traces}
 
 
