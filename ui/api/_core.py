@@ -233,7 +233,11 @@ class ApiHandler(BaseHTTPRequestHandler):
         elif path == "/api/feed":
             self._json(feed_examples())
         elif path == "/api/insights":
-            self._json(json.loads((UI_DIR / "data/insights-v1.json").read_text()))
+            payload = json.loads((UI_DIR / "data/insights-v1.json").read_text())
+            confusion = UI_DIR / "data/confusion-v1.json"
+            if confusion.exists():
+                payload["confusion"] = json.loads(confusion.read_text())
+            self._json(payload)
         else:
             self._json({"error": "not found"}, 404)
 

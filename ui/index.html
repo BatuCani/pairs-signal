@@ -181,13 +181,44 @@
   .exerr { margin-top: 16px; display: grid; gap: 10px; }
   .exerr div { font-size: 15px; color: #374151; }
   .exerr small { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .kstrip { display: grid; grid-template-columns: 1fr 1fr 1.55fr 1fr .8fr; margin: 30px 0 22px; padding: 6px 0; }
+  .ks { padding: 16px 22px; border-left: 1px solid var(--line); min-width: 0; }
+  .ks:first-child { border-left: 0; }
+  .kv.sm { font-size: clamp(22px, 2.5vw, 32px); white-space: nowrap; }
+  .kv.grad { background: linear-gradient(90deg, #38bdf8, #a78bfa 55%, #ec4899); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .kv .slash { color: #c4c9d2; font-weight: 600; }
+  .ks .kl { font-size: 14px; margin-top: 6px; }
+  .ins-grid.wide { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+  .heatwrap { overflow-x: auto; }
+  .heat { border-collapse: separate; border-spacing: 3px; font-size: 12px; margin: 0 auto; }
+  .heat th { font-weight: 600; color: var(--muted); white-space: nowrap; padding: 0 6px 0 0; text-align: right; }
+  .heat thead th { height: 112px; vertical-align: bottom; padding: 0; text-align: left; }
+  .heat thead th span { display: inline-block; transform: rotate(-55deg); transform-origin: left bottom; translate: 14px -2px; width: 18px; }
+  .heat td { width: 32px; height: 28px; text-align: center; border-radius: 6px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .heat td.diag { color: #fff; }
+  .heat td.zero { color: transparent; background: #f3f5f8; }
+  .mcard { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px 18px; margin: 0; font-size: 16px; }
+  .mcard dt { color: var(--muted); font-weight: 500; }
+  .mcard dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+  .history { max-width: 900px; margin: 18px auto 0; }
+  .hhead { color: var(--muted); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 8px 6px; }
+  .hrow { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 10px 18px; border-radius: 16px; margin-bottom: 6px;
+    background: var(--glass); border: 1px solid rgba(255,255,255,.9); font-size: 15px; animation: slidein .4s cubic-bezier(.16,1,.3,1); }
+  .hrow .hl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+  .hrow .ms { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 14px; }
+  .chip.shk { color: var(--red); background: var(--red-bg); }
+  .chip.nse { color: var(--green); background: var(--green-bg); }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1; transform: none; }
     .arrow::after { display: none; }
   }
   @media (max-width: 860px) {
-    .kpis, .ins-grid { grid-template-columns: 1fr; }
+    .kpis, .ins-grid, .ins-grid.wide { grid-template-columns: 1fr; }
+    .kstrip { grid-template-columns: 1fr 1fr; }
+    .ks { border-left: 0; }
+    .hrow { grid-template-columns: minmax(0, 1fr) auto; }
+    .hrow .ms { display: none; }
     .cat { grid-template-columns: 130px minmax(0,1fr) 46px; }
     .bar { grid-template-columns: 1fr auto; }
     .btrack { grid-column: 1 / -1; grid-row: 2; }
@@ -241,6 +272,10 @@
   </div>
 
   <div class="results" id="results"><div class="card placeholder">No headline classified yet.</div></div>
+  <div class="history" id="history" hidden>
+    <div class="hhead">Recent classifications</div>
+    <div id="histlist"></div>
+  </div>
 
   <section class="block" id="feedsec">
     <div class="sechead">
@@ -280,6 +315,13 @@
       <h1>Our 0.8B student<br>beats its teacher.</h1>
       <div class="subtitle">Exactly correct event type on 400 test headlines.</div>
     </div>
+    <div class="card kstrip">
+      <div class="ks"><div class="kv sm" data-to="88.0" data-dec="1" data-suffix=" %">88.0 %</div><div class="kl">Exact event type</div></div>
+      <div class="ks"><div class="kv sm grad" data-to="94.8" data-dec="1" data-suffix=" %">94.8 %</div><div class="kl">Shock vs. noise</div></div>
+      <div class="ks"><div class="kv sm nocount">88.5 % <span class="slash">/</span> 95.0 %</div><div class="kl">Langfuse live check</div></div>
+      <div class="ks"><div class="kv sm" data-to="6.6" data-dec="1" data-suffix=" min">6.6 min</div><div class="kl">Training</div></div>
+      <div class="ks"><div class="kv sm" data-to="0.8" data-dec="1" data-suffix="B">0.8B</div><div class="kl">Model</div></div>
+    </div>
     <div class="card bars">
       <div class="bar"><div class="bname">Keyword rules</div><div class="btrack"><div class="bfill" style="--v:30.5%"></div></div><div class="bval">30.5 %</div></div>
       <div class="bar"><div class="bname">Qwen3.5-0.8B untrained</div><div class="btrack"><div class="bfill" style="--v:55.75%"></div></div><div class="bval">55.75 %</div></div>
@@ -287,10 +329,6 @@
       <div class="bar hi"><div class="bname">Our Qwen3.5-0.8B<small>distil labs, 6.6 min training</small></div><div class="btrack"><div class="bfill" style="--v:88%"></div></div><div class="bval">88.0 %</div></div>
     </div>
     <div id="insights" hidden>
-      <div class="kpis">
-        <div class="card kpi"><div class="kv" id="kpi-exact"></div><div class="kl">Exact event type</div></div>
-        <div class="card kpi hi"><div class="kv" id="kpi-shock"></div><div class="kl">Shock vs. noise correct</div></div>
-      </div>
       <div class="ins-grid">
         <div class="card ins">
           <h3>Accuracy per category</h3>
@@ -300,6 +338,24 @@
           <h3>Where it still fails</h3>
           <div id="confusions"></div>
           <div class="exerr" id="exerr"></div>
+        </div>
+      </div>
+      <div class="ins-grid wide">
+        <div class="card ins" id="heatcard" hidden>
+          <h3>Confusion matrix</h3>
+          <div class="sub" style="margin:-8px 0 14px">Rows: dataset label, columns: predicted. 400 test headlines, version 1.</div>
+          <div class="heatwrap"><table class="heat" id="heat"></table></div>
+        </div>
+        <div class="card ins">
+          <h3>Model card</h3>
+          <dl class="mcard">
+            <dt>Base</dt><dd>Qwen3.5-0.8B</dd>
+            <dt>Fine-tuning</dt><dd>LoRA rank 64, 2 epochs, batch 8, lr 1e-4</dd>
+            <dt>Training data</dt><dd>1,500 real training headlines</dd>
+            <dt>Teacher</dt><dd>GLM 5.3 (79.25 %)</dd>
+            <dt>Test set</dt><dd>400 held-out test headlines</dd>
+            <dt>Source</dt><dd>Hugging Face zeroshot/twitter-financial-news-topic (MIT)</dd>
+          </dl>
         </div>
       </div>
       <div class="loopback" style="font-size:18px">These errors become the next training round (Langfuse &rarr; distil labs)</div>
@@ -371,6 +427,17 @@ function countUp(el, ms = 900, delay = 0) {
   requestAnimationFrame(step);
 }
 
+const HISTORY = [];
+function addHistory(headline, results) {
+  const r = results && results[0];
+  if (!r || !r.label) return;
+  HISTORY.unshift({ headline, label: r.label, shock: r.shock, ms: r.latency_ms });
+  HISTORY.length = Math.min(HISTORY.length, 5);
+  $("histlist").innerHTML = HISTORY.map((h) => `<div class="hrow"><span class="hl" title="${esc(h.headline)}">${esc(h.headline)}</span>
+    <span class="chip ${h.shock ? "shk" : "nse"}">${esc(h.label)}</span><span class="ms">${h.ms} ms</span></div>`).join("");
+  $("history").hidden = false;
+}
+
 async function classify(headline) {
   $("go").disabled = true;
   const n = CONFIG && CONFIG.variants.length > 1 ? 2 : 1;
@@ -379,6 +446,7 @@ async function classify(headline) {
   try {
     const data = await api("/api/classify", { headline });
     renderResults(data.results);
+    addHistory(headline, data.results);
     return data.results;
   } catch (e) {
     $("results").innerHTML = `<div class="card placeholder err">${esc(e.message)}</div>`;
@@ -455,6 +523,7 @@ async function runFeed() {
         <div class="pred">${preds}<span class="muted">Dataset: ${esc(it.expected)}</span></div>`;
       $("feed").prepend(row);
       renderResults(results);
+      addHistory(it.headline, results);
       await new Promise((r) => setTimeout(r, 400));
     }
   } catch (e) {
@@ -488,7 +557,7 @@ function animateResults() {
   page.classList.remove("anim-zero");
   const fills = [...page.querySelectorAll(".bars .bfill")].concat([...page.querySelectorAll(".cats .bfill")]);
   fills.forEach((b, i) => { b.style.transitionDelay = `${150 + i * 110}ms`; });
-  page.querySelectorAll(".bars .bval, .cats .pct, .kv").forEach((el, i) => {
+  page.querySelectorAll(".bars .bval, .cats .pct, .kv:not(.nocount)").forEach((el, i) => {
     if (!el.dataset.to) {
       const m = el.textContent.match(/[\d.]+/);
       if (!m) return;
@@ -508,17 +577,28 @@ document.addEventListener("keydown", (e) => {
 const pct = (x, d = 0) => (Math.round(x * 100 * 10 ** d + 1e-6) / 10 ** d).toFixed(d) + " %";
 fetch("/api/insights").then((r) => (r.ok ? r.json() : null)).then((d) => {
   if (!d) return;
-  $("kpi-exact").textContent = pct(d.accuracy, 1);
-  $("kpi-shock").textContent = pct(d.shock_accuracy, 1);
   $("cats").innerHTML = Object.entries(d.per_label).sort((a, b) => b[1].acc - a[1].acc).map(([k, v]) =>
     `<div class="cat"><span>${esc(k)}</span><div class="btrack"><div class="bfill" style="--v:${v.acc * 100}%"></div></div><span class="pct">${pct(v.acc)}</span></div>`).join("");
   $("confusions").innerHTML = d.top_confusions.map((c) =>
     `<div class="conf"><span class="chip">${esc(c.gold)}</span>&rarr;<span class="chip bad">${esc(c.pred)}</span><span class="x">x${c.count}</span></div>`).join("");
   $("exerr").innerHTML = d.example_errors.slice(0, 3).map((e) =>
     `<div>&ldquo;${esc(e.headline)}&rdquo;<small>dataset ${esc(e.gold)}, predicted ${esc(e.pred)}</small></div>`).join("");
+  if (d.confusion) renderHeat(d.confusion);
   $("insights").hidden = false;
   animateResults();
 }).catch(() => {});
+function renderHeat(c) {
+  const max = Math.max(...c.matrix.flat().filter((v, i) => i % (c.labels.length + 1) !== 0));
+  const head = `<thead><tr><th></th>${c.labels.map((l) => `<th><span>${esc(l)}</span></th>`).join("")}</tr></thead>`;
+  const body = c.matrix.map((row, i) => `<tr><th>${esc(c.labels[i])}</th>${row.map((v, j) => {
+    if (i === j) return `<td class="diag" style="background:rgba(124,92,250,${(0.35 + 0.65 * v / 40).toFixed(2)})" title="${esc(c.labels[i])}: ${v} correct">${v}</td>`;
+    if (!v) return `<td class="zero">0</td>`;
+    return `<td style="background:rgba(229,72,77,${(0.12 + 0.6 * v / max).toFixed(2)});color:${v / max > 0.6 ? "#fff" : "#7f1d1d"}" title="${esc(c.labels[i])} predicted as ${esc(c.labels[j])}: ${v}">${v}</td>`;
+  }).join("")}</tr>`).join("");
+  $("heat").innerHTML = head + `<tbody>${body}</tbody>`;
+  $("heatcard").hidden = false;
+}
+
 window.addEventListener("hashchange", () => showPage(location.hash === "#results" ? "results" : "demo"));
 if (location.hash === "#results") showPage("results");
 
