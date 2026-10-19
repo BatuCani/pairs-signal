@@ -42,3 +42,13 @@ The live feed classifies one test headline per label from `test.jsonl` and score
 
 - `POST /classify` with `{"headline": "..."}` returns `{"results": [{variant, model, label, shock, latency_ms, trace_url, mock, error}]}`.
 - `GET /config`, `GET /feed`.
+
+## Terminal demo
+
+```bash
+uv run ui/terminal_demo.py --n 25
+```
+
+Classifies N shuffled test headlines live in the terminal (prediction vs. dataset label, shock/noise, latency, Langfuse trace link), then prints an error analysis (accuracy, mean and p95 latency, confusion pairs, weakest categories, example errors).
+As the next loop step it writes the misclassified headlines as distil-format training rows to `ui/data/next_train_errors.jsonl` (git-ignored) and prints the distil commands to use them.
+It shares model config, system prompt and call settings with `server.py`.
