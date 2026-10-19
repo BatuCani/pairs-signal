@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News Gate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111111; --muted: #6b7280; --line: rgba(17,17,17,.08);
+    --card: rgba(255,255,255,.92); --glass: rgba(255,255,255,.62);
+    --red: #e5484d; --red-bg: #fde8e8; --green: #12a150; --green-bg: #e3f6ea;
+    --shadow: 0 20px 50px -18px rgba(40,60,110,.28), 0 2px 8px rgba(40,60,110,.06);
+    --display: "Inter Tight", "Inter Display", Inter, -apple-system, sans-serif;
+    --body: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { background: #eaf2fb; }
+  body {
+    margin: 0; min-height: 100vh; color: var(--ink); font: 18px/1.45 var(--body);
+    background:
+      radial-gradient(ellipse 40% 18% at 12% 14%, rgba(255,255,255,.95), transparent 70%),
+      radial-gradient(ellipse 32% 14% at 85% 10%, rgba(255,255,255,.9), transparent 70%),
+      radial-gradient(ellipse 45% 16% at 78% 38%, rgba(255,255,255,.7), transparent 70%),
+      radial-gradient(ellipse 38% 14% at 18% 46%, rgba(255,255,255,.65), transparent 70%),
+      radial-gradient(ellipse 120% 22% at 50% 78%, rgba(255,214,170,.45), transparent 60%),
+      radial-gradient(ellipse 110% 16% at 50% 84%, rgba(160,230,220,.55), transparent 60%),
+      radial-gradient(ellipse 100% 12% at 50% 88%, rgba(233,180,235,.4), transparent 60%),
+      linear-gradient(180deg, #dde9f6 0%, #eaf2fb 35%, #f4f7fb 62%, #fbf6f0 80%, #f6fafc 100%);
+    background-attachment: fixed;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 18px 24px 64px; }
+  nav { display: flex; justify-content: center; }
+  .navpill { display: flex; align-items: center; gap: 22px; padding: 8px 8px 8px 22px; border-radius: 999px;
+    background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,.8); box-shadow: 0 8px 30px -12px rgba(40,60,110,.25); flex-wrap: wrap; max-width: 100%; }
+  .logo { display: flex; align-items: center; gap: 9px; font: 700 22px var(--display); letter-spacing: -.02em; }
+  .logo svg { flex: none; }
+  .pills { display: flex; gap: 14px; color: var(--muted); font-size: 16px; flex-wrap: wrap; align-items: center; }
+  .pill { display: inline-flex; align-items: center; gap: 7px; }
+  .pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #c4c9d2; }
+  .pill.on::before { background: var(--green); }
+  .pill.mock::before { background: #f5a524; }
+  .btn { font: 600 18px var(--body); padding: 14px 26px; border-radius: 999px; border: 0; cursor: pointer;
+    background: var(--ink); color: #fff; white-space: nowrap; transition: transform .15s, opacity .15s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:disabled { opacity: .45; cursor: progress; transform: none; }
+  .btn.sm { font-size: 15px; padding: 10px 18px; }
+
+  .hero { text-align: center; padding: 56px 0 26px; }
+  h1 { margin: 0; font: 800 clamp(44px, 7.4vw, 92px)/.98 var(--display); letter-spacing: -.045em; color: var(--ink); }
+  .subtitle { margin: 22px auto 0; max-width: 760px; color: var(--muted); font-size: clamp(19px, 2.1vw, 25px); line-height: 1.4; }
+
+  .ask { max-width: 900px; margin: 30px auto 0; }
+  .inputpill { display: flex; gap: 8px; padding: 8px; border-radius: 999px; background: var(--card); box-shadow: var(--shadow); border: 1px solid #fff; }
+  .inputpill input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font: 500 21px var(--body); padding: 0 20px; color: var(--ink); }
+  .inputpill input::placeholder { color: #9aa1ad; }
+  .examples { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 16px; }
+  .examples button { font: 500 14px var(--body); padding: 7px 14px; border-radius: 999px; cursor: pointer;
+    background: var(--glass); color: #374151; border: 1px solid rgba(255,255,255,.9); backdrop-filter: blur(8px); }
+  .examples button:hover { background: #fff; }
+
+  .results { display: grid; gap: 20px; max-width: 900px; margin: 30px auto 0; }
+  .results.two { grid-template-columns: 1fr 1fr; max-width: 1100px; }
+  .card { background: var(--card); border-radius: 28px; box-shadow: var(--shadow); border: 1px solid #fff; }
+  .result { padding: 26px 30px; min-width: 0; animation: float .35s ease; }
+  @keyframes float { from { opacity: 0; transform: translateY(10px); } }
+  .result .vh { display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 15px; font-weight: 500; }
+  .result .vh b { color: var(--ink); font-weight: 600; }
+  .result .main { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin: 8px 0 4px; }
+  .result .label { font: 800 54px/1.05 var(--display); letter-spacing: -.04em; overflow-wrap: break-word; min-width: 0; }
+  .results.two .result .label { font-size: 42px; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; font: 700 20px var(--body); padding: 10px 18px; border-radius: 999px; white-space: nowrap; }
+  .badge::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+  .badge.shock { color: var(--red); background: var(--red-bg); }
+  .badge.noise { color: var(--green); background: var(--green-bg); }
+  .meta { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 14px; color: var(--muted); font-size: 16px; align-items: center; }
+  .meta b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  a { color: var(--ink); font-weight: 600; text-underline-offset: 3px; }
+  .err { color: var(--red); font-size: 15px; overflow-wrap: anywhere; }
+  .placeholder { text-align: center; color: var(--muted); padding: 26px; }
+
+  section.block { margin-top: 56px; }
+  .sechead { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 18px; }
+  h2 { margin: 0; font: 800 40px/1 var(--display); letter-spacing: -.04em; }
+  .sub { color: var(--muted); font-size: 17px; margin-top: 8px; }
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .stat { padding: 12px 18px; border-radius: 20px; display: flex; align-items: center; gap: 12px; }
+  .stat .n { font: 800 30px/1 var(--display); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+  .stat .l { color: var(--muted); font-size: 13px; line-height: 1.25; }
+  .feed { display: grid; gap: 10px; }
+  .item { display: grid; grid-template-columns: 36px minmax(0,1fr) auto; gap: 14px; align-items: center; padding: 14px 20px; border-radius: 20px; animation: float .3s ease; }
+  .item .ok { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 16px; }
+  .item .ok.y { background: var(--green-bg); color: var(--green); }
+  .item .ok.n { background: var(--red-bg); color: var(--red); }
+  .item .hl { font-size: 17px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .item .pred { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; font-size: 14px; }
+  .chip { padding: 4px 11px; border-radius: 999px; background: #f2f4f7; font-weight: 600; white-space: nowrap; }
+  .chip.good { color: var(--green); background: var(--green-bg); }
+  .chip.bad { color: var(--red); background: var(--red-bg); }
+  .muted { color: var(--muted); }
+  .empty { color: var(--muted); text-align: center; padding: 22px; border-radius: 20px; background: var(--glass); }
+
+  .loop { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 14px; align-items: center; }
+  .step { padding: 22px 24px; border-radius: 24px; }
+  .step .k { font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+  .step b { display: block; font: 800 28px/1.1 var(--display); letter-spacing: -.03em; margin: 6px 0 6px; }
+  .step span { color: var(--muted); font-size: 15px; }
+  .arrow { font: 700 28px var(--display); color: #9aa1ad; }
+  .loopback { text-align: center; color: var(--muted); font-size: 15px; margin-top: 12px; }
+  .legend { margin-top: 18px; text-align: center; color: var(--muted); font-size: 15px; }
+  .legend .chip { display: inline-block; margin: 4px 3px 0; }
+
+  @media (max-width: 860px) {
+    .wrap { padding: 12px 16px 48px; }
+    .navpill { padding: 8px 8px 8px 16px; gap: 12px; }
+    .pills { display: none; }
+    .hero { padding-top: 36px; }
+    .inputpill { flex-direction: column; border-radius: 28px; }
+    .inputpill input { padding: 14px 14px; }
+    .results.two { grid-template-columns: 1fr; }
+    .result .label { font-size: 38px; }
+    .item { grid-template-columns: 30px minmax(0,1fr); }
+    .item .pred { grid-column: 2; justify-content: flex-start; }
+    .item .hl { white-space: normal; }
+    .loop { grid-template-columns: 1fr; }
+    .arrow { text-align: center; transform: rotate(90deg); }
+    h2 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="navpill">
+      <div class="logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="4" width="22" height="5" rx="2.5" fill="#111"/><rect x="2" y="11" width="15" height="5" rx="2.5" fill="#111"/><rect x="2" y="18" width="9" height="5" rx="2.5" fill="#111"/></svg>
+        News Gate
+      </div>
+      <div class="pills" id="pills"></div>
+      <button class="btn sm" type="button" id="navfeed">Live-Feed</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Echter Schock<br>oder nur Rauschen?</h1>
+    <div class="subtitle">Ein 0.8B-Modell, trainiert bei distil labs, ordnet jede Aktien-Schlagzeile in Millisekunden einem von 10 Ereignistypen zu.</div>
+  </div>
+
+  <div class="ask">
+    <form class="inputpill" id="form">
+      <input type="text" id="headline" autocomplete="off" placeholder="Schlagzeile eingeben, z. B. Apple CEO to step down" />
+      <button class="btn" type="submit" id="go">Klassifizieren</button>
+    </form>
+    <div class="examples" id="examples"></div>
+  </div>
+
+  <div class="results" id="results"><div class="card placeholder">Noch keine Schlagzeile klassifiziert.</div></div>
+
+  <section class="block" id="feedsec">
+    <div class="sechead">
+      <div>
+        <h2>Live-Feed</h2>
+        <div class="sub">10 echte Test-Schlagzeilen, Modell gegen menschliches Label</div>
+      </div>
+      <div class="stats"><span class="stats" id="stats"></span><button class="btn" id="feedbtn" type="button">Live-Feed starten</button></div>
+    </div>
+    <div class="feed" id="feed"><div class="empty">Starte den Feed, um das Modell live gegen menschliche Labels zu sehen.</div></div>
+  </section>
+
+  <section class="block">
+    <div class="sechead">
+      <div>
+        <h2>Loop</h2>
+        <div class="sub">Jeder Aufruf wird zu Trainingsdaten fuer die naechste Version</div>
+      </div>
+    </div>
+    <div class="loop">
+      <div class="card step"><div class="k">1 &middot; Beobachten</div><b>Langfuse</b><span>Jeder Aufruf als Trace: Schlagzeile, Label, Latenz</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="card step"><div class="k">2 &middot; Trainieren</div><b>distil labs</b><span>Traces werden Training, Qwen3.5-0.8B</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="card step"><div class="k">3 &middot; Bereitstellen</div><b>Runpod</b><span>OpenAI-kompatibler Endpunkt</span></div>
+    </div>
+    <div class="loopback">&#8634; und zurueck nach Langfuse</div>
+    <div class="legend">Echter Schock:
+      <span class="chip bad">earnings</span><span class="chip bad">m_and_a</span><span class="chip bad">legal_regulatory</span><span class="chip bad">management_change</span>
+      &nbsp;Rauschen: alle anderen 6 Typen
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let CONFIG = null;
+
+const EXAMPLES = [
+  "Tesla CEO to step down as chairman after SEC settlement",
+  "Apple beats Q3 revenue estimates, raises guidance",
+  "Morgan Stanley upgrades Nvidia to overweight",
+  "Fed holds rates steady, signals two cuts this year",
+  "Shares of $AMD jump 4% in morning trading",
+];
+
+async function api(path, body) {
+  const res = await fetch(path, body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : {});
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || res.statusText);
+  return data;
+}
+
+function badge(shock) {
+  if (shock === null || shock === undefined) return "";
+  return shock ? '<span class="badge shock">Echter Schock</span>' : '<span class="badge noise">Rauschen</span>';
+}
+
+function renderResults(results) {
+  const box = $("results");
+  box.className = "results" + (results.length > 1 ? " two" : "");
+  box.innerHTML = results.map((r) => `
+    <div class="card result">
+      <div class="vh"><span>${r.variant === "mock" ? "Mock" : "Version " + esc(r.variant)}</span><b>${esc(r.model)}</b></div>
+      ${r.error ? `<div class="main"><div class="label" style="color:var(--red)">Fehler</div></div><div class="err">${esc(r.error)}</div>` : `
+      <div class="main"><div class="label">${esc(r.label).replace(/_/g, "_<wbr>")}</div>${badge(r.shock)}</div>`}
+      <div class="meta">
+        <span>Antwortzeit <b>${r.latency_ms} ms</b></span>
+        ${r.trace_url ? `<a href="${esc(r.trace_url)}" target="_blank" rel="noopener">In Langfuse ansehen &rarr;</a>` : `<span>${r.mock ? "Mock-Modus, kein Trace" : "kein Langfuse-Trace"}</span>`}
+      </div>
+    </div>`).join("");
+}
+
+async function classify(headline) {
+  $("go").disabled = true;
+  try {
+    const data = await api("/classify", { headline });
+    renderResults(data.results);
+    return data.results;
+  } catch (e) {
+    $("results").innerHTML = `<div class="card placeholder err">${esc(e.message)}</div>`;
+  } finally {
+    $("go").disabled = false;
+  }
+}
+
+$("form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const h = $("headline").value.trim();
+  if (h) classify(h);
+});
+
+$("examples").innerHTML = EXAMPLES.map((x, i) => `<button type="button" data-i="${i}">${esc(x)}</button>`).join("");
+$("examples").addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  $("headline").value = EXAMPLES[b.dataset.i];
+  classify(EXAMPLES[b.dataset.i]);
+});
+
+function sparkline(values) {
+  if (values.length < 2) return "";
+  const w = 90, h = 30, max = Math.max(...values), min = Math.min(...values), span = max - min || 1;
+  const pts = values.map((v, i) => `${(i * w / (values.length - 1)).toFixed(1)},${(h - 3 - (v - min) / span * (h - 6)).toFixed(1)}`).join(" ");
+  const last = pts.split(" ").pop().split(",");
+  return `<svg width="${w + 6}" height="${h}" viewBox="-3 0 ${w + 6} ${h}" aria-hidden="true">
+    <defs><linearGradient id="sg" gradientUnits="userSpaceOnUse" x1="0" x2="${w}" y1="0" y2="0"><stop offset="0" stop-color="#7dd3fc"/><stop offset="1" stop-color="#f472b6"/></linearGradient></defs>
+    <polyline points="${pts}" fill="none" stroke="url(#sg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="${last[0]}" cy="${last[1]}" r="3.5" fill="#f472b6"/></svg>`;
+}
+
+function renderStats(stats) {
+  const keys = Object.keys(stats);
+  $("stats").innerHTML = keys.map((k) => {
+    const s = stats[k];
+    const acc = s.n ? Math.round((100 * s.hit) / s.n) : 0;
+    const lat = s.n ? Math.round(s.ms.reduce((a, b) => a + b, 0) / s.n) : 0;
+    const tag = keys.length > 1 ? ` &middot; ${esc(k)}` : "";
+    return `<div class="card stat"><div class="n">${acc}%</div><div class="l">Treffer${tag}<br>${s.hit} von ${s.n}</div></div>
+            <div class="card stat"><div class="n">${lat}<span class="muted" style="font-size:16px"> ms</span></div><div class="l">Latenz${tag}<br>Mittel</div>${sparkline(s.ms)}</div>`;
+  }).join("");
+}
+
+async function runFeed() {
+  const btn = $("feedbtn");
+  if (btn.disabled) return;
+  btn.disabled = true; $("navfeed").disabled = true;
+  btn.textContent = "Laeuft...";
+  $("feed").innerHTML = "";
+  const stats = {};
+  CONFIG.variants.forEach((v) => (stats[v.key] = { n: 0, hit: 0, ms: [] }));
+  renderStats(stats);
+  try {
+    const items = await api("/feed");
+    for (const it of items) {
+      $("headline").value = it.headline;
+      const results = (await api("/classify", { headline: it.headline })).results;
+      results.forEach((r) => {
+        const s = stats[r.variant] || (stats[r.variant] = { n: 0, hit: 0, ms: [] });
+        s.n += 1; s.ms.push(r.latency_ms); if (r.label === it.expected) s.hit += 1;
+      });
+      renderStats(stats);
+      const allOk = results.every((r) => r.label === it.expected);
+      const preds = results.map((r) => {
+        const tag = results.length > 1 ? `${esc(r.variant)}: ` : "";
+        return `<span class="chip ${r.label === it.expected ? "good" : "bad"}">${tag}${esc(r.label ?? "Fehler")}</span>`;
+      }).join("");
+      const row = document.createElement("div");
+      row.className = "card item";
+      row.innerHTML = `<div class="ok ${allOk ? "y" : "n"}">${allOk ? "&#10003;" : "&#10005;"}</div>
+        <div class="hl" title="${esc(it.headline)}">${esc(it.headline)}</div>
+        <div class="pred">${preds}<span class="muted">Mensch: ${esc(it.expected)}</span></div>`;
+      $("feed").prepend(row);
+      renderResults(results);
+      await new Promise((r) => setTimeout(r, 400));
+    }
+  } catch (e) {
+    $("feed").insertAdjacentHTML("afterbegin", `<div class="empty err">${esc(e.message)}</div>`);
+  } finally {
+    btn.disabled = false; $("navfeed").disabled = false;
+    btn.textContent = "Live-Feed neu starten";
+  }
+}
+$("feedbtn").addEventListener("click", runFeed);
+$("navfeed").addEventListener("click", () => { $("feedsec").scrollIntoView({ behavior: "smooth" }); runFeed(); });
+
+(async () => {
+  CONFIG = await api("/config");
+  const pills = [];
+  if (CONFIG.mock) pills.push('<span class="pill mock">Mock-Modus</span>');
+  else CONFIG.variants.forEach((v) => pills.push(`<span class="pill on">${esc(v.key)}: ${esc(v.model)}</span>`));
+  pills.push(`<span class="pill ${CONFIG.langfuse ? "on" : ""}">Langfuse ${CONFIG.langfuse ? "an" : "aus"}</span>`);
+  $("pills").innerHTML = pills.join("");
+})();
+</script>
+</body>
+</html>
