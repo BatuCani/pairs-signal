@@ -113,7 +113,24 @@
   .legend { margin-top: 18px; text-align: center; color: var(--muted); font-size: 15px; }
   .legend .chip { display: inline-block; margin: 4px 3px 0; }
 
+  .tabs { display: flex; gap: 4px; padding: 3px; border-radius: 999px; background: rgba(17,17,17,.06); }
+  .tab { font: 600 15px var(--body); padding: 7px 16px; border-radius: 999px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+  .tab.active { background: #fff; color: var(--ink); box-shadow: 0 2px 8px rgba(40,60,110,.12); }
+  .bars { max-width: 1000px; margin: 34px auto 0; padding: 30px 34px; display: grid; gap: 22px; }
+  .bar { display: grid; grid-template-columns: 260px minmax(0,1fr) 170px; gap: 18px; align-items: center; }
+  .bname { font-size: 19px; font-weight: 600; }
+  .bname small { display: block; font-size: 14px; color: var(--muted); font-weight: 500; }
+  .btrack { height: 34px; border-radius: 999px; background: #eef1f5; overflow: hidden; }
+  .bfill { height: 100%; width: var(--v); border-radius: 999px; background: #c9cfd8; animation: grow .9s cubic-bezier(.2,.8,.2,1); }
+  @keyframes grow { from { width: 0; } }
+  .bval { font: 800 30px var(--display); letter-spacing: -.03em; text-align: right; font-variant-numeric: tabular-nums; color: #6b7280; white-space: nowrap; }
+  .bar.hi .bname, .bar.hi .bval { color: var(--ink); }
+  .bar.hi .bfill { background: linear-gradient(90deg, #7dd3fc, #a78bfa 55%, #f472b6); }
+  .bar.hi .bval { font-size: 38px; }
+  .footline { text-align: center; margin-top: 40px; font: 800 clamp(26px, 3.4vw, 40px)/1.1 var(--display); letter-spacing: -.04em; }
   @media (max-width: 860px) {
+    .bar { grid-template-columns: 1fr auto; }
+    .btrack { grid-column: 1 / -1; grid-row: 2; }
     .wrap { padding: 12px 16px 48px; }
     .navpill { padding: 8px 8px 8px 16px; gap: 12px; }
     .pills { display: none; }
@@ -139,11 +156,16 @@
         <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="2" y="4" width="22" height="5" rx="2.5" fill="#111"/><rect x="2" y="11" width="15" height="5" rx="2.5" fill="#111"/><rect x="2" y="18" width="9" height="5" rx="2.5" fill="#111"/></svg>
         News Gate
       </div>
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-page="demo">Demo</button>
+        <button type="button" class="tab" data-page="results">Results</button>
+      </div>
       <div class="pills" id="pills"></div>
       <button class="btn sm" type="button" id="navfeed">Live feed</button>
     </div>
   </nav>
 
+  <div id="page-demo">
   <div class="hero">
     <h1>Real shock<br>or just noise?</h1>
     <div class="subtitle">A 0.8B model trained with distil labs sorts every stock headline into one of 10 event types in milliseconds.</div>
@@ -190,6 +212,29 @@
       &nbsp;Noise: all other 6 types
     </div>
   </section>
+  </div>
+
+  <div id="page-results" hidden>
+    <div class="hero">
+      <h1>Our 0.8B student<br>beats its teacher.</h1>
+      <div class="subtitle">Exactly correct event type on 400 test headlines.</div>
+    </div>
+    <div class="card bars">
+      <div class="bar"><div class="bname">Keyword rules</div><div class="btrack"><div class="bfill" style="--v:30.5%"></div></div><div class="bval">30.5 %</div></div>
+      <div class="bar"><div class="bname">Qwen3.5-0.8B untrained</div><div class="btrack"><div class="bfill" style="--v:55.75%"></div></div><div class="bval">55.75 %</div></div>
+      <div class="bar"><div class="bname">GLM 5.3 teacher</div><div class="btrack"><div class="bfill" style="--v:79.25%"></div></div><div class="bval">79.25 %</div></div>
+      <div class="bar hi"><div class="bname">Our Qwen3.5-0.8B<small>distil labs, 6.6 min training</small></div><div class="btrack"><div class="bfill" style="--v:88%"></div></div><div class="bval">88.0 %</div></div>
+    </div>
+    <div class="loop" style="margin-top:28px">
+      <div class="card step"><div class="k">1</div><b>Collect traces on Langfuse</b></div>
+      <div class="arrow">&rarr;</div>
+      <div class="card step"><div class="k">2</div><b>Train on distil labs</b><span>LoRA, teacher-generated synthetic data</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="card step"><div class="k">3</div><b>Run on Runpod</b></div>
+    </div>
+    <div class="loopback">&#8634; and back to Langfuse</div>
+    <div class="footline">Frontier quality at a fraction of the cost.</div>
+  </div>
 </div>
 
 <script>
@@ -323,7 +368,23 @@ async function runFeed() {
   }
 }
 $("feedbtn").addEventListener("click", runFeed);
-$("navfeed").addEventListener("click", () => { $("feedsec").scrollIntoView({ behavior: "smooth" }); runFeed(); });
+$("navfeed").addEventListener("click", () => { showPage("demo"); $("feedsec").scrollIntoView({ behavior: "smooth" }); runFeed(); });
+
+function showPage(name) {
+  $("page-demo").hidden = name !== "demo";
+  $("page-results").hidden = name !== "results";
+  document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("active", t.dataset.page === name));
+  history.replaceState(null, "", name === "results" ? "#results" : "#");
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => showPage(t.dataset.page)));
+document.addEventListener("keydown", (e) => {
+  if (e.target.tagName === "INPUT" || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === "1") showPage("demo");
+  if (e.key === "2") showPage("results");
+});
+window.addEventListener("hashchange", () => showPage(location.hash === "#results" ? "results" : "demo"));
+if (location.hash === "#results") showPage("results");
 
 (async () => {
   CONFIG = await api("/config");
