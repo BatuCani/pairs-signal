@@ -114,9 +114,10 @@ def next_loop(results: list[dict]) -> None:
             ]}) + "\n")
     rel = OUT_PATH.relative_to(server.REPO_DIR)
     console.print(f"Wrote [bold]{len(errors)}[/] misclassified headlines as training rows to [bold]{rel}[/] (distil format, dataset label as answer).")
-    console.print("Feed them into the next training run (distil labs CLI; adjust names to your job):")
-    console.print(f"  [bold cyan]distil dataset create news-event-v3 --train {rel} --job-description {server.DATA_DIR.relative_to(server.REPO_DIR)}/job_description.json[/]")
-    console.print("  [bold cyan]distil generate-synthetic-data-train news-event-v3[/]  [dim]# synthetic variants around the error cases[/]")
+    console.print(f"Append them to train.jsonl of the next dataset folder (job_description.json, config.yaml, train.jsonl, test.jsonl), then (distil CLI 0.35):")
+    console.print("  [bold cyan]distil dataset create --data <dataset folder>[/]")
+    console.print("  [bold cyan]distil dataset generate-synthetic-data-train <dataset-id>[/]  [dim]# synthetic variants around the error cases[/]")
+    console.print("  [bold cyan]distil slm create-from-dataset <dataset-id>[/]  [dim]# train the next version[/]")
     console.print("[dim]Langfuse -> distil labs -> Runpod -> Langfuse[/]")
 
 
