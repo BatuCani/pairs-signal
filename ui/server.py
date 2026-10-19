@@ -41,6 +41,8 @@ LABELS = [
     "macro_market",
     "other",
 ]
+# Training ran without thinking, so the chat template must not open a <think> block.
+NO_THINKING = {"chat_template_kwargs": {"enable_thinking": False}}
 SHOCK_LABELS = {"earnings", "m_and_a", "legal_regulatory", "management_change"}
 
 
@@ -132,6 +134,7 @@ def classify_variant(key: str, headline: str) -> dict:
             with langfuse.start_as_current_span(name=f"news-gate-{key}", input={"headline": headline}) as span:
                 resp = CLIENTS[key].chat.completions.create(
                     model=cfg["model"], messages=messages, temperature=0, max_tokens=64,
+                    extra_body=NO_THINKING,
                     name=f"news-gate-{key}",
                 )
                 raw = resp.choices[0].message.content or ""
@@ -142,7 +145,8 @@ def classify_variant(key: str, headline: str) -> dict:
                     trace_url = None
         else:
             resp = CLIENTS[key].chat.completions.create(
-                model=cfg["model"], messages=messages, temperature=0, max_tokens=64
+                model=cfg["model"], messages=messages, temperature=0, max_tokens=64,
+                extra_body=NO_THINKING,
             )
             raw = resp.choices[0].message.content or ""
         error = None
