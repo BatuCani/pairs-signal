@@ -70,5 +70,4 @@ The external evidence is bigger: Deutsche Bank and RavenPack cut non-converging 
 
 [Fill in before the pitch, honestly: what existed before the event started.]
 The pieces of the product: the label mapping and fixed test sets on open datasets, the distil labs training runs, the Runpod deployment, Langfuse tracing and scoring, v2 with 1,000 synthetic headlines from distil labs, and the demo script.
-The teammate built the Pair Research Agent that calls News Gate as a tool.
 No live trading, no orders, not investment advice.
