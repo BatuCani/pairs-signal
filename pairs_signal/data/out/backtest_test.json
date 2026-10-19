@@ -1,0 +1,27 @@
+{
+  "split": "test",
+  "cases": 31,
+  "base_rate_reverts": 0.2258,
+  "headline_labels": "rules",
+  "variants": {
+    "a_naive": {
+      "trades": 31,
+      "hit_rate": 0.2258,
+      "mean_net_return": 0.005534,
+      "sum_net_return": 0.1716
+    },
+    "b_teacher": {
+      "trades": 30,
+      "hit_rate": 0.2,
+      "mean_net_return": 0.004035,
+      "sum_net_return": 0.1211
+    },
+    "b_sec": {
+      "trades": 22,
+      "hit_rate": 0.3182,
+      "mean_net_return": 0.008036,
+      "sum_net_return": 0.1768
+    },
+    "c_student": "n/a: run experiment --model student --split case_test, then pass --student-run"
+  }
+}

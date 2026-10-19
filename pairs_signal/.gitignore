@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.parquet
+.env
+# Raw downloads and files with real tickers/dates stay local; data/out is anonymized.
+data/raw/
+data/interim/
+data/out/runs/
+data/out/distil/*_v*/
+model/

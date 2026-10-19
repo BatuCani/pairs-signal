@@ -1,0 +1,11 @@
+pair,a,b,full_coint_p,full_hedge_ratio,corr_returns,rolling_coint_share,median_half_life,days_abs_z_ge_2,status
+GS/MS,GS,MS,0.0013,0.686,0.842,0.045,18.7,456,core
+CAT/DE,CAT,DE,0.0277,0.713,0.716,0.058,20.9,472,core
+KO/PEP,KO,PEP,0.0337,0.736,0.716,0.135,18.8,478,core
+HD/LOW,HD,LOW,0.1085,1.038,0.795,0.032,22.2,483,illustrative
+V/MA,V,MA,0.1347,0.916,0.85,0.122,11.9,373,illustrative
+JPM/BAC,JPM,BAC,0.2107,1.032,0.858,0.083,18.7,517,excluded
+WMT/TGT,WMT,TGT,0.4869,0.719,0.448,0.051,20.2,460,excluded
+UPS/FDX,UPS,FDX,0.5695,0.954,0.672,0.045,22.7,488,excluded
+XOM/CVX,XOM,CVX,0.6623,0.708,0.836,0.045,19.2,424,excluded
+PG/CL,PG,CL,0.7879,1.264,0.706,0.019,25.0,541,excluded

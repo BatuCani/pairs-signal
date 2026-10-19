@@ -1,0 +1,375 @@
+{"messages": [{"role": "user", "content": "UBS Maintains Neutral on Company B, Lowers Price Target to $171"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Bank of America Downgrades Company B to Neutral, Lowers Price Target to $207"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "BAML digs into hardlines retail"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Lockheed Martin: Steady Dividend Increases And Share Buybacks Will Drive Stock Price"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Which Sectors Are Best Poised For A Comeback In [year]?"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "A Peek Into The Markets: US Stock Futures Down Ahead Of Economic Data, Fed Speakers"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "When Dealing With Amazon, It Pays To Not Whistle Past The Graveyard"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company B settles with NY attorney general"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Comerica (CMA) Q4 Earnings Beat Estimates, Revenues Increase"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Markets Dump Coal In U.S. Banks' Stockings"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company B To Acquire Israeli-Based Flying Cargo Group's International Express Business"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company B begins offering buyouts to U.S. workers; to cost $450M-$575M"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "The economy may not recover some shutdown losses: Company A's Erdoes"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company B's Outlook for \u2014\u2026\u20139 Disappoints Investors"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "How To Approach Q4 Earnings: The Analyst Perspective"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading higher after the company reported Q4 EPS of $1.55, beating the $1.53 consensus estimate."}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Jobs Report Beats Expectations, Adding To Week Of Market-Boosting Economic News"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Mid-Afternoon Market Update: Crude Oil Up Over 2%; Celestica Shares Fall On Earnings Miss"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "ConocoPhillips To Sell Its Stake In The Texas Golden Pass Liquefied Nat Gas Facility"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Best Sector ETFs For February: Let's Get Cyclical"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Shares of several investment banking companies are trading lower after senator Elizabeth Warren called for the Senate Banking Committee to investigate allegations of money laundering by Deutsche Bank."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Earthport Says He Does Not Intend to Accept an Acquisition Offer From Master Card"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company B to Acquire Solium Capital for C$19.15/Share"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Most Active Equity Options And Strikes For Midday - Monday, [date]"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Stock Market Rally Charges Ahead; This Top Growth Stock Breaks Out"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "JANA 13F Shows New 80K Share Stake In Company B"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Mid-Afternoon Market Update: Dow Up 350 Points; TriNet Group Shares Climb On Earnings Beat"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading higher after the company reported Q4 results in line with analyst estimates and raised its quarterly dividend from $0.9275 to $0.955 per share."}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Company B Real Estate Investing Acquires Majority Stake in KSH Infra Pvt. Ltd. for $49M"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company B Appoints New COO as Incumbent Announces Retirement"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Bronczek's Abrupt Retirement As Company B President, COO Sheds Light On Mandatory Retirement Policy Change"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "UPDATE: Morgan Stanley Maintains Overweight And Raises Price Target On Company B As Firm Sees Co's 'multiple re-rating towards mega-cap peers given superior Company B organic sales growth, and high EPS visibility post a re-base under a new CEO'"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Philadelphia sues seven banks over muni deal \"collusion\": Bloomberg"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "A Chat With The CEO Behind The Cannabis Company With The 'BOSS' Ticker: 'There Isn't A Single Route To Success'"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Company A Adds 150M To Buyback"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Judge won't block hire by Amazon-Berkshire-Company A health JV"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Amazon.com 8-K Shows Board Named Company B CEO Indra Nooyi To Board"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Company A beats by $0.09, misses on revenue"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "A Peek Into The Markets: US Stock Futures Drop Ahead Of Fed Chairman's Testimony"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Berkshire Stocks Up on American Banks: Here's Why"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Weak Housing Market & Weak Company A Earnings"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Expected Dividend Increases In March [year]"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Baird Maintains Outperform on Company B Companies, Raises Price Target to $126"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "KeyBanc Maintains Overweight on Company B Companies, Raises Price Target to $120"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Scoop: A Company B Executive Director Resigns To Take CFO Job In The Cannabis Industry"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Stocks To Watch: Big Pharma, Green Trucks And Jobs Report"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Best Sector ETFs For March: Last Year's Laggards Have Their Day"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "5 Stocks Ripe For A Warren Buffett Acquisition"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "The Street Reacts To Company B's Q4 Earnings, Analyst Day"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "BMO Capital Maintains Market Perform on Company B, Raises Price Target to $78"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Shares of several oil and gas companies are trading lower after the Norwegian government announced that its $1 trillion sovereign wealth fund would start to divest its 134 oil and gas positions."}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Regulators consider rewriting Volcker rule again: WSJ"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "43 Upcoming Dividend Increases - Are You Kidding Me?"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company B's Top Sales Executive Tapped To Head Its Largest Unit"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company B Acquires Ethoca, Terms Not Disclosed"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Avoid IBM Until It Can Regain Its Innovation Capability"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "China Might Take Some Starch Out of U.S. Rally With More Weak Economic Data"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Don't Write Off Banks, Play These 4 Low P/E Stocks in [year]"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "February credit-card delinquency/charge-off wrap"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "BAML expects Company B to boost buybacks"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Goldman Sachs to Acquire S&P's Investment Advisory Services"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Top Analyst Reports for Company A, Oracle & Union Pacific"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Banks' margins come under pressure from dovish Fed: Baird"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Turkey probes Company A after lira plunge"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company B Internal Memo Shows Pres, COO Colm Kelleher Will Retire"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Double-Digit Increases From Apple, Costco, Xilinx Among 14 Dividend Increases From Companies In April"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Wells Fargo: Out Of The Penalty Box"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Stocks Are About To Break Out and Head Towards Their All-Time Highs"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Underhill Investment Management Llc Buys Watsco Inc, D.R. ..."}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Morgan Stanley to Add More 5.5% Stake in China Joint Venture"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "BMO Shares Takeaways From Meeting With Company B, Expects Cost Savings From Buyouts, TNT Express"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company A +2.4% as Q1 EPS beats by 30 cents"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company A names new CFO; Lake moves to top consumer lending role"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "M&T Bank Doing Fine, But Also As Expected"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Mid-Afternoon Market Update: Smart & Final Stores Gains Following Acquisition News; Microvision Shares Slide"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "UPDATE: Morgan Stanley Reiterates Overweight On Company B, Raises Target To $137 As Firm Sees 'superior Company B organic sales growth, and high EPS visibility post a re-base under a new CEO as not fully priced into a discounted valuation vs peers'"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "From Company A Q1 Earnings Conference Call: Saw Slight Reduction In Chinese Growth For Baby Care Unit"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company A Q3 EPS $1.06 Beats $1.03 Estimate, Sales $16.462B Beat $16.34B Estimate"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company A Says Expect To Repurchase Another $750M Of Company Stock In Q2 [year]; Says Any Additional Share Repurchases Will Depend Upon Cash Generation And Alignment For Capital Allocation Priorities"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "After Hitting Highest Close Ever, Market Starts Day Off With Weak Boeing Results"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B Shares Unaffected Amid Report California Attorney General Announces A $150M Settlement Against Co. For Misleading California's Teachers, Workers With Pensions"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company A Q1 EPS $0.55 Misses $0.78 Estimate, Sales $63.63B Miss $64.29B Estimate"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "UBS Downgrades Company B Corporation Common Stock to Sell"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Dogs Of The Dow Lag Broader Market"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Dow Dogs Barking: Dow Tops By Yield, UnitedHealth Tops By Broker Bets In May"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company A Reports CFO Carol Tome To Retire, Names Richard McPhail Replacement"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Buybacks As The Best Option At Berkshire? The Choice Buffett Faces Resembles Yours And Mine"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company A CFO to step down"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Church & Dwight (CHD) Q1 Earnings Beat, Organic Sales Up"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "The Zacks Analyst Blog Highlights: PayPal, Guidewire Software, Company A and SS&C Technologies"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Shares of several financial companies are trading lower in continued uncertainty of a trade war between the US and China."}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company A Might Own Majority Stake in China Fund Venture"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company B Considers Ending First Data Payments Joint Venture"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Shares of automotive and industrial companies are trading lower amid revamped US-China trade tensions. Trump's proposed tariffs could increase input and materials costs for companies in these sectors."}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Trump Says US Plans To Provide About $15B To Support US Farmers Amid US-China Trade Spat"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "JP Morgan Downgrades Company B Common Stock to Underweight, Lowers Price Target to $132"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "A Trade War Agriculture Pair Trade From JPMorgan"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "5 Stocks You Should Probably Avoid During the [date] Trading Session"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "13F From Soros Shows Liquidated Stake In Company B"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Understanding What's Inside Financial Sector Indices & Introducing A Big Bank Index"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "The Zacks Analyst Blog Highlights: Adobe, ConocoPhillips, Exelon, Anadarko and Company A"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "A Protracted Trade Dispute (Wall Street Breakfast Podcast)"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Global Banks to Pay $1.2B in Settlement for FX Manipulation"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Shares of several financial companies are trading lower after a Deutsche Bank bribe case was brought forward, which included other major financial companies that are forced to pay fines worth billions."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Mid-Afternoon Market Update: Cray Jumps Following Acquisition News; Pinterest Shares Plummet"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "American Tower: A REIT With Great Total Return And 28 Quarters Of Dividend Increases"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Benzinga Pro's Top 10 Most-Searched Tickers For Morning of Tue., [date], [year]"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "From Company A Q1 Earnings Conference Call: Mgmt. Is Working Through Impact Of Tariffs, Have Not Yet Included Potential Impacts In Guidance"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company A beats by $0.07, beats on revenue"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company B Q1 Adj. EPS $1.53 Beats $1.43 Estimate, Sales $17.627B Beat $17.5B Estimate"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company B Earnings Miss After Rival Company A Tops Views; Stock Dives"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B Acquires Boomerang CommerceIQ Platform For Analytics Tech"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Wall Street Down on Wednesday"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "A Look At Benzinga Pro's Top 10 Most-Searched Tickers For [date], [year]"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Joint, Cabot, Company B and Company A highlighted as Zacks Bull and Bear of the Day"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Shares of several oil and gas companies are trading lower on continued US-China trade tension after the Trump administration said it would add up to 5 more Chinese surveillance companies to the blacklist."}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company A: Weaker Sales Outlook Creates Short Opportunity"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "UBS Maintains Sell on Company B, Lowers Price Target to $145"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Tariff Issues Blew May Markets Into Rough Seas"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Casey's General Stores, Company B, United Health Group Expected To Announce Double-Digit Dividend Increases In June"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "China To Investigate Company B Over Misrouted Deliveries"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company B -3% after Chinese probe launched"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Dividend Increases: [date]-31, [year]"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Research Group To Launch Delivery Locker Pilot In Downtown Seattle"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Fed lifts London Whale-era requirements from Company A"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "UPDATE: Monster CEO Said Co Is 'preparing to acquire nonalcoholic beverages outside of energy drinks when its noncompete clause with Company A expires in a year'"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Wells Fargo struggles to find a new CEO - WSJ"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Wall Street Under Pressure From Faltering Chipmakers, Weak China Industrial Production Data"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Why Company B Is A Buy, Even With A Disappointing Dividend Announcement"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Fed Meeting In Focus As Indexes Bide Time; Will Powell Give The Bulls A Present?"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Fed Alert: All Eyes Focused On Powell And Company As Markets Await Decision"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "3 Stock Picks to Consider When the Fed Cuts Rates"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "A Peek Into The Markets: US Stock Futures Up; Eldorado Resorts to Acquire Caesars Entertainment"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company A, On Company B's Lawsuit Against The U.S. Government, Says Will Not Join The Lawsuit Filed By Company B"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company B Q4 Adj. EPS $5.01 Beats $4.93 Estimate, Sales $17.8B Miss $17.88B Estimate"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B sues over export restrictions"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Commentary: Attempt To Protect Chinese Market Share Is Basis Of Company B Lawsuit Against U.S. Department Of Commerce"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "'Company A in exclusive talks with Cafe Coffee Day for acquiring stake' -India's Economic Times"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "CLASS ACTION UPDATE for AOS, HRTX, BOX and Company B: Levi & Korsinsky, LLP Reminds Investors of ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company B CLASS ACTION ALERT: Hagens Berman Alerts Company B Investors to Securities Class Action, ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading higher after the company reported a $30.9 billion buyback, and increased its quarterly dividend from $0.15 to $0.18."}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "SHAREHOLDER ALERT: Pawar Law Group Announces a Securities Class Action Lawsuit Against Company B ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Big Banks Just Announced Big Dividend Increases and Share Repurchase Programs"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "FAA To Streamline Fire Regulations For Cargo Compartments"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Jefferies (JEF) Stock Up 6.4% as Q2 Earnings Beat Estimates"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Funds Managed by Company B to Sell its Stake in DocuWare, Terms Not Disclosed"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Mid-Morning Market Update: Markets Open Lower; Company B Tops Q2 Expectations"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Johnson & Johnson Falls On Report Of Justice Department Probe"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Zhang Investor Law Reminds Investors of Deadline in Securities Class Action Lawsuit Against ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Citigroup's (C) Q2 Earnings Beat Estimates, Expenses Drop"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Former Company B Pilot Warns Lawmakers Of Cargo Safety Gap"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Raymond James Maintains Outperform on Company B, Raises Price Target to $300"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Company B Expected to Beat Earnings Estimates: Can the Stock Move Higher?"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Class Action Update - Company B Corporation (Company B), Acer Therapeutics Inc. ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company B Offers to Acquire S. Africa's Pioneer Foods for ~$1.7B in Cash"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Cramer Weighs In On Company A's Earnings"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company B's New CEO Is Turning The Company Down The Wrong Highway"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Company A Falls After Q2 Earnings Miss"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company A Q2 EPS $2.83 Misses $3.12 Estimate, Sales $14.432B Miss $14.44B Estimate"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Cramer And This Technical Analyst Agree: Company A Has Room To Run"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Weak Boeing, Company A Q2, Rate Pressure On Banks, All Weigh"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Bragar Eagel & Squire, P.C. Reminds Investors That Class Action Lawsuits Have Been Filed ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Berkshire Hathaway Raises Stake in Company B to 950M Shares; 10.4%"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company B EPS in-line, misses on revenue"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Natural Food International Says Company B Acquired 566.5M Ordinary Shares Of Co @HK$1.80/Share"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Buy Lockheed Martin: Dividend Increase In September, Share Buybacks And Increasing Military Budget Are Strong Tailwinds"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company B Acquires 26% Stake in Chinese Health-Food Giant Natural Food International Holding Ltd for $131M"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Pawar Law Group Reminds Investors of August \u20146 Deadline in Securities Class Action Lawsuit ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "The Klein Law Firm Reminds Investors of Class Actions on Behalf of Shareholders of Company B, DBD, LB ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company A Q2 EPS $0.73 Beats $0.69 Estimate"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Shares of US retail companies are trading lower after Trump announced additional tariffs on Chinese goods, exacerbating trade tensions. NOTE: Retail is one of the more-exposed sectors to trade tensions as the majority of apparel and retail products are made in China."}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Financial stocks slide as traders bet on more Fed rate cuts"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Shares of several financial companies are trading higher with the overall market on seemingly no company-specific news."}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "The Klein Law Firm Reminds Investors of Class Actions on Behalf of Shareholders of PVTL, Company B, ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "UPS Takes Rare Step Outside Four Walls, Names Company B Executive New CFO"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Soros 13F Shows Took Stakes In eBay, Company B, Raised Stake In UnitedHealth, Cut Stake In WellCare, Liquidated Stakes In Comcast, Microsoft, Bunge, T-Mobile, WWE, Marvell"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Dow Dogs Do It: Dow Inc Tops By Yield As Boeing Bests By Gains In August Gusts"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "7-DAY DEADLINE REMINDER: The Schall Law Firm Announces the Filing of a Class Action Lawsuit ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Record Bank Profits And Capital Ratios. Buying 2 High-Quality Banks On Weakness"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Retail Roundup: Target, Company B Report Earnings Beats; Pros Say Recession, Tariff Concerns Overblown"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company B Q2 Adj. EPS $1.82 Beats $1.62 Estimate, Sales $18.42B Beat $18.34B Estimate"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Fed to cut rates 5 more times"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Target & Company B Post an Earnings Beat in Q2"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Goldman (GS) to Buy Majority Stake in China Joint Venture"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "How To Construct A Recession-Resistant Income Portfolio"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company A In Q2 Received Grand Jury Subpoena From A U.S. Attorney And An Amendment Of Subpoena From EPA Civil Enforcement Division"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Aluminum Antitrust Cases Revival to Hit Goldman, Company A, Glencore"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company A in Talks to Divest AARP Card Portfolio Worth $1B"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Shares of several Home Improvement companies are trading higher amid concerns of Hurricane Dorian, which could cause extensive damage to Florida homes."}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company A in Talks to Divest AARP Card Portfolio Worth $1B (Revised)"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Stock Market Surges; Dow Jones Jumps 350 Points As China Strikes Conciliatory Tone"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Najarian Brothers See Unusual Options Activity In FedEx, Company B And More"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Buy Texas Instruments With Excellent Total Return, And Dividend Increase Expected Soon"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "New Tariffs Appear To Have Apple, Caterpillar, Nvidia Under Pressure Early On"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Stocks Fall on U.S.-China Trade and Tariff Fears & Buy Allegiant Stock - Free Lunch"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Tracking How Far They Fell: August [year] Edition"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Bulls Regain Control As Dow Jones, Small Caps, Chip Stocks Rocket Higher On China News"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Labor Market Volatility Is Not A Sign Of Recession; The Consumer Is Stronger Than Ever"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Keefe Bruyette & Woods Downgrades Company B to Market Perform, Lowers Price Target to $29"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "The Need To Listen To The Big Banks"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Why Buffett Waited to Buy Company A Despite Its Potential"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Dimon warns on interest income"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company A Strikes Back In Grocery Battle With Unlimited Shipping Initiative"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Will Weak Express Unit Hurt Company B's (Company B) Earnings in Q1?"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Bank Stock Roundup: Rising Treasury Yields, Dismal View, Company B, C, USB in Focus"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Dismissal Sought For Company B Export Control Lawsuit"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Bank Of America Merrill Lynch Sees Limited Direct Impact On US Economy After Attack On Saudi Oil Production Facilities"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Guggenheim Downgrades Company A to Neutral"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Company B Tumbles on Weak Fiscal \u2014\u2026\u2014\u2026 Earnings Guidance"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B Cuts FY20 Sales Guidance Given 'increased trade tensions and additional weakening of global economic conditions since the company's initial fiscal [year] forecast in June'"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Fed And FedEx: Rate Decision Looms As Tariff Repercussions Seen In FDX Q1"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "'Company B Joins Marco-Polo Blockchain Trade Network'"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "HSBC to Escape 33.6 Million Euro EU Euribor Cartel Fine"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "WeissLaw LLP: Company B Corporation is the Subject of a Legal Investigation"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "BNY Mellon's Charles Scharf Named Wells Fargo's New CEO"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Dow Jones Turns Lower On Weak ISM Data; Online Brokers Plunge On Schwab News"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "No Zip: Energy Sector Q3 Seen Weak Despite Attack On Oil Supplies"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company A Down On Preview Of Weaker Q3, But Sell-Side Says Warning 'Relatively Benign'"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading higher after the company reported better-than-expected Q3 EPS and sales results. The company also issued FY19 EPS guidance above analyst estimates."}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Bank Stock Roundup: Restructuring Efforts, Lawsuits, Wells Fargo & Company B in Focus"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "UPDATE: Morgan Stanley Maintains Overweight On Company B, Raises Target To $154 As Firm Sees 'superior Company B organic sales growth, and high EPS visibility post a re-base under a new CEO as not fully priced into a discounted valuation vs peers'"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Ecolab's (ECL) Gallay Medical Buyout to Boost Healthcare Arm"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Ameriprise Closes Divestiture of Auto & Home Unit for $1.04B"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Shares of several oil and gas companies are trading lower as optimism around the upcoming U.S.-China trade talks waned. A report says China is toning down its expectations of the meeting. The U.S. expanded its trade blacklist, and scheduled an increase in tariffs on $250 billion worth of Chinese goods from 25% to 30% on [date], which will go into effect if no progress is made."}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Market Loves Bed Bath & Beyond CEO Hire, But Analysts Warn Turnaround Is A Tough Job"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "The Zacks Analyst Blog Highlights: Company A, CME, Chubb, S&P Global and Ford"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Goldman Sachs Cuts [year] Transports Earnings Estimates On Industrial Weakness"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "A Perspective On The Relative Values Of 4 Largest U.S. Banks"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Big Bank Earnings Beats Embolden Large Bank Of America Option Traders"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Warren Buffett Seeking Fed Leeway To Boost Stake In Bank Of America Past 10%"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company A Beats on Q3 Earnings & Revenue Estimates"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "First Republic (FRC) Q3 Earnings Beat Estimates, Costs Rise"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company A Earnings Top, Goldman Misses; Citigroup, Wells Fargo Mixed"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading higher after the company reported better-than-expected Q3 EPS and sales results."}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company B Q3 EPS $0.56 Beats $0.51 Estimate"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Today's Pickup: Konexial Acquires Axle Technologies AOBRD Customers"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "CORRECTION: BofA Raised Price Target On Company A From $145 To $154, Maintained Buy Rating"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "September credit card delinquency/charge-off rates"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Goldman Sachs Maintains Buy on Company B, Maintains $120 Price Target; Removes From Americas Conviction List"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Ben Gordon: Amazon Earnings Miss Highlights Competition In Last Mile"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B Ticks Higher On Q3 Earnings Beat"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Mastercard Manages To Beat Both Top And Bottom Line Estimates"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Morgan Stanley Maintains Overweight on Company B, Raises Price Target to $317"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Company B EPS beats by $0.01, misses on revenue"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "A Pair Of Super Cyclical ETFs For November"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "UBS Maintains Buy on Company B, Lowers Price Target to $80"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Think Well, Think Different: What Is Value?"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Jpmorgan Chase (Company A) Co-President & COO, CEO CIB Daniel E Pinto Sold $8.4 million of Shares"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Blueshift Asset Management, LLC Buys Blackstone Group Inc, UnitedHealth Group Inc, Union ..."}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company A And Company B Draw FTC Inquiry Over Debit Card Transactions"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Abbott CEO Miles White Steps Down"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Apollo Global (APO) to Acquire Tech Data for $5.4 Billion"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Home Depot's Earnings Exceed Expectations But Sales Fall Short"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company A Reports Mixed Q3 Earnings, Cuts Guidance"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company A Q3 Earnings Beat, Sales Miss, Stock Down"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading higher following Q3 earnings. The company beat EPS and sales estimates, reported strong digital channel sales growth and raised FY19 guidance."}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Guggenheim Maintains Buy on Company B Companies, Raises Price Target to $135"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "The Top Large-Cap Sectors, Industries, And Stocks To Buy Now"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Mid-Morning Market Update: Markets Mostly Higher; Company B Issues Weak Outlook"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B Q4 Adj. EPS $2.14 Beats $2.13 Estimate, Sales $8.7B Beat $8.44B Estimate"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Don't Worry About Company A's Recent Dip, The Company Is Doing Just Fine"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company B Co Announces Definitive Agreement To Acquire BFY Brands Expanding Better-For-You-Portfolio And Production Capabilities"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Food And Beverage Shakeups: Constellation Sells Ballast Point, Company B Acquires PopCorners Maker"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Bank Of America, Goldman Sachs Shares Unaffected Midday As Hearing CFRA Upgrades Company B To Buy, Downgrades Goldman To Sell"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Compass Point Initiates Coverage On Company B with Buy Rating, Announces $330 Price Target"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "BB&T-SunTrust Merge to Form 6th Biggest Bank Truist Financial"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company A Option Alert: Fri $215 Calls Sweep (30) near the Ask: 543 @ $2.045 vs 2492 OI; Ref=$214.4075"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "New York State Court Ruling Shows Company A Did Not Violate State Law Related To Statements About Climate Change Risks"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Geopolitical Jumble: UK Election Results, US Tariff Decision, Front And Center"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Will Express Unit Weakness Mar Company B's (Company B) Earnings in Q2?"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Stocks To Watch: Investors Dig Into Trade War Halt"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Bank of America Downgrades Company B, Says Momentum Will Slow Next Year"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Company A to Set up Majority-Owned Joint Venture in China"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Gold, Bonds, Crude All On The Rise After US Strike In Middle East Sparks Fears"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Yeti Analyst Sizes Up Product Opportunity In Company B Stores"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "The Challenges Boeing's New CEO Is Facing"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "9 Monster Stock Market Predictions For The Week Of [date]"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "4 Sector ETFs Sizzling With Solid Buybacks"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Trinity Industries Names New Chief Executive Officer"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Company B Q4 Adj. EPS $1.2 Beats $0.99 Estimate, Sales $10.857B Beat $9.78B Estimate"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "PreMarket Prep Recap: Company B Beats, Tesla's Battle For $500 And Shorts On The Run In Signet Jewelers"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Bernard Horn Comments on Company A"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Stanley Black and Decker in Talks to Acquire Consolidated Aerospace Manufacturing to Boost Aerospace Revenues"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Odeon Capital Initiates Coverage On Company B with Buy Rating, Announces $124 Price Target"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Martin Investment Management, LLC Buys NXP Semiconductors NV, Sony Corp, Company A, Sells ..."}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company B Q4 Adj. EPS $1.96 Beats $1.87 Estimate, Sales $4.4B Inline"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "'Company B Shakes Up Top Ranks of FX Unit at Center of Probe' -Bloomberg"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "RBC Capital Upgrades Company B to Outperform, Raises Price Target to $91"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Citigroup Maintains Neutral on Company B, Raises Price Target to $78"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Interchangeable Lens Market Industry Size, Growth Factors and Major Segments, Forecast Research ..."}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company B Reports Q4 Earnings Beat"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Stock Market Eases From Early Highs; Tesla Flat After Share Offering 'Discount'"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Market Taking A Step Back: Company A Misses On Earnings, Apple Lowers Sales Guidance"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Franklin (BEN) to Acquire Legg Mason (LM) for $4.5 Billion"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Dow Jones Today, Futures Dip As Coronavirus Impact Mounts; ETrade Spikes On Merger News, Domino's Scores Q4 Beat"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "UPDATE: Company A Sees 2-3 Point Impact to Unit Case Volume, 1-2 Point Impact To Organic Sales, $0.01-$0.02 Impact To EPS In Q1 Related To Coronavirus"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Spotlight on Retail Sector Earnings"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company B Trades higher After Major Q1 Earnings Beat"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company B Acquired Chinese Snack Maker Be & Cheery, from Haoxiangni Health Food Co Ltd for $705M, According to Company Filing on [date]"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company A Mulls Launch of Online Consumer Bank in the UK"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company B To Acquire One of China's Largest Snack Brands In $705M Deal"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "A Peek Into The Markets: Dow Futures Slump Over 700 Points As COVID-19 Spreads Globally"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Stock Market Rally Fades After Monday's Big Sell-Off; Breakout Stocks To Watch Include Domino's, Zoom Video"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Company B Announced Early Tues. Pres, CEO Ajay Banga To Take Role As Chair As Current Chair Richard Haythornthwaite To Retire; Chief Product Officer Michael Miebach Named CEO; Merit Janow Named Lead Independent Director"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Company A Surpasses 4th-Quarter Earnings and Revenue Projections"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Company B Q4 Same-Store Sales: 2.5% Increase Vs 3.6% Expected"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Stifel Maintains Buy on Company A, Raises Price Target to $270"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "B of A Securities Maintains Buy on Company A, Lowers Price Target to $99"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Healthcare Robotics Market Size,Trends \u2014\u2026\u20134 - Global Industry Share,Growth Analysis, ..."}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company B Reports Chair Samuel Allen To Retire; CEO John May Named Replacement"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Company B Q4 Adj. EPS $1.69 Beats $1.66 Estimate, Sales $23.398B Miss $23.49B Estimate"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Wells Fargo Found Non-Compliant With Settlements by Committee"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company B Reports CFO Alan Graf To Retire; Names Michael Lenz Successor"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Company B Picks New CFO, Incumbent Alan Graf to Retire"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Company B Reports Chair Ian Cook To Retire; Names CEO Noel Wallace Replacement"}, {"role": "assistant", "content": "management_change"}]}
+{"messages": [{"role": "user", "content": "Shares of several companies in the broader industrial sector are trading lower as equities sell off. The global coronavirus outbreak has weakened economic outlook and negatively impacted industrials."}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading higher after Baird upgraded the stock from Neutral to Outperform and announced a price target of $34 per share."}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Company B Q3 Earnings Miss Estimates"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading higher as industrials rebound following Monday's crash. Morgan Stanley analysts reiterated an Overweight rating on the stock."}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "ETFs to Mark as Fed's Rate Cut Fails to Cheer Wall Street"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Abject Carnage Hits Markets"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "UPDATE: Morgan Stanley Downgrades Company A To Equal-Weight, Lowers Price Target To $52 Based On 'a weaker demand outlook post the COVID-19 situation' And Cites An Additional 4 Potential Risks:"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "UK's CMA Says Not Referring Company B-Pioneer Deal to Phase 2 Investigation"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading higher after Morgan Stanley upgraded the stock from Equal-Weight to Overweight."}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Shares of several oil companies are trading higher as oil prices rise on hopes of a US economic stimulus agreement. Oil prices have recently been negatively impacted by global economic disruption and OPEC disagreements."}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "DZ Bank Upgrades Company A to Buy, Announces $51 Price Target"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Shares of several global financial services companies are trading higher after the White House and Senate reached a $2 trillion stimulus deal aimed at supporting the economy."}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Will Big Banks Slash Dividends Amid Coronavirus Pandemic?"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "'Company A and Company B on Friday both got final approval from China Securities Regulatory Commission to increase stakes in their China securities JVs to 51%' -Tweet From China's National Business Daily"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Citigroup Maintains Buy on Company B, Lowers Price Target to $52"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Oppenheimer Maintains Outperform on Company B, Lowers Price Target to $30"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Shares of several industrial companies are trading lower amid market weakness as macro concerns continue to grow as a result of the coronavirus pandemic. The White House said it expects a surge in coronavirus cases over the next 2 weeks."}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Shares of several global financial services companies are trading lower amid market weakness. The coronavirus pandemic has weakened economic activity and investment/spending outlook."}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Wells Fargo Maintains Equal-Weight on Company B, Lowers Price Target to $40"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Wells Fargo Maintains Overweight on Company B, Lowers Price Target to $146"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Wells Fargo Maintains Overweight on Company A, Raises Price Target to $215"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading lower after Baird downgraded the company's stock from Outperform to Neutral."}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Trump's Comments On USPS Rates May Not Square With Agency's Recent Actions"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading lower after analysts at Jefferies downgraded the stock from Buy to Hold and lowered its price target to $275."}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Company B Q1 EPS $0.400 Misses $0.480 Estimate"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Bleak Picture: Steep Crude Demand Plunge Dogs Energy Industry as Q1 Earnings Results Loom"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "FTC Approves Company B Acquisition of Rockstar Energy for $3.85B"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Company A shares are trading higher. No currently seeing company-specific news."}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "UPDATE: Morgan Stanley Downgrades Company A And United Rentals As Firm Sees 'growing headwinds from a multi-year downturn in Non-Resi Construction, combined with historically weak oil prices and declining mining commodity price'"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Big banks tell FoxBusiness they've received as many as four separate subpoenas or requests for info from congressional committees now investigating banks' handling of PPP loan program & why public cos and financial firms received loans over small biz more now"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Company A Suspends Buyback"}, {"role": "assistant", "content": "guidance_up"}]}
+{"messages": [{"role": "user", "content": "Workhorse Has Huge Opportunity With USPS, Analyst Says In Bullish Initiation"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "May Market Outlook: No Spring Fling This Year As Dismal Data, Weak Earnings Seen Ahead"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Morgan Stanley Maintains Underweight on Company A, Lowers Price Target to $60"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Shares of several industrial companies are trading lower amid market weakness following US jobless claims and consumer spending data."}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Shares of several industrial companies are trading lower on market weakness as investor uncertainty grows following quarterly earnings results from multiple companies."}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Company B shares are trading lower amid overall market weakness as equities dip on US-China tensions and investor concerns of US states reopening early. Indices were also driven lower following Warren Buffett's sale of airline holdings."}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Credit Suisse Maintains Neutral on Company A, Raises Price Target to $45"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Grisanti Capital Management LLC Buys Comcast Corp, Visa Inc, The Company A Inc, Sells The Walt ..."}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Dillon & Associates Inc Buys Intuitive Surgical Inc, American Tower Corp, Constellation ..."}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "On The Back Of Fed Backstop, Bond Issuance Picks Up Pace At Already-Levered US Corporations"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "DPM Capital LLC Buys Sirius XM Holdings Inc, Company A Co, Loews Corp, Sells Synchrony ..."}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Shares of several industrial companies are trading lower amid market weakness following US unemployment data and recent cautious comments from the WHO. Sentiment is also negative following cautious comments from Fed Chair Powell and bearish outlook from some major US investors on Wednesday. Cautious economic sentiment has potentially hampered the outlook for industrial output and investment."}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Pershing Square 13F Shows Fund Raises Stake In Company B From 1,031,518 Shares To 12,252,414 Shares"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Cramer Shares His Thoughts On Inovio, Raytheon And More"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "The Zacks Analyst Blog Highlights: Company A, AbbVie, Royal Dutch Shell, Gilead Sciences and Anthem"}, {"role": "assistant", "content": "analyst_rating"}]}
+{"messages": [{"role": "user", "content": "Warren Buffett Cuts Stake in Bank Stocks on Coronavirus Woes"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Global Stocks Soar On Vaccine Hopes, Oil Price Rebounds"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company A Posts EPS Miss, Revenue Beat"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "A Challenge To Amazon, As Microsoft And Company B Enter Multiyear Collaboration"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "U.S. Futures Higher Ahead of FOMC Meeting Minutes; Earnings from Company B, Lowe's"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "A Peek Into The Markets: US Stock Futures Climb Ahead Of Earnings, Fed Minutes"}, {"role": "assistant", "content": "macro_sector"}]}
+{"messages": [{"role": "user", "content": "Company A Option Trader Makes $4.3M Bet On 14% Upside"}, {"role": "assistant", "content": "noise"}]}
+{"messages": [{"role": "user", "content": "Workday (WDAY) Q1 Earnings Miss Estimates, Revenues Beat"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "HSBC Intends to Acquire Remaining Stake of German Division"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "15 US Banks Facing Currency Rigging Lawsuit Brought By Large Investors"}, {"role": "assistant", "content": "legal_regulatory"}]}
+{"messages": [{"role": "user", "content": "Warren Buffett's Berkshire Hathaway Turns Up Stake in Liberty SiriusXM"}, {"role": "assistant", "content": "m_and_a"}]}
+{"messages": [{"role": "user", "content": "Taking A Breath: Jobless Claims Disappoint, But ECB Stimulus Greeted Positively"}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "Shares of several financial companies are trading higher despite overall market weakness. Strength potentially related to states reopening, which would boost economic activity, consumer spending and borrowing."}, {"role": "assistant", "content": "earnings_warning"}]}
+{"messages": [{"role": "user", "content": "FTC Bans Madera Merchant Services LLC, B&P Enterprises LLC and Owners Bruce C. Woods and Patricia Woods"}, {"role": "assistant", "content": "legal_regulatory"}]}
