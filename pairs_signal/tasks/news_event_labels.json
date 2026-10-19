@@ -1,0 +1,42 @@
+{
+  "task_description": "Classify a short financial news headline or news tweet about stocks into exactly one event type. Pick the type of the main event. Prefer a specific company event (earnings, analyst_rating, m_and_a, legal_regulatory, management_change, dividend, company_news) over stock_movement, macro_market or other.",
+  "labels": {
+    "earnings": "Quarterly or annual results, earnings previews, beats or misses, revenue figures, guidance or outlook changes.",
+    "analyst_rating": "Analyst or broker actions: upgrades, downgrades, initiations, price target changes, analyst picks and calls.",
+    "m_and_a": "Mergers, acquisitions, takeover bids, stake purchases, divestitures, spin-offs and strategic investments in other companies.",
+    "legal_regulatory": "Lawsuits, settlements, fines, investigations, regulatory decisions, antitrust actions and approvals.",
+    "management_change": "CEO, CFO, board or other executive appointments, departures, retirements and succession.",
+    "dividend": "Dividend declarations, increases, cuts or suspensions, and share buybacks.",
+    "company_news": "Other company-specific news: products, contracts, operations, strategy, layoffs, IPOs.",
+    "stock_movement": "Price moves, stock commentary and technical or trading views on specific stocks without a named underlying event.",
+    "macro_market": "Economy, central banks, rates, bonds, currencies, commodities, politics and broad market news.",
+    "other": "General news or opinion with no clear event about a company or the market."
+  },
+  "fundamental_shock_labels": ["earnings", "m_and_a", "legal_regulatory", "management_change"],
+  "source_mapping": {
+    "dataset": "zeroshot/twitter-financial-news-topic (MIT)",
+    "map": {
+      "Earnings": "earnings",
+      "Analyst Update": "analyst_rating",
+      "M&A | Investments": "m_and_a",
+      "Legal | Regulation": "legal_regulatory",
+      "Personnel Change": "management_change",
+      "Dividend": "dividend",
+      "Company | Product News": "company_news",
+      "IPO": "company_news",
+      "Stock Movement": "stock_movement",
+      "Stock Commentary": "stock_movement",
+      "Fed | Central Banks": "macro_market",
+      "Macro": "macro_market",
+      "Treasuries | Corporate Debt": "macro_market",
+      "Currencies": "macro_market",
+      "Energy | Oil": "macro_market",
+      "Gold | Metals | Materials": "macro_market",
+      "Markets": "macro_market",
+      "Politics": "macro_market",
+      "General News | Opinion": "other",
+      "Financials": null
+    },
+    "dropped": "Financials: sector news about banks and insurers mixes company and macro events, so it has no single target label."
+  }
+}

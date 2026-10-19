@@ -1,0 +1,43 @@
+[project]
+name = "pairs-signal"
+version = "0.1.0"
+description = "Pairs-trading outliers and headline event labels for distilling a small model (distil labs, Langfuse, Runpod)"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=1.15.0",
+    "langfuse>=5.0.2",
+    "numpy>=2.5.4",
+    "openai>=3.35.1",
+    "pandas>=3.0.6",
+    "pyarrow>=26.0.0",
+    "pyyaml>=6.0.3",
+    "requests>=2.34.2",
+    "statsmodels>=0.15.0",
+    "yfinance>=1.7.0",
+]
+
+[project.scripts]
+prepare = "pairs_signal.pipeline:main"
+news-datasets = "pairs_signal.news_datasets:main"
+fetch-prices = "pairs_signal.fetch_prices:main"
+fetch-news = "pairs_signal.fetch_news:main"
+fetch-sec = "pairs_signal.sec_events:main"
+analyze-pairs = "pairs_signal.analyze_pairs:main"
+build-cases = "pairs_signal.build_cases:main"
+label-headlines = "pairs_signal.label_headlines:main"
+export-distil = "pairs_signal.export_distil:main"
+langfuse-datasets = "pairs_signal.langfuse_datasets:main"
+experiment = "pairs_signal.experiment:main"
+baseline = "pairs_signal.experiment:baseline"
+export-errors = "pairs_signal.export_errors:main"
+backtest = "pairs_signal.backtest:main"
+runpod-deploy = "pairs_signal.runpod_deploy:main"
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

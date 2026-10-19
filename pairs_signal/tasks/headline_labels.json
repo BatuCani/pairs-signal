@@ -1,0 +1,15 @@
+{
+  "task_description": "Classify a financial news headline about a listed company into exactly one event category. Company names are anonymized as Company A / Company B and dates as [date] / [year]. Pick the category describing the main event of the headline for the named company. If a headline fits several categories, prefer the more specific company event over macro_sector, and anything over noise. Answer with the label only.",
+  "labels": {
+    "earnings_warning": "Negative company results or outlook: misses estimates, profit warning, lowered or withdrawn guidance, weak sales, dividend cut or suspension, large write-down or impairment.",
+    "guidance_up": "Positive company results or outlook: beats estimates, raised guidance, record results, dividend increase, new or larger share buyback.",
+    "m_and_a": "Mergers, acquisitions, takeover bids, divestitures, spin-offs, joint ventures, or buying/selling a major stake or business unit.",
+    "legal_regulatory": "Lawsuits, settlements, fines, government or regulator investigations, antitrust actions, regulatory rulings or approvals specific to the company, product recalls, strikes or labor disputes.",
+    "management_change": "CEO, CFO, chair or other top executive or board member appointed, departing, retiring, fired or succession announced.",
+    "analyst_rating": "Analyst or broker actions: upgrades, downgrades, initiations, price target changes, reiterated ratings.",
+    "macro_sector": "News mainly about the economy, interest rates, commodities, regulation of a whole industry, or the sector or market as a whole rather than one company event.",
+    "noise": "No identifiable company event: stock lists and screens, market roundups, 'stocks to watch', options or unusual volume activity, generic investing advice, promotional or opinion pieces, unrelated mentions."
+  },
+  "fundamental_shock_labels": ["earnings_warning", "m_and_a", "legal_regulatory", "management_change"],
+  "fundamental_shock_definition": "true if the label is one of fundamental_shock_labels: an event that can change the fair value relation between the two companies, so a spread outlier may not revert."
+}
