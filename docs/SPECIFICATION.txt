@@ -1,0 +1,1058 @@
+You are a senior Python/ML engineer. Build a clean, modular MVP for a hackathon project called **Pair Research Agent**.
+
+The goal is to create the complete local foundation before we get access to Langfuse, Distil Labs, Autoresearch, and Runpod.
+
+The project is NOT a live trading bot and must NOT execute real trades. It is a quantitative research and backtesting system that identifies potentially interesting stock pairs for a market-neutral long/short pair-trading strategy.
+
+The most important architectural requirement is:
+
+**The LLM/agent decides what to investigate. Deterministic Python tools perform all mathematical and statistical calculations.**
+
+Later, we want to:
+1. send agent traces to Langfuse,
+2. turn successful and failed traces into evaluation/training data,
+3. train a smaller model with Distil Labs / Autoresearch,
+4. deploy that model on Runpod,
+5. send its interactions back into Langfuse.
+
+Design the codebase so these integrations can be added later without rewriting the core system.
+
+---
+
+# 1. Main workflow
+
+The system should support a request such as:
+
+> "Find a suitable pair for NVDA."
+
+or:
+
+> "Find the 5 most promising pair-trading candidates among these stocks."
+
+The workflow should be:
+
+User request
+→ Agent receives available stocks
+→ Agent identifies reasonable candidate peers
+→ Agent calls deterministic research tools
+→ correlation screening
+→ cointegration test
+→ spread construction
+→ stationarity test
+→ half-life estimation
+→ backtest
+→ out-of-sample evaluation
+→ agent selects or rejects a pair
+→ structured research report
+→ full trace saved locally
+→ evaluator assigns objective scores
+
+The agent MUST be able to conclude:
+
+> "No sufficiently robust pair was found."
+
+It must never be forced to select a pair.
+
+---
+
+# 2. Technology
+
+Use:
+
+- Python 3.11+
+- pandas
+- numpy
+- scipy
+- statsmodels
+- yfinance for an easy initial market-data source
+- pydantic for data models
+- pytest for tests
+- matplotlib only where visualization is useful
+- optionally OpenAI-compatible LLM client abstraction
+
+Keep dependencies minimal.
+
+Create:
+
+- `requirements.txt` or `pyproject.toml`
+- `.env.example`
+- `README.md`
+
+Do not hardcode API keys.
+
+---
+
+# 3. Repository structure
+
+Create a clean modular structure similar to:
+
+```text
+pair-research-agent/
+│
+├── README.md
+├── pyproject.toml
+├── .env.example
+│
+├── src/
+│   └── pair_agent/
+│       ├── __init__.py
+│       │
+│       ├── config.py
+│       │
+│       ├── models/
+│       │   ├── schemas.py
+│       │   └── enums.py
+│       │
+│       ├── data/
+│       │   ├── market_data.py
+│       │   └── universe.py
+│       │
+│       ├── tools/
+│       │   ├── correlation.py
+│       │   ├── cointegration.py
+│       │   ├── stationarity.py
+│       │   ├── spread.py
+│       │   ├── half_life.py
+│       │   └── backtest.py
+│       │
+│       ├── research/
+│       │   ├── candidate_selector.py
+│       │   ├── pair_analyzer.py
+│       │   └── scoring.py
+│       │
+│       ├── agent/
+│       │   ├── base.py
+│       │   ├── heuristic_agent.py
+│       │   ├── llm_agent.py
+│       │   └── prompts.py
+│       │
+│       ├── evaluation/
+│       │   ├── evaluator.py
+│       │   ├── metrics.py
+│       │   └── dataset.py
+│       │
+│       ├── tracing/
+│       │   ├── tracer.py
+│       │   └── schemas.py
+│       │
+│       └── cli.py
+│
+├── data/
+│   ├── raw/
+│   ├── processed/
+│   ├── traces/
+│   └── evaluations/
+│
+├── scripts/
+│   ├── run_research.py
+│   ├── generate_dataset.py
+│   └── run_evaluation.py
+│
+└── tests/
+```
+
+You can adjust this structure if there is a strong engineering reason, but preserve separation between:
+
+- market data
+- deterministic quant tools
+- agent reasoning
+- tracing
+- evaluation
+- future integrations
+
+---
+
+# 4. Market data layer
+
+Implement a reusable market-data interface.
+
+For the MVP use `yfinance`.
+
+Required functionality:
+
+```python
+get_price_history(
+    ticker: str,
+    start: str,
+    end: str
+) -> pd.DataFrame
+```
+
+and:
+
+```python
+get_adjusted_close(
+    tickers: list[str],
+    start: str,
+    end: str
+) -> pd.DataFrame
+```
+
+Implement caching so repeated runs do not constantly re-download data.
+
+Handle:
+
+- missing data
+- delisted/unavailable symbols
+- different trading histories
+- NaNs
+- insufficient observations
+
+Normalize and align time series before comparisons.
+
+Do NOT silently forward-fill large missing periods.
+
+---
+
+# 5. Stock universe
+
+Start with a configurable universe of approximately 30–60 liquid US stocks from several sectors.
+
+For example:
+
+- semiconductors
+- large-cap tech
+- banks
+- energy
+- consumer staples
+- healthcare
+
+Maintain metadata such as:
+
+```python
+{
+    "ticker": "KO",
+    "sector": "Consumer Staples",
+    "industry": "Beverages"
+}
+```
+
+Candidate selection should preferably compare stocks from economically related sectors/industries instead of brute-forcing every possible combination.
+
+Make the universe easily replaceable later.
+
+---
+
+# 6. Quantitative tools
+
+Implement every statistical calculation as a deterministic Python tool.
+
+The LLM must NEVER manually calculate these metrics.
+
+## Correlation
+
+Calculate return correlation rather than only price-level correlation.
+
+Return:
+
+```python
+{
+    "correlation": 0.87,
+    "n_observations": 500
+}
+```
+
+---
+
+## Cointegration
+
+Use an Engle-Granger cointegration test using `statsmodels`.
+
+Return at minimum:
+
+```python
+{
+    "test_statistic": ...,
+    "p_value": ...,
+    "passes_threshold": true
+}
+```
+
+Threshold must be configurable, default e.g. `0.05`.
+
+---
+
+## Spread
+
+Estimate a hedge ratio using OLS.
+
+Do NOT simply assume a 1:1 ratio.
+
+Represent spread approximately as:
+
+```text
+spread = stock_A - beta * stock_B
+```
+
+Return beta and the resulting spread.
+
+Prevent accidental use of future information.
+
+---
+
+## Stationarity
+
+Run an Augmented Dickey-Fuller test on the spread.
+
+Return:
+
+```python
+{
+    "adf_statistic": ...,
+    "p_value": ...,
+    "stationary": true
+}
+```
+
+---
+
+## Half-life
+
+Estimate the mean-reversion half-life of the spread.
+
+Handle invalid/non-mean-reverting cases gracefully.
+
+Return `None` or a structured failure rather than producing meaningless values.
+
+---
+
+# 7. Time-series discipline
+
+This is critically important.
+
+Prevent:
+
+- look-ahead bias
+- data leakage
+- random train/test splitting of time-series data
+
+Use chronological splits.
+
+Make the split configurable, but support something conceptually similar to:
+
+```text
+Research/train period:
+2022-01-01 → 2024-12-31
+
+Validation:
+2025-01-01 → 2025-12-31
+
+Held-out test:
+2026-01-01 → latest available date
+```
+
+If current market data does not contain all these periods, adapt intelligently while preserving chronological ordering.
+
+All parameters such as:
+
+- hedge ratio
+- spread mean
+- spread standard deviation
+- entry threshold
+
+must be estimated using the training/research period only and then applied to later periods where appropriate.
+
+---
+
+# 8. Pair-trading backtest
+
+Implement a simple, transparent pair-trading backtest.
+
+Use the spread z-score.
+
+Initial default rules:
+
+```text
+z-score > +2:
+short spread
+
+z-score < -2:
+long spread
+
+|z-score| < 0.5:
+close position
+```
+
+Make thresholds configurable.
+
+Include:
+
+- hedge ratio
+- transaction costs
+- position changes
+- no future information
+- market-neutral or approximately beta-neutral construction where practical
+
+Do NOT optimize parameters on the held-out test set.
+
+Return metrics including:
+
+```python
+{
+    "total_return": ...,
+    "annualized_return": ...,
+    "annualized_volatility": ...,
+    "sharpe_ratio": ...,
+    "max_drawdown": ...,
+    "number_of_trades": ...,
+    "win_rate": ...
+}
+```
+
+Calculate train and validation/test metrics separately.
+
+A pretty equity curve is useful but secondary to correctness.
+
+---
+
+# 9. Candidate selection
+
+Implement a candidate-selection layer.
+
+Given a stock such as `KO`, return relevant peer candidates.
+
+Start with rules based on:
+
+- same sector
+- preferably same industry
+- sufficient price history
+- liquidity proxy if conveniently available
+
+Then rank candidates using return correlation.
+
+Do NOT declare correlation alone sufficient for pair trading.
+
+Correlation is only an initial screening step.
+
+---
+
+# 10. Pair analyzer
+
+Implement one high-level deterministic research function:
+
+```python
+analyze_pair(
+    ticker_a: str,
+    ticker_b: str,
+    config: ResearchConfig
+) -> PairAnalysis
+```
+
+It should run:
+
+1. load data
+2. align observations
+3. calculate return correlation
+4. run cointegration test
+5. estimate hedge ratio
+6. construct spread
+7. run ADF
+8. estimate half-life
+9. backtest
+10. perform out-of-sample evaluation
+11. calculate final quality metrics
+
+Use typed Pydantic models for results.
+
+Example output structure:
+
+```python
+PairAnalysis(
+    ticker_a="KO",
+    ticker_b="PEP",
+    correlation=0.86,
+    cointegration_p_value=0.018,
+    adf_p_value=0.012,
+    hedge_ratio=0.73,
+    half_life_days=8.4,
+    train_sharpe=1.42,
+    validation_sharpe=1.08,
+    max_drawdown=0.074,
+    number_of_trades=23,
+    accepted=True,
+    rejection_reasons=[]
+)
+```
+
+---
+
+# 11. Pair scoring
+
+Create a transparent pair-quality score from 0–1 or 0–100.
+
+Do NOT use in-sample Sharpe alone.
+
+Use several components such as:
+
+- statistical validity
+- cointegration
+- spread stationarity
+- sensible half-life
+- out-of-sample performance
+- train → validation degradation
+- drawdown
+- transaction-cost robustness
+
+For example conceptually:
+
+```text
+25% statistical validity
+25% out-of-sample performance
+20% temporal stability
+15% drawdown
+10% transaction-cost robustness
+5% efficiency
+```
+
+Do not blindly copy these weights if a better formulation is obvious.
+
+Keep each component available separately so we can later use them as Langfuse evaluation scores.
+
+---
+
+# 12. Agent abstraction
+
+Create a common agent interface.
+
+Example:
+
+```python
+class ResearchAgent(ABC):
+    def research(self, request: ResearchRequest) -> AgentResult:
+        ...
+```
+
+Implement two agents.
+
+## A. HeuristicResearchAgent
+
+This MUST work without any LLM API.
+
+It should:
+
+1. parse a requested ticker/universe
+2. get peer candidates
+3. screen correlations
+4. run deeper analysis on promising candidates
+5. rank them
+6. reject weak candidates
+7. return the best pair(s)
+
+This gives us a deterministic baseline.
+
+## B. LLMResearchAgent
+
+Create an OpenAI-compatible abstraction.
+
+The LLM should decide:
+
+- which candidates are worth investigating
+- which tools to call next
+- when enough evidence exists
+- whether a pair should be rejected
+- which final pair is best
+
+But the LLM must use deterministic tools for every numerical/statistical claim.
+
+Do not tightly couple the implementation to one provider.
+
+Use environment variables for:
+
+```text
+LLM_BASE_URL
+LLM_API_KEY
+LLM_MODEL
+```
+
+This is important because later `LLM_BASE_URL` may point to Runpod.
+
+If no API key is configured, the project must still work using `HeuristicResearchAgent`.
+
+---
+
+# 13. Tool-call architecture
+
+Expose the quantitative functions in a tool-friendly form.
+
+Conceptually:
+
+```python
+find_peer_candidates(ticker)
+
+calculate_correlation(ticker_a, ticker_b)
+
+calculate_cointegration(ticker_a, ticker_b)
+
+calculate_stationarity(ticker_a, ticker_b)
+
+estimate_half_life(ticker_a, ticker_b)
+
+backtest_pair(ticker_a, ticker_b)
+```
+
+Return JSON-serializable structured results.
+
+This should be easy to expose later as LLM function/tool calls.
+
+---
+
+# 14. Local tracing system
+
+This is one of the most important parts.
+
+Create a provider-independent tracing abstraction now.
+
+Example:
+
+```python
+class TraceSink(ABC):
+    def start_trace(...)
+    def log_tool_call(...)
+    def log_model_call(...)
+    def log_score(...)
+    def end_trace(...)
+```
+
+Implement:
+
+```python
+LocalJsonlTraceSink
+```
+
+Store traces under:
+
+```text
+data/traces/
+```
+
+Each research request should produce a trace containing:
+
+```json
+{
+  "trace_id": "...",
+  "timestamp": "...",
+  "request": "...",
+  "agent_version": "...",
+  "model": "...",
+  "steps": [
+    {
+      "type": "tool_call",
+      "tool": "find_peer_candidates",
+      "input": {},
+      "output": {}
+    },
+    {
+      "type": "tool_call",
+      "tool": "calculate_cointegration",
+      "input": {},
+      "output": {}
+    }
+  ],
+  "final_answer": {},
+  "selected_pair": ["KO", "PEP"],
+  "scores": {},
+  "latency_ms": ...,
+  "tool_call_count": ...
+}
+```
+
+Make the schema clean enough that a future:
+
+```python
+LangfuseTraceSink
+```
+
+can replace or complement the local trace sink with minimal changes.
+
+Do NOT implement fake Langfuse integration yet.
+
+Only add a clean adapter interface and `TODO` documentation.
+
+---
+
+# 15. Evaluation framework
+
+Build evaluation as a first-class component.
+
+For every agent run calculate objective scores such as:
+
+```text
+pair_quality
+statistical_validity
+cointegration_pass
+stationarity_pass
+out_of_sample_quality
+robustness
+tool_efficiency
+overall_score
+```
+
+The evaluator should be deterministic wherever possible.
+
+Do not use an LLM judge for things that can be computed objectively.
+
+Example:
+
+```python
+EvaluationResult(
+    pair_quality=0.84,
+    statistical_validity=1.0,
+    out_of_sample_quality=0.78,
+    robustness=0.81,
+    tool_efficiency=0.72,
+    overall_score=0.83
+)
+```
+
+Attach these scores to the local trace.
+
+This scoring system should be designed so these values can later become Langfuse Scores and an Autoresearch target.
+
+---
+
+# 16. Evaluation dataset
+
+Create support for a collection of standardized research tasks.
+
+Example JSONL:
+
+```json
+{"id":"task_001","request":"Find the best pair for KO."}
+{"id":"task_002","request":"Find the best pair for NVDA."}
+{"id":"task_003","request":"Find three candidate pairs among major US banks."}
+```
+
+Provide a starter dataset of at least 15–25 tasks.
+
+Include variety:
+
+- obvious peer candidates
+- difficult cases
+- cases where no strong pair exists
+- different sectors
+- single-stock requests
+- universe-level requests
+
+Build:
+
+```bash
+python scripts/run_evaluation.py
+```
+
+which:
+
+1. runs every task
+2. generates traces
+3. evaluates every result
+4. writes aggregate metrics
+5. prints a leaderboard-like summary
+
+Example:
+
+```text
+Agent: heuristic-v1
+
+Tasks:                   20
+Mean overall score:      0.71
+Valid pair rate:         65%
+Cointegration pass:      73%
+Mean validation Sharpe:  0.84
+No-pair decisions:       4
+Avg tool calls:          8.2
+```
+
+---
+
+# 17. Failure analysis
+
+Create a simple failure-analysis module.
+
+Categorize failures such as:
+
+```text
+HIGH_CORRELATION_NO_COINTEGRATION
+
+NON_STATIONARY_SPREAD
+
+OVERFITTING
+train performance good but validation poor
+
+EXCESSIVE_DRAWDOWN
+
+INSUFFICIENT_DATA
+
+TRANSACTION_COST_SENSITIVE
+
+BAD_HALF_LIFE
+
+UNNECESSARY_TOOL_CALLS
+
+FORCED_PAIR_SELECTION
+```
+
+Store failure categories in the trace/evaluation output.
+
+This is important because later Distil Labs / Autoresearch should be able to learn from specific failure patterns.
+
+---
+
+# 18. Synthetic / training-data preparation
+
+Do NOT train a model yet.
+
+But create an export layer that can convert completed traces into a generic training/evaluation JSONL format.
+
+For example:
+
+```json
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Find a pair for KO."
+    },
+    {
+      "role": "assistant",
+      "content": "..."
+    }
+  ],
+  "metadata": {
+    "trace_id": "...",
+    "overall_score": 0.84,
+    "failure_modes": []
+  }
+}
+```
+
+Provide functions to select:
+
+- high-quality traces
+- failed traces
+- traces within a score range
+
+Example:
+
+```python
+export_training_dataset(
+    min_score=0.8
+)
+```
+
+and:
+
+```python
+export_failure_dataset(
+    max_score=0.5
+)
+```
+
+This should prepare us for Distil Labs later without assuming its exact API.
+
+---
+
+# 19. CLI
+
+Create a simple CLI.
+
+Examples:
+
+```bash
+python -m pair_agent.cli research --ticker KO
+```
+
+Output something like:
+
+```text
+PAIR RESEARCH RESULT
+
+Target: KO
+
+Candidates analyzed:
+PEP
+KDP
+MNST
+
+Best candidate:
+KO / PEP
+
+Return correlation:       0.86
+Cointegration p-value:    0.018
+ADF p-value:              0.012
+Hedge ratio:              0.73
+Half-life:                8.4 days
+
+Train Sharpe:             1.42
+Validation Sharpe:        1.08
+Max drawdown:             7.4%
+
+Pair score:               84 / 100
+
+Decision:
+ACCEPTED AS RESEARCH CANDIDATE
+```
+
+Or:
+
+```text
+Decision:
+NO ROBUST PAIR FOUND
+
+Reasons:
+- all candidates failed cointegration
+- spreads were not stationary
+```
+
+Also support:
+
+```bash
+python scripts/run_evaluation.py
+```
+
+---
+
+# 20. README
+
+Write a useful README explaining:
+
+## What the system is
+
+An AI-assisted quantitative research agent for identifying potential mean-reverting equity pairs.
+
+## What it is not
+
+- not financial advice
+- not a live trading system
+- does not execute trades
+- backtests do not guarantee future performance
+
+## Architecture
+
+Include a simple diagram:
+
+```text
+Request
+   ↓
+Research Agent
+   ↓
+Deterministic Quant Tools
+   ↓
+Pair Analysis / Backtest
+   ↓
+Decision
+   ↓
+Local Trace
+   ↓
+Evaluator
+   ↓
+Training/Evaluation Dataset
+
+Future:
+
+Local Trace → Langfuse
+Langfuse failures → Distil Labs
+Distil Labs → Autoresearch
+trained model → Runpod
+Runpod model → Agent v2
+Agent v2 → Langfuse
+```
+
+Explain how Runpod will later work by swapping an OpenAI-compatible model base URL.
+
+---
+
+# 21. Tests
+
+Write meaningful tests.
+
+At minimum test:
+
+- return correlation
+- cointegration tool
+- ADF/stationarity
+- hedge-ratio estimation
+- spread calculation
+- half-life
+- chronological splitting
+- no look-ahead leakage
+- backtest calculations
+- pair scoring
+- trace serialization
+- evaluator
+- agent rejection when no candidate passes
+
+Where online market data would make tests unreliable, use deterministic synthetic data.
+
+Create synthetic examples of:
+
+1. two cointegrated series
+2. two correlated but NOT cointegrated series
+3. unrelated series
+
+This is particularly important because the system should distinguish correlation from cointegration.
+
+---
+
+# 22. Correctness priorities
+
+Correctness matters more than sophisticated UI.
+
+In particular:
+
+1. NEVER use future observations when generating historical signals.
+2. NEVER randomly split time series.
+3. NEVER calculate statistical values inside the LLM.
+4. NEVER treat high correlation alone as evidence of a valid pair.
+5. NEVER force the agent to choose a pair.
+6. NEVER optimize against the held-out test set.
+7. Explicitly account for transaction costs.
+8. Gracefully handle insufficient or bad market data.
+
+---
+
+# 23. Implementation strategy
+
+Do the work incrementally.
+
+First:
+
+1. inspect/create project structure
+2. implement Pydantic schemas
+3. implement market-data layer
+4. implement statistical tools
+5. implement pair analyzer
+6. implement backtest
+7. implement scoring
+8. implement heuristic agent
+9. implement tracing
+10. implement evaluation
+11. add LLM abstraction
+12. add CLI
+13. add tests
+14. write README
+
+Do not stop after scaffolding.
+
+Implement a fully runnable vertical slice.
+
+At the end:
+
+- run the tests
+- fix failing tests
+- run one example research task if network access is available
+- if network is unavailable, run the full flow using synthetic/local test data
+- summarize what was implemented
+- mention any remaining TODOs
+
+---
+
+# 24. Future integration boundaries
+
+Create explicit interfaces/placeholders for:
+
+```text
+LangfuseTraceSink
+DistilDatasetExporter
+Runpod/OpenAICompatibleModelClient
+```
+
+Do NOT guess undocumented

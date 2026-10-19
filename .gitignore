@@ -1,12 +1,39 @@
+# Environments and secrets
 .venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Python, tooling and editor artifacts
 __pycache__/
 *.py[cod]
+*.egg-info/
 .pytest_cache/
 .ruff_cache/
-*.egg-info/
-.env
-data/raw/*
+.mypy_cache/
+.DS_Store
+.idea/
+.vscode/
+*.tmp
+*.log
+
+# Downloaded market data and large columnar caches
+data/raw/
+data/**/raw/
+*.parquet
+data/live-check/
+
+# Keep curated, explicitly documented examples, not all generated runs
 data/processed/*
+!data/processed/.gitkeep
+!data/processed/examples/
+!data/processed/examples/**
 data/traces/*
+!data/traces/.gitkeep
+!data/traces/examples/
+!data/traces/examples/**
 data/evaluations/*
-!data/**/.gitkeep
+!data/evaluations/.gitkeep
+!data/evaluations/examples/
+!data/evaluations/examples/**

@@ -1,0 +1,151 @@
+{
+  "trace_id": "0d0ab22d-a980-4c07-96fa-365cc9560fe8",
+  "request": {
+    "request": "Find a robust pair among NVDA and AMD.",
+    "ticker": null,
+    "tickers": [
+      "NVDA",
+      "AMD"
+    ],
+    "top_k": 1
+  },
+  "agent_version": "heuristic-v1",
+  "model": null,
+  "selected_pairs": [],
+  "candidates": [
+    {
+      "ticker_a": "NVDA",
+      "ticker_b": "AMD",
+      "correlation": 0.8723148564868705,
+      "cointegration_p_value": 0.7572131099750248,
+      "adf_p_value": 0.5289435984996725,
+      "hedge_ratio": 0.3286469588089052,
+      "half_life_days": 114.91734345776476,
+      "parameters": {
+        "hedge_ratio": 0.3286469588089052,
+        "intercept": 75.3642405338868,
+        "mean": 5.881399071464936e-14,
+        "std": 4.505851478473032,
+        "fitted_until": "2024-11-15T00:00:00"
+      },
+      "train": {
+        "total_return": -0.018719611977630723,
+        "annualized_return": -0.015748194738923416,
+        "annualized_volatility": 0.022774427397765227,
+        "sharpe_ratio": -0.6856164645863065,
+        "max_drawdown": 0.04492669855160314,
+        "number_of_trades": 1,
+        "win_rate": 0.0,
+        "total_cost": 0.002095935045630991,
+        "turnover": 2.1160894058910307,
+        "mean_abs_net_exposure": 0.0295378472657875,
+        "n_observations": 300
+      },
+      "validation": {
+        "total_return": 0.0,
+        "annualized_return": 0.0,
+        "annualized_volatility": 0.0,
+        "sharpe_ratio": 0.0,
+        "max_drawdown": 0.0,
+        "number_of_trades": 0,
+        "win_rate": 0.0,
+        "total_cost": 0.0,
+        "turnover": 0.0,
+        "mean_abs_net_exposure": 0.0,
+        "n_observations": 250
+      },
+      "validation_stressed": {
+        "total_return": 0.0,
+        "annualized_return": 0.0,
+        "annualized_volatility": 0.0,
+        "sharpe_ratio": 0.0,
+        "max_drawdown": 0.0,
+        "number_of_trades": 0,
+        "win_rate": 0.0,
+        "total_cost": 0.0,
+        "turnover": 0.0,
+        "mean_abs_net_exposure": 0.0,
+        "n_observations": 250
+      },
+      "test": null,
+      "score": 0.35,
+      "components": {
+        "statistical_validity": 0.0,
+        "out_of_sample_quality": 0.0,
+        "temporal_stability": 1.0,
+        "drawdown": 1.0,
+        "transaction_cost_robustness": 0.0,
+        "activity": 0.0
+      },
+      "accepted": false,
+      "rejection_reasons": [
+        "HIGH_CORRELATION_NO_COINTEGRATION",
+        "NON_STATIONARY_SPREAD",
+        "BAD_HALF_LIFE",
+        "POOR_VALIDATION",
+        "INSUFFICIENT_TRADES",
+        "TRANSACTION_COST_SENSITIVE",
+        "LOW_SCORE"
+      ],
+      "failure_modes": [
+        "HIGH_CORRELATION_NO_COINTEGRATION",
+        "NON_STATIONARY_SPREAD",
+        "BAD_HALF_LIFE",
+        "POOR_VALIDATION",
+        "INSUFFICIENT_TRADES",
+        "TRANSACTION_COST_SENSITIVE",
+        "LOW_SCORE"
+      ],
+      "periods": {
+        "train": {
+          "start": "2022-01-03T00:00:00",
+          "end": "2024-11-15T00:00:00",
+          "n_observations": 750
+        },
+        "validation": {
+          "start": "2024-11-18T00:00:00",
+          "end": "2025-10-31T00:00:00",
+          "n_observations": 250
+        },
+        "train_backtest": {
+          "start": "2023-09-25T00:00:00",
+          "end": "2024-11-15T00:00:00",
+          "n_observations": 300
+        }
+      },
+      "data_fingerprint": "334e3963050a737c8fbc9c1dfc6e4f25ec2408ccd5e381bfa01c8ad53f74a96d",
+      "test_error": null
+    }
+  ],
+  "decision": "NO ROBUST PAIR FOUND",
+  "evaluation": {
+    "pair_quality": 0.0,
+    "statistical_validity": 0.0,
+    "cointegration_pass": 0.0,
+    "stationarity_pass": 0.0,
+    "out_of_sample_quality": 0.0,
+    "robustness": 0.0,
+    "tool_efficiency": 1.0,
+    "overall_score": 0.5,
+    "failure_modes": [
+      "HIGH_CORRELATION_NO_COINTEGRATION",
+      "NON_STATIONARY_SPREAD",
+      "BAD_HALF_LIFE",
+      "POOR_VALIDATION",
+      "INSUFFICIENT_TRADES",
+      "TRANSACTION_COST_SENSITIVE",
+      "LOW_SCORE"
+    ]
+  },
+  "tool_call_count": 11,
+  "model_call_count": 0,
+  "failure_modes": [
+    "HIGH_CORRELATION_NO_COINTEGRATION",
+    "NON_STATIONARY_SPREAD",
+    "BAD_HALF_LIFE",
+    "POOR_VALIDATION",
+    "INSUFFICIENT_TRADES",
+    "TRANSACTION_COST_SENSITIVE",
+    "LOW_SCORE"
+  ]
+}
