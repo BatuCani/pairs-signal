@@ -175,6 +175,14 @@ Ehrlicher waere eine Auswahl nur auf dem Trainings-Zeitraum.
 - Ohne API-Key stammen die Schlagzeilen-Labels aus Keyword-Regeln (`label_source: rules`); erst `label-headlines` mit Key liefert Teacher-Labels.
 Die 50 als `review: true` markierten Faelle (`data/out/headline_review.csv`) sind zur manuellen Kontrolle gedacht.
 
+## Daten und Lizenzen
+
+- **Schlagzeilen:** abgeleitet aus FNSPID (Dong, Fan, Peng 2024, [arXiv 2402.06698](https://arxiv.org/abs/2402.06698)), Hugging Face [Zihan1004/FNSPID](https://huggingface.co/datasets/Zihan1004/FNSPID), Lizenz [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+Die Schlagzeilen in `data/out/` sind anonymisiert und gefiltert, bleiben aber abgeleitete Daten unter CC BY-NC 4.0: nur nicht-kommerzielle Nutzung, mit Namensnennung.
+- **SEC EDGAR:** 8-K-Filings ueber die Submissions API (`data.sec.gov`), Daten einer US-Bundesbehoerde und gemeinfrei.
+- **Kurse und Volumen:** via yfinance von Yahoo Finance, es gelten die Nutzungsbedingungen von Yahoo; nur fuer Forschung und Lehre.
+Rohkurse liegen nur lokal in `data/raw/` (gitignored); im Repo stehen nur daraus berechnete Kennzahlen.
+
 ## Dateien
 
 | Pfad | Inhalt |
