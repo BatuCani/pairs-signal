@@ -40,8 +40,16 @@ The live feed classifies one test headline per label from `test.jsonl` and score
 
 ## API
 
-- `POST /classify` with `{"headline": "..."}` returns `{"results": [{variant, model, label, shock, latency_ms, trace_url, mock, error}]}`.
-- `GET /config`, `GET /feed`.
+- `POST /api/classify` with `{"headline": "..."}` returns `{"results": [{variant, model, label, shock, latency_ms, trace_url, mock, error}]}`.
+- `GET /api/config`, `GET /api/feed`, `GET /api/insights`.
+
+All logic lives in `ui/api/_core.py`; `ui/server.py` (local) and the Vercel functions `ui/api/*.py` share it.
+
+## Vercel
+
+Deploy the `ui/` folder as the project root (`cd ui && vercel deploy`, or set Root Directory to `ui`).
+`index.html` is served statically, `api/*.py` run as Python functions with `data/**` bundled (`vercel.json`), dependencies come from `requirements.txt`.
+Set `MODEL_*` / `MODEL_V1_*` / `MODEL_V2_*` and `LANGFUSE_*` as Vercel environment variables; without `MODEL_*` the deployment runs in Mock mode.
 
 ## Terminal demo
 

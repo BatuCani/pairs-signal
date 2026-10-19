@@ -377,7 +377,7 @@ async function classify(headline) {
   $("results").className = "results" + (n > 1 ? " two" : "");
   $("results").innerHTML = '<div class="card skel"><i></i><i></i><i></i></div>'.repeat(n);
   try {
-    const data = await api("/classify", { headline });
+    const data = await api("/api/classify", { headline });
     renderResults(data.results);
     return data.results;
   } catch (e) {
@@ -434,10 +434,10 @@ async function runFeed() {
   CONFIG.variants.forEach((v) => (stats[v.key] = { n: 0, hit: 0, ms: [] }));
   renderStats(stats);
   try {
-    const items = await api("/feed");
+    const items = await api("/api/feed");
     for (const it of items) {
       $("headline").value = it.headline;
-      const results = (await api("/classify", { headline: it.headline })).results;
+      const results = (await api("/api/classify", { headline: it.headline })).results;
       results.forEach((r) => {
         const s = stats[r.variant] || (stats[r.variant] = { n: 0, hit: 0, ms: [] });
         s.n += 1; s.ms.push(r.latency_ms); if (r.label === it.expected) s.hit += 1;
@@ -506,7 +506,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "2") showPage("results");
 });
 const pct = (x, d = 0) => (Math.round(x * 100 * 10 ** d + 1e-6) / 10 ** d).toFixed(d) + " %";
-fetch("/insights").then((r) => (r.ok ? r.json() : null)).then((d) => {
+fetch("/api/insights").then((r) => (r.ok ? r.json() : null)).then((d) => {
   if (!d) return;
   $("kpi-exact").textContent = pct(d.accuracy, 1);
   $("kpi-shock").textContent = pct(d.shock_accuracy, 1);
@@ -523,7 +523,7 @@ window.addEventListener("hashchange", () => showPage(location.hash === "#results
 if (location.hash === "#results") showPage("results");
 
 (async () => {
-  CONFIG = await api("/config");
+  CONFIG = await api("/api/config");
   const pills = [];
   if (CONFIG.mock) pills.push('<span class="pill mock">Mock mode</span>');
   else CONFIG.variants.forEach((v) => pills.push(`<span class="pill on">${esc(v.key)}: ${esc(v.model)}</span>`));
