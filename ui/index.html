@@ -376,7 +376,8 @@
       <div class="bar"><div class="bname">Keyword rules</div><div class="btrack"><div class="bfill" style="--v:30.5%"></div></div><div class="bval">30.5 %</div></div>
       <div class="bar"><div class="bname">Qwen3.5-0.8B untrained</div><div class="btrack"><div class="bfill" style="--v:55.75%"></div></div><div class="bval">55.75 %</div></div>
       <div class="bar"><div class="bname">GLM 5.3 teacher</div><div class="btrack"><div class="bfill" style="--v:79.25%"></div></div><div class="bval">79.25 %</div></div>
-      <div class="bar hi"><div class="bname">Our Qwen3.5-0.8B<small>distil labs &middot; 6.6 min GPU training</small></div><div class="btrack"><div class="bfill" style="--v:88%"></div></div><div class="bval">88.0 %</div></div>
+      <div class="bar"><div class="bname">Our Qwen3.5-0.8B &middot; v1 (live)<small>distil labs &middot; 6.6 min GPU training</small></div><div class="btrack"><div class="bfill" style="--v:88%"></div></div><div class="bval">88.0 %</div></div>
+      <div class="bar hi"><div class="bname">Our Qwen3.5-0.8B &middot; v2<small>+1,022 synthetic headlines from the GLM 5.3 teacher</small></div><div class="btrack"><div class="bfill" style="--v:90.5%"></div></div><div class="bval">90.5 %</div></div>
     </div>
     <div id="insights" hidden>
       <div class="ins-grid">
@@ -636,7 +637,7 @@ function animateResults() {
     countUp(el, 900, 150 + i * 60);
   });
   const ours = page.querySelector(".bar.hi .bfill");
-  if (ours) setTimeout(() => ours.classList.add("sweep"), 150 + 3 * 110 + 900);
+  if (ours) setTimeout(() => ours.classList.add("sweep"), 150 + fills.indexOf(ours) * 110 + 900);
 }
 document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => showPage(t.dataset.page)));
 document.addEventListener("keydown", (e) => {
