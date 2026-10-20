@@ -6,7 +6,7 @@ Eingabe ist eine Schlagzeile oder ein News-Tweet zu einer Aktie, Ausgabe ist der
 Trainiert wird mit distil labs, serviert auf Runpod (vLLM mit LoRA), jeder Aufruf wird in Langfuse getract und die Fehler fliessen als neue Trainingsbeispiele zurueck.
 
 Dieses Projekt liegt im Unterordner `pairs_signal/` des Repos und ist ein eigenes uv-Projekt; alle Befehle und Pfade unten gelten in diesem Ordner (`cd pairs_signal`).
-Der Root des Repos gehoert zum separaten Projekt "Pair Research Agent".
+Der Root des Repos beschreibt das Gesamtprojekt News Gate (`README.md`), daneben liegen `pitch/`, `ui/` und `training/`.
 
 Alles laeuft ohne Keys mit `--dry-run`.
 Keys kommen nur aus der Umgebung (`.env.example` zeigt alle Variablen).

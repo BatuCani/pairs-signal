@@ -1,0 +1,27 @@
+# distil labs job config for the news_event task (docs: reference/config).
+# A fixed label set is a question-answering task; the labels live in job_description.json.
+base:
+  task: question-answering
+  student_model_name: Qwen3.5-0.8B
+  teacher_model_name: zai.glm-5.3-flash-low-thinking
+evaluation:
+  llm_as_a_judge_model_name: zai.glm-5.3-low-thinking
+synthgen:
+  train_generation_target: 1000
+  mutators:
+    - name: label
+      description: which label the example has
+      method: adaptive
+      values:
+        - "a headline whose correct label is earnings"
+        - "a headline whose correct label is analyst_rating"
+        - "a headline whose correct label is m_and_a"
+        - "a headline whose correct label is legal_regulatory"
+        - "a headline whose correct label is management_change"
+        - "a headline whose correct label is dividend"
+        - "a headline whose correct label is company_news"
+        - "a headline whose correct label is stock_movement"
+        - "a headline whose correct label is macro_market"
+        - "a headline whose correct label is other"
+trace_processing:
+  observation_format: openai_messages
